@@ -1,6 +1,7 @@
 export class GeneradorBoleta {
-  constructor(empleado) {
+  constructor(empleado, ciudad) {
     this.empleado = empleado;
+    this.ciudad = ciudad;
   }
 
   get monto() {
@@ -16,4 +17,5 @@ export class GeneradorBoleta {
     var fechaConFormato = fechaActual.slice(0, 15);
     return fechaConFormato;
   }
+
 }

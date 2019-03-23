@@ -24,4 +24,10 @@ describe("BoletaDePagoTest", function() {
     let fechaActualConFormato = String(new Date()).slice(0, 15);
     expect(boletaPago.fecha).equal(fechaActualConFormato);
   });
+
+  it("si se genera una boleta en Cochabamba el lugar de la boleta deberia ser Cochabamba", function() {
+    let empleado = new Empleado("JUAN PEREZ", 100);
+    let boletaPago = new GeneradorBoleta(empleado, "Cochabamba");
+    expect(boletaPago.ciudad).equal("Cochabamba");
+  });
 });
