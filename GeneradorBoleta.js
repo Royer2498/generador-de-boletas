@@ -25,4 +25,13 @@ export class GeneradorBoleta {
   get moneda() {
     return this.empleado.salario.moneda;
   }
+
+  imprimir() {
+    let info = `BOLETA DE PAGO
+    Empleado: ${this.empleado.nombre}
+    Cargo: ${this.empleado.cargo}
+    Salario: ${this.empleado.salario.monto} ${this.empleado.salario.moneda}
+    Fecha de emision: ${this.fecha}`;
+    return info;
+  }
 }
