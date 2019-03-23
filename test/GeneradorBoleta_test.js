@@ -30,4 +30,15 @@ describe("BoletaDePagoTest", function() {
     let boletaPago = new GeneradorBoleta(empleado, "Cochabamba");
     expect(boletaPago.ciudad).equal("Cochabamba");
   });
+
+  it("si se genera una boleta para Juan con cargo de Gerente, el cargo de la boleta deberia ser Gerente", function() {
+    let empleado = new Empleado("JUAN PEREZ", 100 ,"Gerente");
+    let boletaPago = new GeneradorBoleta(empleado, "Cochabamba");
+    expect(boletaPago.cargo).equal("Gerente");
+  });
+
+  
+
+
+
 });

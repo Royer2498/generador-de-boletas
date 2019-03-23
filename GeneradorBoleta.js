@@ -18,4 +18,8 @@ export class GeneradorBoleta {
     return fechaConFormato;
   }
 
+  get cargo(){
+      return this.empleado.cargo;
+  }
+
 }
