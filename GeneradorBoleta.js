@@ -9,4 +9,8 @@ export class GeneradorBoleta{
         return this.empleado.sueldo;
     }
 
+    get contribuyente(){
+        return this.empleado.nombre;
+    }
+
 }
