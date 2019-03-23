@@ -1,13 +1,8 @@
+export class Empleado {
 
-
-export class Empleado{
-
-    constructor(nombre,sueldo,cargo){
-        this.nombre = nombre;
-        this.sueldo = sueldo;
-        this.cargo = cargo;
-    }
-
-
+  constructor(nombre, salario, cargo) {
+    this.nombre = nombre;
+    this.salario = salario;
+    this.cargo = cargo;
+  }
 }
-

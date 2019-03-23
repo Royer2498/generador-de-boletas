@@ -5,7 +5,7 @@ export class GeneradorBoleta {
   }
 
   get monto() {
-    return this.empleado.sueldo;
+    return this.empleado.salario.monto;
   }
 
   get contribuyente() {
@@ -18,8 +18,11 @@ export class GeneradorBoleta {
     return fechaConFormato;
   }
 
-  get cargo(){
-      return this.empleado.cargo;
+  get cargo() {
+    return this.empleado.cargo;
   }
 
+  get moneda() {
+    return this.empleado.salario.moneda;
+  }
 }
