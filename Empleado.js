@@ -5,4 +5,8 @@ export class Empleado {
     this.salario = salario;
     this.cargo = cargo;
   }
+
+  calcularSalario() {
+    return this.salario.monto;
+  }
 }
