@@ -7,6 +7,6 @@ export class Empleado {
   }
 
   calcularSalario() {
-    return this.salario.monto;
+    throw new Error("clase abstracta");
   }
 }
