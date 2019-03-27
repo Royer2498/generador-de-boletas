@@ -1,9 +1,9 @@
 var expect = require("chai").expect;
 
-import { Salario } from "../Salario.js";
-import { EmpleadoTiempoCompleto } from "../EmpleadoTiempoCompleto";
-import { EmpleadoTiempoParcial } from "../EmpleadoTiempoParcial";
-import { EmpleadoPorComision } from "../EmpleadoPorComision";
+import { Salario } from "../src/Salario";
+import { EmpleadoTiempoCompleto } from "../src/Empleados/EmpleadoTIempoCompleto";
+import { EmpleadoTiempoParcial } from "../src/Empleados/EmpleadoTiempoParcial";
+import { EmpleadoPorComision } from "../src/Empleados/EmpleadoPorComision";
 
 describe("Empleados", function () {
 

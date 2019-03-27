@@ -1,5 +1,5 @@
 import { Empleado } from "./Empleado";
-import { CalculadoraTiempoParcial } from "./CalculadoraTiempoParcial";
+import { CalculadoraTiempoParcial } from "../Calculadora salario/CalculadoraTiempoParcial";
 
 export class EmpleadoTiempoParcial extends Empleado {
     constructor(nombre, salario, cargo, horasTrabajadas) {

@@ -1,10 +1,10 @@
 var expect = require("chai").expect;
 
-import { GeneradorBoleta } from "../GeneradorBoleta";
-import { EmpleadoTiempoCompleto } from "../EmpleadoTiempoCompleto";
-import { EmpleadoTiempoParcial } from "../EmpleadoTiempoParcial";
-import { EmpleadoPorComision } from "../EmpleadoPorComision";
-import { Salario } from "../Salario.js";
+import { GeneradorBoleta } from "../src/Boleta de pago/GeneradorBoleta";
+import { EmpleadoTiempoCompleto } from "../src/Empleados/EmpleadoTIempoCompleto";
+import { EmpleadoTiempoParcial } from "../src/Empleados/EmpleadoTiempoParcial";
+import { EmpleadoPorComision } from "../src/Empleados/EmpleadoPorComision";
+import { Salario } from "../src/Salario";
 
 describe("BoletaDePagoTest", function () {
   it(`si se genera una boleta para Juan Perez que recibe 10000 bolivianos de salario fijo,

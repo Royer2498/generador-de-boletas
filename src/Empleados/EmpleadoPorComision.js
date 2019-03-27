@@ -1,5 +1,5 @@
 import { Empleado } from "./Empleado";
-import { CalculadoraPorComision } from "./CalculadoraPorComision";
+import { CalculadoraPorComision } from "../Calculadora salario/CalculadoraPorComision";
 
 export class EmpleadoPorComision extends Empleado {
     constructor(nombre, salario, cargo, porcentajeComision, montoEnVentas) {
