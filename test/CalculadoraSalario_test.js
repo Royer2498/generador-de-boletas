@@ -6,6 +6,7 @@ import { EmpleadoTiempoParcial } from "../EmpleadoTiempoParcial";
 import { EmpleadoPorComision } from "../EmpleadoPorComision";
 import { CalculadoraTiempoCompleto } from '../CalculadoraTiempoCompleto';
 import { CalculadoraTiempoParcial } from '../CalculadoraTiempoParcial';
+import { CalculadoraPorComision } from '../CalculadoraPorComision';
 
 describe("Calculadora salario", function () {
     it("el sueldo para un empleado fijo con salario 7000 deberia ser 7000", function () {
@@ -26,7 +27,8 @@ describe("Calculadora salario", function () {
     y 10% de comision deberia ser 200`, function () {
             let salario = new Salario(100, "Bs")
             let empleado = new EmpleadoPorComision("Juan Perez", salario, "Gerente", 10, 1000);
-            expect(empleado.calcularSalario()).equal(200);
+            let calculadoraPorComision = new CalculadoraPorComision();
+            expect(calculadoraPorComision.calcularSalario(empleado)).equal(200);
         });
 
 });
