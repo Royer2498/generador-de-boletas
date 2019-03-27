@@ -1,14 +1,15 @@
 import { Empleado } from "./Empleado";
+import { CalculadoraPorComision } from "./CalculadoraPorComision";
 
 export class EmpleadoPorComision extends Empleado {
     constructor(nombre, salario, cargo, porcentajeComision, montoEnVentas) {
         super(nombre, salario, cargo);
         this.porcentajeComision = porcentajeComision;
         this.montoEnVentas = montoEnVentas;
-
+        this.calculadora = new CalculadoraPorComision();
     }
 
     calcularSalario() {
-        return this.salario.monto + this.porcentajeComision * this.montoEnVentas / 100;
+        return this.calculadora.calcularSalario(this);
     }
 }
