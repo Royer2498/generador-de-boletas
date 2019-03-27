@@ -7,7 +7,6 @@ export class EmpleadoTiempoParcial extends Empleado {
     }
 
     calcularSalario() {
-        console.log(this.salario.monto, this.horasTrabajadas);
         return this.salario.monto * this.horasTrabajadas;
     }
 }
