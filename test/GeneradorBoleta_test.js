@@ -3,6 +3,7 @@ var expect = require("chai").expect;
 import { GeneradorBoleta } from "../GeneradorBoleta";
 import { EmpleadoTiempoCompleto } from "../EmpleadoTiempoCompleto";
 import { EmpleadoTiempoParcial } from "../EmpleadoTiempoParcial";
+import { EmpleadoPorComision } from "../EmpleadoPorComision";
 import { Salario } from "../Salario.js";
 
 describe("BoletaDePagoTest", function () {
@@ -30,6 +31,21 @@ describe("BoletaDePagoTest", function () {
     Empleado: Pedro Paramo
     Cargo: Sub gerente
     Salario: 10000 Bolivianos
+    Fecha de emision: ${fechaActualConFormato}`;
+      expect(boletaPago.imprimir()).equal(boletaImpresa);
+    });
+
+  it(`si se genera una boleta para Fernando Gonzalez que recibe 100 bolivianos de monto base, un 10% de
+  comision y 1000 bs en ventas, es comisionado de ventas y la moneda es Bs, la boleta deberia proveer
+  toda la informacion`, function () {
+      let salario = new Salario(100, "Bolivianos")
+      let empleado = new EmpleadoPorComision("Fernando Gonzalez", salario, "Comisionado de ventas", 10, 1000);
+      let boletaPago = new GeneradorBoleta(empleado, "Cochabamba");
+      let fechaActualConFormato = String(new Date()).slice(0, 15);
+      let boletaImpresa = `BOLETA DE PAGO
+    Empleado: Fernando Gonzalez
+    Cargo: Comisionado de ventas
+    Salario: 200 Bolivianos
     Fecha de emision: ${fechaActualConFormato}`;
       expect(boletaPago.imprimir()).equal(boletaImpresa);
     });
