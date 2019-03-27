@@ -4,12 +4,14 @@ import { Salario } from "../Salario.js";
 import { EmpleadoTiempoCompleto } from "../EmpleadoTIempoCompleto";
 import { EmpleadoTiempoParcial } from "../EmpleadoTiempoParcial";
 import { EmpleadoPorComision } from "../EmpleadoPorComision";
+import { CalculadoraTiempoCompleto } from '../CalculadoraTiempoCompleto';
 
 describe("Calculadora salario", function () {
     it("el sueldo para un empleado fijo con salario 7000 deberia ser 7000", function () {
         let salario = new Salario(7000, "Bs")
         let empleado = new EmpleadoTiempoCompleto("Juan Perez", salario, "Gerente");
-        expect(empleado.calcularSalario()).equal(7000);
+        let calculadoraTiempoCompleto = new CalculadoraTiempoCompleto();
+        expect(calculadoraTiempoCompleto.calcularSalario(empleado)).equal(7000);
     });
 
     it("el sueldo para un empleado tiempo parcial con salario 100 y que trabajó 10 horas deberia ser 1000", function () {
