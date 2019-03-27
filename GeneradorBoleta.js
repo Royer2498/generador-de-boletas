@@ -4,11 +4,11 @@ export class GeneradorBoleta {
     this.ciudad = ciudad;
   }
 
-  get monto() {
-    return this.empleado.salario.monto;
+  get salario() {
+    return this.empleado.calcularSalario();
   }
 
-  get contribuyente() {
+  get nombre() {
     return this.empleado.nombre;
   }
 
@@ -28,9 +28,9 @@ export class GeneradorBoleta {
 
   imprimir() {
     let info = `BOLETA DE PAGO
-    Empleado: ${this.empleado.nombre}
-    Cargo: ${this.empleado.cargo}
-    Salario: ${this.empleado.salario.monto} ${this.empleado.salario.moneda}
+    Empleado: ${this.nombre}
+    Cargo: ${this.cargo}
+    Salario: ${this.salario} ${this.moneda}
     Fecha de emision: ${this.fecha}`;
     return info;
   }
