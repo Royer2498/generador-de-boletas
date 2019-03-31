@@ -2,7 +2,6 @@ var expect = require("chai").expect;
 
 import { GeneradorBoleta } from "../src/Boleta de pago/GeneradorBoleta";
 import { Empleado } from "../src/Empleados/Empleado";
-import { Salario } from "../src/Salario";
 
 describe("BoletaDePagoTest", function () {
   it(`si se genera una boleta para Juan Perez que recibe 10000 bolivianos de salario fijo,
