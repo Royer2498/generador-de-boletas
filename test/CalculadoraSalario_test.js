@@ -13,6 +13,10 @@ describe("Calculadora salario", function () {
     });
 
     it("el sueldo para un empleado tiempo parcial con salario 100 y que trabajó 10 horas deberia ser 1000", function () {
+        let calculadora = new CalculadoraTiempoParcial();
+        calculadora.salarioPorHora = 100;
+        calculadora.horasTrabajadas = 10;
+        expect(calculadora.calcularSalario()).equal(1000);
     });
 
     it(`el sueldo para un empleado por comision con sueldo base 100, 1000bs vendidos
