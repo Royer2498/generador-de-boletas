@@ -20,6 +20,17 @@ describe("BoletaDePagoTest", function () {
 
   it(`si se genera una boleta para Pedro Paramo que recibe 100 bolivianos por hora y trabajo 100 horas,
   es sub gerente y la moneda es Bs, la boleta deberia proveer toda la informacion`, function () {
+      let empleado = new Empleado("Juan Perez", 123, "Tiempo parcial", "Gerente");
+      empleado.establecerSalarioPorHora(100);
+      empleado.establecerHorasTrabajadas(100);
+      let boletaPago = new GeneradorBoleta(empleado, "Cochabamba");
+      let fechaActualConFormato = String(new Date()).slice(0, 15);
+      let boletaImpresa = `BOLETA DE PAGO
+    Empleado: Juan Perez
+    Cargo: Gerente
+    Salario: 10000 Bolivianos
+    Fecha de emision: ${fechaActualConFormato}`;
+      expect(boletaPago.imprimir()).eq(boletaImpresa);
     });
 
   it(`si se genera una boleta para Fernando Gonzalez que recibe 100 bolivianos de monto base, un 10% de
