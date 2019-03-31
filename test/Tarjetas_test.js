@@ -5,6 +5,11 @@ import { TarjetaVentas } from "../src/Tarjetas/TarjetaVentas";
 
 describe("Empleados", function () {
 
+    it(`si no tenemos registros las horas calculadas deberian ser 0`, function () {
+            let tarjeta = new TarjetaHorasTrabajadas();
+            expect(tarjeta.calcularHoras()).equal(0);
+        });
+
     it(`si registramos tres registros de: 
     31/3/2019 hora entrada: 10, hora salida: 13
     31/3/2019 hora entrada: 15, hora salida: 20
