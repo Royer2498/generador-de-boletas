@@ -2,6 +2,7 @@ var expect = require("chai").expect;
 
 import { Empleado } from "../src/Empleados/Empleado";
 import { TarjetaHorasTrabajadas } from '../src/Tarjetas/TarjetaHorasTrabajadas';
+import { TarjetaVentas } from "../src/Tarjetas/TarjetaVentas";
 
 describe("Empleados", function () {
 
@@ -23,12 +24,16 @@ describe("Empleados", function () {
             expect(empleado.calcularSalario()).equal(1300);
         });
 
-    it(`el sueldo para un empleado por comision con sueldo base 100bs, 1000bs vendidos
-    y 10% de comision deberia ser 200`, function () {
+    it(`el sueldo para un empleado por comision con sueldo base 100bs, 22000bs vendidos
+    y 10% de comision deberia ser 2300`, function () {
             let empleado = new Empleado("Juan Perez", 123, 'Por comision');
             empleado.establecerPorcentajeDeComision(10);
             empleado.establecerSueldoBase(100);
-            empleado.aniadirMontoVendido(1000);
-            expect(empleado.calcularSalario()).equal(200);
+            let tarjeta = new TarjetaVentas();
+            tarjeta.registrarVenta("2019-03-31", "shampoo", 1000);
+            tarjeta.registrarVenta("2019-04-01", "arroz", 1000);
+            tarjeta.registrarVenta("2019-04-01", "papa", 20000);
+            empleado.establecerTarjetaVentas(tarjeta);
+            expect(empleado.calcularSalario()).equal(2300);
         });
 });

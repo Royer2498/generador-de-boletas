@@ -3,6 +3,7 @@ var expect = require("chai").expect;
 import { GeneradorBoleta } from "../src/Boleta de pago/GeneradorBoleta";
 import { Empleado } from "../src/Empleados/Empleado";
 import { TarjetaHorasTrabajadas } from '../src/Tarjetas/TarjetaHorasTrabajadas';
+import { TarjetaVentas } from "../src/Tarjetas/TarjetaVentas";
 
 describe("BoletaDePagoTest", function () {
   it(`si se genera una boleta para Juan Perez que recibe 10000 bolivianos de salario fijo,
@@ -38,18 +39,22 @@ describe("BoletaDePagoTest", function () {
     });
 
   it(`si se genera una boleta para Fernando Gonzalez que recibe 100 bolivianos de monto base, un 10% de
-  comision y 1000 bs en ventas, es comisionado de ventas y la moneda es Bs, la boleta deberia proveer
+  comision y 22000 bs en ventas, es comisionado de ventas y la moneda es Bs, la boleta deberia proveer
   toda la informacion`, function () {
       let empleado = new Empleado("Juan Perez", 123, "Por comision", "Gerente");
       empleado.establecerSueldoBase(100);
       empleado.establecerPorcentajeDeComision(10);
-      empleado.aniadirMontoVendido(1000);
+      let tarjeta = new TarjetaVentas();
+      tarjeta.registrarVenta("2019-03-31", "shampoo", 1000);
+      tarjeta.registrarVenta("2019-04-01", "arroz", 1000);
+      tarjeta.registrarVenta("2019-04-01", "papa", 20000);
+      empleado.establecerTarjetaVentas(tarjeta);
       let boletaPago = new GeneradorBoleta(empleado, "Cochabamba");
       let fechaActualConFormato = String(new Date()).slice(0, 15);
       let boletaImpresa = `BOLETA DE PAGO
     Empleado: Juan Perez
     Cargo: Gerente
-    Salario: 200 Bolivianos
+    Salario: 2300 Bolivianos
     Fecha de emision: ${fechaActualConFormato}`;
       expect(boletaPago.imprimir()).eq(boletaImpresa);
     });

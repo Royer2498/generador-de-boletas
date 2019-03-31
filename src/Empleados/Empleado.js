@@ -56,9 +56,9 @@ export class Empleado {
       throw new Error("El empleado no es por comision");
   }
 
-  aniadirMontoVendido(monto) {
+  establecerTarjetaVentas(tarjeta) {
     if (this.tipo == 'Por comision')
-      this.calculadoraSalario.aniadirMontoVendido(monto);
+      this.calculadoraSalario.tarjetaVentas = tarjeta;
     else
       throw new Error("El empleado no es por comision");
   }
