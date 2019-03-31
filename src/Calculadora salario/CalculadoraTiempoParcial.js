@@ -1,9 +1,11 @@
 export class CalculadoraTiempoParcial {
     constructor() {
+        this.salarioPorHora = 0;
+        this.horasTrabajadas = 0;
     }
 
-    calcularSalario(empleado) {
-        return empleado.salario.monto * empleado.horasTrabajadas;
+    calcularSalario() {
+        return this.salarioPorHora * this.horasTrabajadas;
 
     }
 }

@@ -14,8 +14,12 @@ describe("Empleados", function () {
         expect(empleado.calcularSalario()).equal(7000);
     });
 
-    it(`el sueldo para un empleado tiempo parcial con salario 100 y que trabajó 10 horas
+    it(`el sueldo para un empleado tiempo parcial con salario por hora 100 y que trabajó 10 horas
     deberia ser 1000`, function () {
+            let empleado = new Empleado("Juan Perez", 123, 'Tiempo parcial');
+            empleado.establecerSalarioPorHora(100);
+            empleado.establecerHorasTrabajadas(10);
+            expect(empleado.calcularSalario()).equal(1000);
         });
 
     it(`el sueldo para un empleado por comision con sueldo base 100bs, 1000bs vendidos
