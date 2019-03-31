@@ -1,9 +1,10 @@
 export class CalculadoraTiempoCompleto {
     constructor() {
+        this.salarioMensual = 0;
     }
 
-    calcularSalario(empleado) {
-        return empleado.salario.monto;
+    calcularSalario() {
+        return salarioMensual;
 
     }
 }
