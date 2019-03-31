@@ -42,9 +42,9 @@ export class Empleado {
       throw new Error("El empleado no es de tiempo parcial");
   }
 
-  establecerHorasTrabajadas(horasTrabajadas) {
+  establecerTarjetaDeHorasTrabajadas(tarjeta) {
     if (this.tipo == 'Tiempo parcial')
-      this.calculadoraSalario.horasTrabajadas = horasTrabajadas;
+      this.calculadoraSalario.tarjetaHorasTrabajadas = tarjeta;
     else
       throw new Error("El empleado no es de tiempo parcial");
   }

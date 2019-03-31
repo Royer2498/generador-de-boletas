@@ -1,6 +1,7 @@
 var expect = require("chai").expect;
 
 import { Empleado } from "../src/Empleados/Empleado";
+import { TarjetaHorasTrabajadas } from '../src/Tarjetas/TarjetaHorasTrabajadas';
 
 describe("Empleados", function () {
 
@@ -10,12 +11,16 @@ describe("Empleados", function () {
         expect(empleado.calcularSalario()).equal(7000);
     });
 
-    it(`el sueldo para un empleado tiempo parcial con salario por hora 100 y que trabajó 10 horas
-    deberia ser 1000`, function () {
+    it(`el sueldo para un empleado tiempo parcial con salario por hora 100 y que trabajó 13 horas
+    deberia ser 1300`, function () {
             let empleado = new Empleado("Juan Perez", 123, 'Tiempo parcial');
+            let tarjeta = new TarjetaHorasTrabajadas();
+            tarjeta.registrarSesion("2019-03-31", "10:00:00", "13:00:00");
+            tarjeta.registrarSesion("2019-03-31", "15:00:00", "20:00:00");
+            tarjeta.registrarSesion("2019-04-01", "10:00:00", "15:00:00");
             empleado.establecerSalarioPorHora(100);
-            empleado.establecerHorasTrabajadas(10);
-            expect(empleado.calcularSalario()).equal(1000);
+            empleado.establecerTarjetaDeHorasTrabajadas(tarjeta);
+            expect(empleado.calcularSalario()).equal(1300);
         });
 
     it(`el sueldo para un empleado por comision con sueldo base 100bs, 1000bs vendidos
