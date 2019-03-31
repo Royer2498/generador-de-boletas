@@ -4,7 +4,7 @@ export class CalculadoraTiempoCompleto {
     }
 
     calcularSalario() {
-        return salarioMensual;
+        return this.salarioMensual;
 
     }
 }

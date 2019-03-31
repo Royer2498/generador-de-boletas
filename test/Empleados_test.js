@@ -9,7 +9,9 @@ import { CalculadoraPorComision } from '../src/Calculadora salario/CalculadoraPo
 describe("Empleados", function () {
 
     it(`el sueldo para un empleado fijo con salario 7000 deberia ser 7000`, function () {
-        
+        let empleado = new Empleado("Juan Perez", 123, 'Tiempo completo');
+        empleado.establecerSalarioMensual(7000);
+        expect(empleado.calcularSalario()).equal(7000);
     });
 
     it(`el sueldo para un empleado tiempo parcial con salario 100 y que trabajó 10 horas
