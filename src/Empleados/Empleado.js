@@ -1,9 +1,13 @@
 export class Empleado {
 
-  constructor(nombre, salario, cargo) {
+  constructor(nombre, ci, salario) {
     this.nombre = nombre;
+    this.ci = ci;
     this.salario = salario;
-    this.cargo = cargo;
+  }
+
+  set calculadoraSalario(calculadoraSalario) {
+    this.calculadoraSalario = calculadoraSalario;
   }
 
   calcularSalario() {
