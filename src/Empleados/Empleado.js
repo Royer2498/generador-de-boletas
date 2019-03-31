@@ -5,12 +5,15 @@ import { CalculadoraPorComision } from '../Calculadora salario/CalculadoraPorCom
 
 export class Empleado {
 
-  constructor(nombre, ci, tipo) {
+  constructor(nombre, ci, tipo, cargo) {
     this.nombre = nombre;
     this.ci = ci;
     this.tipo = tipo;
+    this.cargo = cargo;
     this.calculadoraSalario = this.obtenerCalculadora();
   }
+
+
 
   obtenerCalculadora() {
     switch (this.tipo) {

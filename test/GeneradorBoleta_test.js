@@ -6,6 +6,16 @@ import { Empleado } from "../src/Empleados/Empleado";
 describe("BoletaDePagoTest", function () {
   it(`si se genera una boleta para Juan Perez que recibe 10000 bolivianos de salario fijo,
  es Gerente y la moneda es Bs, la boleta deberia proveer toda la informacion`, function () {
+      let empleado = new Empleado("Juan Perez", 123, "Tiempo completo", "Gerente");
+      empleado.establecerSalarioMensual(10000);
+      let boletaPago = new GeneradorBoleta(empleado, "Cochabamba");
+      let fechaActualConFormato = String(new Date()).slice(0, 15);
+      let boletaImpresa = `BOLETA DE PAGO
+    Empleado: Juan Perez
+    Cargo: Gerente
+    Salario: 10000 Bolivianos
+    Fecha de emision: ${fechaActualConFormato}`;
+      expect(boletaPago.imprimir()).eq(boletaImpresa);
     });
 
   it(`si se genera una boleta para Pedro Paramo que recibe 100 bolivianos por hora y trabajo 100 horas,

@@ -22,15 +22,11 @@ export class GeneradorBoleta {
     return this.empleado.cargo;
   }
 
-  get moneda() {
-    return this.empleado.salario.moneda;
-  }
-
   imprimir() {
     let info = `BOLETA DE PAGO
     Empleado: ${this.nombre}
     Cargo: ${this.cargo}
-    Salario: ${this.salario} ${this.moneda}
+    Salario: ${this.salario} Bolivianos
     Fecha de emision: ${this.fecha}`;
     return info;
   }
