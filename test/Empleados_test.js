@@ -1,10 +1,6 @@
 var expect = require("chai").expect;
 
-import { Salario } from "../src/Salario.js";
 import { Empleado } from "../src/Empleados/Empleado";
-import { CalculadoraTiempoCompleto } from '../src/Calculadora salario/CalculadoraTiempoCompleto';
-import { CalculadoraTiempoParcial } from '../src/Calculadora salario/CalculadoraTiempoParcial';
-import { CalculadoraPorComision } from '../src/Calculadora salario/CalculadoraPorComision';
 
 describe("Empleados", function () {
 
