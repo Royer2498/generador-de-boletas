@@ -21,6 +21,11 @@ describe("Calculadora salario", function () {
 
     it(`el sueldo para un empleado por comision con sueldo base 100, 1000bs vendidos
     y 10% de comision deberia ser 200`, function () {
+            let calculadora = new CalculadoraPorComision();
+            calculadora.sueldoBase = 100;
+            calculadora.porcentaje = 10;
+            calculadora.aniadirMontoVendido(1000);
+            expect(calculadora.calcularSalario()).equal(200);
         });
 
 });
