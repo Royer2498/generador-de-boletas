@@ -14,6 +14,19 @@ export class TarjetaHorasTrabajadas {
         return this.convertirMilisegundosAHoras(milisegundos);
     }
 
+    calcularHorasPorIntervalo(fechaInicio, fechaFin) {
+        var milisegundos = 0;
+        for (let registro of this.registros) {
+            if (this.laFechaEstaEnIntervalo(registro.fecha, fechaInicio, fechaFin))
+                milisegundos += this.obtenerMilisegundosDeUnRegistro(registro);
+        }
+        return this.convertirMilisegundosAHoras(milisegundos);
+    }
+
+    laFechaEstaEnIntervalo(fecha, fechaInicio, fechaFin) {
+        return new Date(fecha) >= new Date(fechaInicio) && new Date(fecha) <= new Date(fechaFin);
+    }
+
     obtenerMilisegundosDeUnRegistro(registro) {
         var milisegundos = 0;
         for (let horario of registro.horarios) {
