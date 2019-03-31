@@ -5,7 +5,7 @@ import { TarjetaVentas } from "../src/Tarjetas/TarjetaVentas";
 
 describe("Empleados", function () {
 
-    it(`si no tenemos registros las horas calculadas deberian ser 0`, function () {
+    it(`si no tenemos registros de horas trabajadas, las horas calculadas deberian ser 0`, function () {
         let tarjeta = new TarjetaHorasTrabajadas();
         expect(tarjeta.calcularHoras()).equal(0);
     });
@@ -32,6 +32,35 @@ describe("Empleados", function () {
             tarjeta.registrarSesion("2019-03-31", "15:00:00", "20:00:00");
             tarjeta.registrarSesion("2019-04-01", "10:00:00", "15:00:00");
             expect(tarjeta.calcularHorasPorIntervalo("2019-03-01", "2019-03-31")).equal(8);
+        });
+
+    it(`si no tenemos registros de ventas, el monto total deberia ser 0`, function () {
+        let tarjeta = new TarjetaVentas();
+        expect(tarjeta.calcularMontoTotal()).equal(0);
+    });
+
+    it(`si registramos tres registros de: 
+    31/3/2019 nombre: shampoo, monto vendido: 1000
+    01/4/2019 nombre: arroz, monto vendido: 1
+    01/4/2019 nombre: papa, monto vendido: 20000
+    el monto total deberia ser 21001`, function () {
+            let tarjeta = new TarjetaVentas();
+            tarjeta.registrarVenta("2019-03-31", "shampoo", 1000);
+            tarjeta.registrarVenta("2019-04-01", "arroz", 1);
+            tarjeta.registrarVenta("2019-04-01", "papa", 20000);
+            expect(tarjeta.calcularMontoTotal()).equal(21001);
+        });
+
+    it(`si registramos tres registros de: 
+    31/3/2019 nombre: shampoo, monto vendido: 1000
+    01/4/2019 nombre: arroz, monto vendido: 1
+    01/4/2019 nombre: papa, monto vendido: 20000
+    en el intervalo del 01/4/2019 al 30/4/2019, el monto total deberia ser 20001`, function () {
+            let tarjeta = new TarjetaVentas();
+            tarjeta.registrarVenta("2019-03-31", "shampoo", 1000);
+            tarjeta.registrarVenta("2019-04-01", "arroz", 1);
+            tarjeta.registrarVenta("2019-04-01", "papa", 20000);
+            expect(tarjeta.calcularMontoTotalPorIntervalo("2019-04-01", "2019-04-30")).equal(20001);
         });
 
 });

@@ -4,19 +4,19 @@ export class TarjetaHorasTrabajadas {
         let registro = {
             fecha: null, horarios: [horario]
         } */
-        this.registros = [];
+        this.registroDeHorasTrabajadas = [];
     }
 
     calcularHoras() {
         var milisegundos = 0;
-        for (let registro of this.registros)
+        for (let registro of this.registroDeHorasTrabajadas)
             milisegundos += this.obtenerMilisegundosDeUnRegistro(registro);   
         return this.convertirMilisegundosAHoras(milisegundos);
     }
 
     calcularHorasPorIntervalo(fechaInicio, fechaFin) {
         var milisegundos = 0;
-        for (let registro of this.registros) {
+        for (let registro of this.registroDeHorasTrabajadas) {
             if (this.laFechaEstaEnIntervalo(registro.fecha, fechaInicio, fechaFin))
                 milisegundos += this.obtenerMilisegundosDeUnRegistro(registro);
         }
@@ -45,17 +45,17 @@ export class TarjetaHorasTrabajadas {
         let horario = { horaEntrada: horaEntrada, horaSalida: horaSalida };
         let indice = this.obtenerIndiceDeRegistro(fecha);
         if (indice != -1)
-            this.registros[indice].horarios.push(horario);
+            this.registroDeHorasTrabajadas[indice].horarios.push(horario);
         else {
             let registro = { fecha: fecha, horarios: [] };
             registro.horarios.push(horario);
-            this.registros.push(registro);
+            this.registroDeHorasTrabajadas.push(registro);
         }
     }
 
     obtenerIndiceDeRegistro(fecha) {
-        for (let i = 0; i < this.registros.length; i++) {
-            if (this.registros[i].fecha == fecha)
+        for (let i = 0; i < this.registroDeHorasTrabajadas.length; i++) {
+            if (this.registroDeHorasTrabajadas[i].fecha == fecha)
                 return i;
         }
         return -1;
