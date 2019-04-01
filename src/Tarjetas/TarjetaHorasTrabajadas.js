@@ -1,9 +1,5 @@
 export class TarjetaHorasTrabajadas {
     constructor() {
-        /* let horario = { horaLlegada: null, horaSalida: null };
-        let registro = {
-            fecha: null, horarios: [horario]
-        } */
         this.registroDeHorasTrabajadas = [];
     }
 
@@ -44,13 +40,17 @@ export class TarjetaHorasTrabajadas {
     registrarSesion(fecha, horaEntrada, horaSalida) {
         let horario = { horaEntrada: horaEntrada, horaSalida: horaSalida };
         let indice = this.obtenerIndiceDeRegistro(fecha);
-        if (indice != -1)
+        if (this.existeElRegistro(indice))
             this.registroDeHorasTrabajadas[indice].horarios.push(horario);
         else {
             let registro = { fecha: fecha, horarios: [] };
             registro.horarios.push(horario);
             this.registroDeHorasTrabajadas.push(registro);
         }
+    }
+
+    existeElRegistro(indice) {
+        return indice != -1;
     }
 
     obtenerIndiceDeRegistro(fecha) {

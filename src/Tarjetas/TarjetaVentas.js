@@ -6,13 +6,17 @@ export class TarjetaVentas {
     registrarVenta(fecha, nombre, monto) {
         let transaccion = { nombre: nombre, monto: monto };
         let indice = this.obtenerIndiceDeVenta(fecha);
-        if (indice != -1)
+        if (this.existeElRegistro(indice))
             this.registroDeVentas[indice].transacciones.push(transaccion);
         else {
             let registro = { fecha: fecha, transacciones: [] };
             registro.transacciones.push(transaccion);
             this.registroDeVentas.push(registro);
         }
+    }
+
+    existeElRegistro(indice) {
+        return indice != -1;
     }
 
     obtenerIndiceDeVenta(fecha) {

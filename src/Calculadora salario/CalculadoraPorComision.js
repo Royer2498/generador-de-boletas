@@ -7,6 +7,18 @@ export class CalculadoraPorComision {
         this.tarjetaVentas = new TarjetaVentas();
     }
 
+    establecerPorcentaje(porcentaje) {
+        this.porcentaje = porcentaje;
+    }
+
+    establecerSueldoBase(sueldoBase) {
+        this.sueldoBase = sueldoBase;
+    }
+
+    establecerTarjetaVentas(tarjetaVentas) {
+        this.tarjetaVentas = tarjetaVentas;
+    }
+
     calcularSalario() {
         return this.sueldoBase + this.porcentaje * this.tarjetaVentas.calcularMontoTotal() / 100;
     }

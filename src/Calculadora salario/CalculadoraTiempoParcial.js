@@ -6,6 +6,14 @@ export class CalculadoraTiempoParcial {
         this.tarjetaHorasTrabajadas = new TarjetaHorasTrabajadas();
     }
 
+    establecerSalarioPorHora(salarioPorHora) {
+        this.salarioPorHora = salarioPorHora;
+    }
+
+    establecerTarjetaHorasTrabajadas(tarjetaHorasTrabajadas) {
+        this.tarjetaHorasTrabajadas = tarjetaHorasTrabajadas;
+    }
+
     calcularSalario() {
         return this.salarioPorHora * this.tarjetaHorasTrabajadas.calcularHoras();
     }
