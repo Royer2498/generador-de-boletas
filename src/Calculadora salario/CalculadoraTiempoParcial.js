@@ -1,9 +1,9 @@
-import { TarjetaHorasTrabajadas } from '../Tarjetas/TarjetaHorasTrabajadas';
+import { TarjetasDeHorasTrabajadas } from '../Tarjetas/TarjetasDeHorasTrabajadas';
 
 export class CalculadoraTiempoParcial {
     constructor() {
         this.salarioPorHora = 0;
-        this.tarjetaHorasTrabajadas = new TarjetaHorasTrabajadas();
+        this.tarjetaHorasTrabajadas = new TarjetasDeHorasTrabajadas();
     }
 
     establecerSalarioPorHora(salarioPorHora) {

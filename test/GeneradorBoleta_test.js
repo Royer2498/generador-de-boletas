@@ -2,8 +2,8 @@ var expect = require("chai").expect;
 
 import { GeneradorBoleta } from "../src/Boleta de pago/GeneradorBoleta";
 import { Empleado } from "../src/Empleados/Empleado";
-import { TarjetaHorasTrabajadas } from '../src/Tarjetas/TarjetaHorasTrabajadas';
-import { TarjetaVentas } from "../src/Tarjetas/TarjetaVentas";
+import { TarjetasDeHorasTrabajadas } from '../src/Tarjetas/TarjetasDeHorasTrabajadas';
+import { TarjetasDeVentas } from "../src/Tarjetas/TarjetasDeVentas";
 import { CalculadoraTiempoCompleto } from '../src/Calculadora salario/CalculadoraTiempoCompleto';
 import { CalculadoraTiempoParcial } from '../src/Calculadora salario/CalculadoraTiempoParcial';
 import { CalculadoraPorComision } from '../src/Calculadora salario/CalculadoraPorComision';
@@ -32,7 +32,7 @@ describe("BoletaDePagoTest", function () {
       let calculadora = new CalculadoraTiempoParcial();
       empleado.establecerCalculadora(calculadora);
       empleado.establecerSalarioPorHora(100);
-      let tarjeta = new TarjetaHorasTrabajadas();
+      let tarjeta = new TarjetasDeHorasTrabajadas();
       tarjeta.registrarSesion("2019-03-31", "15:00:00", "20:00:00");
       tarjeta.registrarSesion("2019-04-01", "10:00:00", "15:00:00");
       empleado.establecerTarjetaDeHorasTrabajadas(tarjeta);
@@ -54,7 +54,7 @@ describe("BoletaDePagoTest", function () {
       empleado.establecerCalculadora(calculadora);
       empleado.establecerSueldoBase(100);
       empleado.establecerPorcentajeDeComision(10);
-      let tarjeta = new TarjetaVentas();
+      let tarjeta = new TarjetasDeVentas();
       tarjeta.registrarVenta("2019-03-31", "shampoo", 1000);
       tarjeta.registrarVenta("2019-04-01", "arroz", 1000);
       tarjeta.registrarVenta("2019-04-01", "papa", 20000);
