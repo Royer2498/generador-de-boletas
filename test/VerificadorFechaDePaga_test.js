@@ -7,6 +7,7 @@ import { CalculadoraTiempoCompleto } from "../src/Calculadora salario/Calculador
 import { CalculadoraTiempoParcial } from "../src/Calculadora salario/CalculadoraTiempoParcial";
 import { CalculadoraPorComision } from "../src/Calculadora salario/CalculadoraPorComision";
 import { VerificadorFechaDePagaTiempoCompleto } from '../src/VerificardorFechaDePaga/VerificadorFechaDePagaTiempoCompleto'
+import { VerificadorFechaDePagaTiempoParcial } from '../src/VerificardorFechaDePaga/VerificadorFechaDePagaTiempoParcial'
 
 describe("Verificar fecha de paga", function () {
     it(`Si le pasamos 29 de marzo de 2019 (Viernes) al verificador de fecha de paga de 
@@ -26,4 +27,17 @@ describe("Verificar fecha de paga", function () {
             let verificador = new VerificadorFechaDePagaTiempoCompleto(new Date(2019, 2, 30))
             expect(verificador.esDiaDePaga()).eq(false);
         });
+
+    it(`Si le pasamos 22 de marzo de 2019 (Viernes) al verificador de fecha de paga de 
+        empleado de tiempo parcial deberia devolver true`, function () {
+            let verificador = new VerificadorFechaDePagaTiempoParcial(new Date(2019, 2, 22))
+            expect(verificador.esDiaDePaga()).eq(true);
+        });
+
+    it(`Si le pasamos 14 de marzo de 2019 (Jueves) al verificador de fecha de paga de 
+        empleado de tiempo parcial deberia devolver true`, function () {
+            let verificador = new VerificadorFechaDePagaTiempoParcial(new Date(2019, 2, 14))
+            expect(verificador.esDiaDePaga()).eq(false);
+        });
+
 })
