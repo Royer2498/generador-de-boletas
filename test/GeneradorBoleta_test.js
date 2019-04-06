@@ -4,11 +4,17 @@ import { GeneradorBoleta } from "../src/Boleta de pago/GeneradorBoleta";
 import { Empleado } from "../src/Empleados/Empleado";
 import { TarjetaHorasTrabajadas } from '../src/Tarjetas/TarjetaHorasTrabajadas';
 import { TarjetaVentas } from "../src/Tarjetas/TarjetaVentas";
+import { CalculadoraTiempoCompleto } from '../src/Calculadora salario/CalculadoraTiempoCompleto';
+import { CalculadoraTiempoParcial } from '../src/Calculadora salario/CalculadoraTiempoParcial';
+import { CalculadoraPorComision } from '../src/Calculadora salario/CalculadoraPorComision';
+
 
 describe("BoletaDePagoTest", function () {
   it(`si se genera una boleta para Juan Perez que recibe 10000 bolivianos de salario fijo,
  es Gerente y la moneda es Bs, la boleta deberia proveer toda la informacion`, function () {
-      let empleado = new Empleado("Juan Perez", 123, "Tiempo completo", "Gerente");
+      let calculadora = new CalculadoraTiempoCompleto();      
+      let empleado = new Empleado("Juan Perez", 123, "Gerente");
+      empleado.establecerCalculadora(calculadora);
       empleado.establecerSalarioMensual(10000);
       let boletaPago = new GeneradorBoleta(empleado, "Cochabamba");
       let fechaActualConFormato = String(new Date()).slice(0, 15);
@@ -22,7 +28,9 @@ describe("BoletaDePagoTest", function () {
 
   it(`si se genera una boleta para Pedro Paramo que recibe 100 bolivianos por hora y trabajo 10 horas,
   es sub gerente y la moneda es Bs, la boleta deberia proveer toda la informacion`, function () {
-      let empleado = new Empleado("Juan Perez", 123, "Tiempo parcial", "Gerente");
+      let empleado = new Empleado("Juan Perez", 123, "Gerente");
+      let calculadora = new CalculadoraTiempoParcial();
+      empleado.establecerCalculadora(calculadora);
       empleado.establecerSalarioPorHora(100);
       let tarjeta = new TarjetaHorasTrabajadas();
       tarjeta.registrarSesion("2019-03-31", "15:00:00", "20:00:00");
@@ -41,7 +49,9 @@ describe("BoletaDePagoTest", function () {
   it(`si se genera una boleta para Fernando Gonzalez que recibe 100 bolivianos de monto base, un 10% de
   comision y 22000 bs en ventas, es comisionado de ventas y la moneda es Bs, la boleta deberia proveer
   toda la informacion`, function () {
-      let empleado = new Empleado("Juan Perez", 123, "Por comision", "Gerente");
+      let empleado = new Empleado("Juan Perez", 123, "Gerente");
+      let calculadora = new CalculadoraPorComision(); 
+      empleado.establecerCalculadora(calculadora);
       empleado.establecerSueldoBase(100);
       empleado.establecerPorcentajeDeComision(10);
       let tarjeta = new TarjetaVentas();

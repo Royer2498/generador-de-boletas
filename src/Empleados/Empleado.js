@@ -5,64 +5,54 @@ import { CalculadoraPorComision } from '../Calculadora salario/CalculadoraPorCom
 
 export class Empleado {
 
-  constructor(nombre, ci, tipo, cargo) {
+  constructor(nombre, ci, cargo) {
     this.nombre = nombre;
     this.ci = ci;
-    this.tipo = tipo;
     this.cargo = cargo;
-    this.calculadoraSalario = this.obtenerCalculadora();
+    this.calculadoraSalario = null;
   }
 
-  obtenerCalculadora() {
-    switch (this.tipo) {
-      case 'Tiempo completo':
-        return new CalculadoraTiempoCompleto();
-      case 'Tiempo parcial':
-        return new CalculadoraTiempoParcial();
-      case 'Por comision':
-        return new CalculadoraPorComision();
-      default:
-        throw new Error("Tipo de calculadora no existente");
-    }
+  establecerCalculadora(calculadora) {
+    this.calculadoraSalario = calculadora;
   }
 
   establecerSalarioMensual(salario) {
-    if (this.tipo == 'Tiempo completo')
+    if (this.calculadoraSalario instanceof CalculadoraTiempoCompleto)
       this.calculadoraSalario.establecerSalarioMensual(salario);
     else
       throw new Error("El empleado no es de tiempo completo");
   }
 
   establecerSalarioPorHora(salario) {
-    if (this.tipo == 'Tiempo parcial')
+    if (this.calculadoraSalario instanceof CalculadoraTiempoParcial)
       this.calculadoraSalario.establecerSalarioPorHora(salario);
     else
       throw new Error("El empleado no es de tiempo parcial");
   }
 
   establecerTarjetaDeHorasTrabajadas(tarjeta) {
-    if (this.tipo == 'Tiempo parcial')
+    if (this.calculadoraSalario instanceof CalculadoraTiempoParcial)
       this.calculadoraSalario.establecerTarjetaHorasTrabajadas(tarjeta);
     else
       throw new Error("El empleado no es de tiempo parcial");
   }
 
   establecerSueldoBase(sueldoBase) {
-    if (this.tipo == 'Por comision')
+    if (this.calculadoraSalario instanceof CalculadoraPorComision)
       this.calculadoraSalario.establecerSueldoBase(sueldoBase);
     else
       throw new Error("El empleado no es por comision");
   }
 
   establecerTarjetaVentas(tarjeta) {
-    if (this.tipo == 'Por comision')
+    if (this.calculadoraSalario instanceof CalculadoraPorComision)
       this.calculadoraSalario.establecerTarjetaVentas(tarjeta);
     else
       throw new Error("El empleado no es por comision");
   }
 
   establecerPorcentajeDeComision(porcentaje) {
-    if (this.tipo == 'Por comision')
+    if (this.calculadoraSalario instanceof CalculadoraPorComision)
       this.calculadoraSalario.establecerPorcentaje(porcentaje);
     else
       throw new Error("El empleado no es por comision");

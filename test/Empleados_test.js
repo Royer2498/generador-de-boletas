@@ -3,18 +3,25 @@ var expect = require("chai").expect;
 import { Empleado } from "../src/Empleados/Empleado";
 import { TarjetaHorasTrabajadas } from '../src/Tarjetas/TarjetaHorasTrabajadas';
 import { TarjetaVentas } from "../src/Tarjetas/TarjetaVentas";
+import { CalculadoraTiempoCompleto } from "../src/Calculadora salario/CalculadoraTiempoCompleto";
+import { CalculadoraTiempoParcial } from "../src/Calculadora salario/CalculadoraTiempoParcial";
+import { CalculadoraPorComision } from "../src/Calculadora salario/CalculadoraPorComision";
 
 describe("Empleados", function () {
 
     it(`el sueldo para un empleado fijo con salario 7000 deberia ser 7000`, function () {
-        let empleado = new Empleado("Juan Perez", 123, 'Tiempo completo');
+        let empleado = new Empleado("Juan Perez", 123, 'Gerente');
+        let calculadora = new CalculadoraTiempoCompleto();
+        empleado.establecerCalculadora(calculadora);
         empleado.establecerSalarioMensual(7000);
         expect(empleado.calcularSalario()).equal(7000);
     });
 
     it(`el sueldo para un empleado tiempo parcial con salario por hora 100 y que trabajó 13 horas
     deberia ser 1300`, function () {
-            let empleado = new Empleado("Juan Perez", 123, 'Tiempo parcial');
+            let calculadora = new CalculadoraTiempoParcial();
+            let empleado = new Empleado("Juan Perez", 123, 'Gerente');
+            empleado.establecerCalculadora(calculadora);
             let tarjeta = new TarjetaHorasTrabajadas();
             tarjeta.registrarSesion("2019-03-31", "10:00:00", "13:00:00");
             tarjeta.registrarSesion("2019-03-31", "15:00:00", "20:00:00");
@@ -26,7 +33,9 @@ describe("Empleados", function () {
 
     it(`el sueldo para un empleado por comision con sueldo base 100bs, 22000bs vendidos
     y 10% de comision deberia ser 2300`, function () {
-            let empleado = new Empleado("Juan Perez", 123, 'Por comision');
+            let empleado = new Empleado("Juan Perez", 123, 'Gerente');
+            let calculadora = new CalculadoraPorComision();
+            empleado.establecerCalculadora(calculadora);
             empleado.establecerPorcentajeDeComision(10);
             empleado.establecerSueldoBase(100);
             let tarjeta = new TarjetaVentas();
