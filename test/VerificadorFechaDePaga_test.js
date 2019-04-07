@@ -62,4 +62,11 @@ describe("Verificar fecha de paga", function () {
             let verificador = new VerificadorFechaDePagaComision(new Date(2019, 0, 1), new Date(2019, 0, 11))
             expect(verificador.esDiaDePaga()).eq(true);
         });
+
+    it(`Si le pasamos 28 de diciembre de 2018 (Viernes) como fecha de inicio
+        11 de enero de 2019(Viernes) como fecha actual al verificador de fecha de paga de 
+        empleado por comision deberia devolver true`, function () {
+            let verificador = new VerificadorFechaDePagaComision(new Date(2018, 11, 28), new Date(2019, 0, 11))
+            expect(verificador.esDiaDePaga()).eq(true);
+        });
 })
