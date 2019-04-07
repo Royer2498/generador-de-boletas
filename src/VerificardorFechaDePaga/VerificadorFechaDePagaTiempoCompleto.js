@@ -10,14 +10,19 @@ export class VerificadorFechaDePagaTiempoCompleto {
         let fechaUltimoDiaMes = new Date(this.anio, this.mes + 1, 0);
         let ultimoDiaDeLaSemana = fechaUltimoDiaMes.getDay();
         let ultimoDiaDelMes = fechaUltimoDiaMes.getDate();
-        while (!this.esDiaHabil(ultimoDiaDeLaSemana)) {
-            ultimoDiaDeLaSemana = this.irUnDiaHaciaAtras(ultimoDiaDeLaSemana);
-            ultimoDiaDelMes = this.irUnDiaHaciaAtras(ultimoDiaDelMes);
-        }
+        ultimoDiaDelMes = this.retrocederHastaUnDiaHabil(ultimoDiaDeLaSemana, ultimoDiaDelMes);
         return ultimoDiaDelMes;
     }
 
-    irUnDiaHaciaAtras(dia) {
+    retrocederHastaUnDiaHabil(diaDeLaSemana, diaDelMes) {
+        while (!this.esDiaHabil(diaDeLaSemana)) {
+            diaDeLaSemana = this.retrocederUnDia(diaDeLaSemana);
+            diaDelMes = this.retrocederUnDia(diaDelMes);
+        }
+        return diaDelMes;
+    }
+
+    retrocederUnDia(dia) {
         if (dia == 0)
             dia = 6
         else

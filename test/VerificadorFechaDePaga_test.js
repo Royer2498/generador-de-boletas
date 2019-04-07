@@ -1,13 +1,8 @@
 var expect = require("chai").expect;
 
-import { Empleado } from "../src/Empleados/Empleado";
-import { TarjetasDeHorasTrabajadas } from '../src/Tarjetas/TarjetasDeHorasTrabajadas';
-import { TarjetasDeVentas } from "../src/Tarjetas/TarjetasDeVentas";
-import { CalculadoraTiempoCompleto } from "../src/Calculadora salario/CalculadoraTiempoCompleto";
-import { CalculadoraTiempoParcial } from "../src/Calculadora salario/CalculadoraTiempoParcial";
-import { CalculadoraPorComision } from "../src/Calculadora salario/CalculadoraPorComision";
 import { VerificadorFechaDePagaTiempoCompleto } from '../src/VerificardorFechaDePaga/VerificadorFechaDePagaTiempoCompleto'
 import { VerificadorFechaDePagaTiempoParcial } from '../src/VerificardorFechaDePaga/VerificadorFechaDePagaTiempoParcial'
+import { VerificadorFechaDePagaComision } from '../src/VerificardorFechaDePaga/VerificadorFechaDePagaComision'
 
 describe("Verificar fecha de paga", function () {
     it(`Si le pasamos 29 de marzo de 2019 (Viernes) al verificador de fecha de paga de 
@@ -40,4 +35,31 @@ describe("Verificar fecha de paga", function () {
             expect(verificador.esDiaDePaga()).eq(false);
         });
 
+    it(`Si le pasamos 14 de marzo de 2019 (Jueves) como fecha de inicio
+        22 de marzo de 2019(Viernes) como fecha actual al verificador de fecha de paga de 
+        empleado por comision deberia devolver true`, function () {
+            let verificador = new VerificadorFechaDePagaComision(new Date(2019, 2, 14), new Date(2019, 2, 22))
+            expect(verificador.esDiaDePaga()).eq(true);
+        });
+
+    it(`Si le pasamos 7 de marzo de 2019 (Jueves) como fecha de inicio
+        22 de marzo de 2019(Viernes) como fecha actual al verificador de fecha de paga de 
+        empleado por comision deberia devolver false`, function () {
+            let verificador = new VerificadorFechaDePagaComision(new Date(2019, 2, 7), new Date(2019, 2, 22))
+            expect(verificador.esDiaDePaga()).eq(false);
+        });
+
+    it(`Si le pasamos 7 de marzo de 2019 (Jueves) como fecha de inicio
+        29 de marzo de 2019(Viernes) como fecha actual al verificador de fecha de paga de 
+        empleado por comision deberia devolver true`, function () {
+            let verificador = new VerificadorFechaDePagaComision(new Date(2019, 2, 7), new Date(2019, 2, 29))
+            expect(verificador.esDiaDePaga()).eq(true);
+        });
+
+    it(`Si le pasamos 1 de enero de 2019 (Martes) como fecha de inicio
+        11 de enero de 2019(Viernes) como fecha actual al verificador de fecha de paga de 
+        empleado por comision deberia devolver true`, function () {
+            let verificador = new VerificadorFechaDePagaComision(new Date(2019, 0, 1), new Date(2019, 0, 11))
+            expect(verificador.esDiaDePaga()).eq(true);
+        });
 })
