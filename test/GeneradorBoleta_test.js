@@ -16,14 +16,13 @@ describe("BoletaDePagoTest", function () {
       let empleado = new Empleado("Juan Perez", 123, "Gerente");
       empleado.establecerCalculadora(calculadora);
       empleado.establecerSalarioMensual(10000);
-      let boletaPago = new GeneradorBoleta(empleado, "Cochabamba");
       let fechaActualConFormato = String(new Date()).slice(0, 15);
       let boletaImpresa = `BOLETA DE PAGO
     Empleado: Juan Perez
     Cargo: Gerente
     Salario: 10000 Bolivianos
     Fecha de emision: ${fechaActualConFormato}`;
-      expect(boletaPago.imprimir()).eq(boletaImpresa);
+      expect(GeneradorBoleta.imprimir(empleado)).eq(boletaImpresa);
     });
 
   it(`si se genera una boleta para Pedro Paramo que recibe 100 bolivianos por hora y trabajo 10 horas,
@@ -36,14 +35,13 @@ describe("BoletaDePagoTest", function () {
       tarjeta.registrarSesion("2019-03-31", "15:00:00", "20:00:00");
       tarjeta.registrarSesion("2019-04-01", "10:00:00", "15:00:00");
       empleado.establecerTarjetaDeHorasTrabajadas(tarjeta);
-      let boletaPago = new GeneradorBoleta(empleado, "Cochabamba");
       let fechaActualConFormato = String(new Date()).slice(0, 15);
       let boletaImpresa = `BOLETA DE PAGO
     Empleado: Juan Perez
     Cargo: Gerente
     Salario: 1000 Bolivianos
     Fecha de emision: ${fechaActualConFormato}`;
-      expect(boletaPago.imprimir()).eq(boletaImpresa);
+      expect(GeneradorBoleta.imprimir(empleado)).eq(boletaImpresa);
     });
 
   it(`si se genera una boleta para Fernando Gonzalez que recibe 100 bolivianos de monto base, un 10% de
@@ -59,14 +57,13 @@ describe("BoletaDePagoTest", function () {
       tarjeta.registrarVenta("2019-04-01", "arroz", 1000);
       tarjeta.registrarVenta("2019-04-01", "papa", 20000);
       empleado.establecerTarjetaVentas(tarjeta);
-      let boletaPago = new GeneradorBoleta(empleado, "Cochabamba");
       let fechaActualConFormato = String(new Date()).slice(0, 15);
       let boletaImpresa = `BOLETA DE PAGO
     Empleado: Juan Perez
     Cargo: Gerente
     Salario: 2300 Bolivianos
     Fecha de emision: ${fechaActualConFormato}`;
-      expect(boletaPago.imprimir()).eq(boletaImpresa);
+      expect(GeneradorBoleta.imprimir(empleado)).eq(boletaImpresa);
     });
 
 
