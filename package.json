@@ -1,7 +1,7 @@
 {
-  "name": "Tennis",
+  "name": "GeneradorDeBoletas",
   "version": "1.0.0",
-  "author": "",
+  "author": "Royer Torrico, Sebastian Jordan, Ronald Escobar",
   "license": "ISC",
   "nyc": {
     "all": true,
@@ -10,9 +10,8 @@
     ]
   },
   "scripts": {
-    "test": "mocha --require babel-register --timeout=3000",
-    "coverage": "nyc npm test",
-    "dev": "nodemon server.js"
+    "coverage": "nyc mocha --require babel-register",
+    "test": "nyc mocha --require babel-register"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
