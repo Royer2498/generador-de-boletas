@@ -15,7 +15,9 @@ class CalculadoraTiempoParcial {
     }
 
     calcularSalario() {
-        return this.salarioPorHora * this.tarjetaHorasTrabajadas.calcularHoras();
+        let horasExtra =  this.tarjetaHorasTrabajadas.obtenerHorasExtra();
+        let horasLaborales = this.tarjetaHorasTrabajadas.calcularHoras() - horasExtra;
+        return this.salarioPorHora * horasLaborales + this.salarioPorHora * 1.5 * horasExtra;
     }
 }
 

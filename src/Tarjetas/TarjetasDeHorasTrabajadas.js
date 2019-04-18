@@ -60,6 +60,23 @@ class TarjetasDeHorasTrabajadas {
         }
         return -1;
     }
+
+    obtenerHorasExtra() {
+        let horasExtra = 0;
+        for (let tarjeta of this.tarjetasDeHorasTrabajadas) {
+            let milisegundos = this.obtenerMilisegundosDeUnaTarjeta(tarjeta);
+            let horasExtraDelDia = this.obtenerHorasExtraDelDia(milisegundos);
+            horasExtra += horasExtraDelDia;
+        }
+        return horasExtra;
+    }
+
+    obtenerHorasExtraDelDia(milisegundos) {
+        let horasExtraDelDia = this.convertirMilisegundosAHoras(milisegundos) - 8;
+        if (horasExtraDelDia < 0)
+            horasExtraDelDia = 0;
+        return horasExtraDelDia;
+    }
 }
 
 module.exports = TarjetasDeHorasTrabajadas;

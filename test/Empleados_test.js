@@ -31,6 +31,20 @@ describe("Empleados", function () {
             expect(empleado.calcularSalario()).equal(1300);
         });
 
+    it(`el sueldo para un empleado tiempo parcial con salario por hora 100 y que trabajó 9 horas
+    en un dia deberia ser 950`, function () {
+            let calculadora = new CalculadoraTiempoParcial();
+            let empleado = new Empleado("Juan Perez", 123, 'Gerente');
+            empleado.establecerCalculadora(calculadora);
+            let tarjeta = new TarjetasDeHorasTrabajadas();
+            tarjeta.registrarSesion("2019-03-31", "07:00:00", "13:00:00");
+            tarjeta.registrarSesion("2019-03-31", "15:00:00", "18:00:00");
+            empleado.establecerSalarioPorHora(100);
+            empleado.establecerTarjetaDeHorasTrabajadas(tarjeta);
+            expect(empleado.calcularSalario()).equal(950);
+        });
+        
+
     it(`el sueldo para un empleado por comision con sueldo base 100bs, 22000bs vendidos
     y 10% de comision deberia ser 2300`, function () {
             let empleado = new Empleado("Juan Perez", 123, 'Gerente');
