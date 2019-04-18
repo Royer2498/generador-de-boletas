@@ -1,4 +1,4 @@
-export class VerificadorFechaDePagaTiempoParcial {
+class VerificadorFechaDePagaTiempoParcial {
 
     constructor(fechaActual) {
         this.diaDeLaSemana = fechaActual.getDay();
@@ -16,3 +16,5 @@ export class VerificadorFechaDePagaTiempoParcial {
         return false;
     }
 }
+
+module.exports = VerificadorFechaDePagaTiempoParcial;

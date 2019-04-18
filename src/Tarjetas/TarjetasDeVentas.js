@@ -1,4 +1,4 @@
-export class TarjetasDeVentas {
+class TarjetasDeVentas {
     constructor() {
         this.tarjetaDeVentas = [];
     }
@@ -54,3 +54,5 @@ export class TarjetasDeVentas {
         return montoTotal;
     }
 }
+
+module.exports = TarjetasDeVentas;

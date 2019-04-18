@@ -1,4 +1,4 @@
-export class TarjetasDeHorasTrabajadas {
+class TarjetasDeHorasTrabajadas {
     constructor() {
         this.tarjetasDeHorasTrabajadas = [];
     }
@@ -61,3 +61,5 @@ export class TarjetasDeHorasTrabajadas {
         return -1;
     }
 }
+
+module.exports = TarjetasDeHorasTrabajadas;

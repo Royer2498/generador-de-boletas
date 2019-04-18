@@ -1,6 +1,6 @@
-import { TarjetasDeVentas } from "../Tarjetas/TarjetasDeVentas";
+const TarjetasDeVentas =require("../Tarjetas/TarjetasDeVentas");
 
-export class CalculadoraPorComision {
+class CalculadoraPorComision {
     constructor() {
         this.porcentaje = 0;
         this.sueldoBase = 0;
@@ -24,4 +24,4 @@ export class CalculadoraPorComision {
     }
 }
 
-
+module.exports = CalculadoraPorComision;

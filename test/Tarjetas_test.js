@@ -1,7 +1,7 @@
 var expect = require("chai").expect;
 
-import { TarjetasDeHorasTrabajadas } from "../src/Tarjetas/TarjetasDeHorasTrabajadas";
-import { TarjetasDeVentas } from "../src/Tarjetas/TarjetasDeVentas";
+const TarjetasDeHorasTrabajadas = require("../src/Tarjetas/TarjetasDeHorasTrabajadas");
+const TarjetasDeVentas = require("../src/Tarjetas/TarjetasDeVentas");
 
 describe("Empleados", function () {
 

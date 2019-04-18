@@ -1,10 +1,9 @@
 var expect = require("chai").expect;
-
-import { CalculadoraTiempoCompleto } from '../src/Calculadora salario/CalculadoraTiempoCompleto';
-import { CalculadoraTiempoParcial } from '../src/Calculadora salario/CalculadoraTiempoParcial';
-import { CalculadoraPorComision } from '../src/Calculadora salario/CalculadoraPorComision';
-import { TarjetasDeHorasTrabajadas } from '../src/Tarjetas/TarjetasDeHorasTrabajadas';
-import { TarjetasDeVentas } from "../src/Tarjetas/TarjetasDeVentas";
+const CalculadoraTiempoCompleto = require('../src/Calculadora salario/CalculadoraTiempoCompleto');
+const CalculadoraTiempoParcial = require('../src/Calculadora salario/CalculadoraTiempoParcial');
+const CalculadoraPorComision = require('../src/Calculadora salario/CalculadoraPorComision');
+const TarjetasDeHorasTrabajadas = require('../src/Tarjetas/TarjetasDeHorasTrabajadas');
+const TarjetasDeVentas = require("../src/Tarjetas/TarjetasDeVentas");
 
 describe("Calculadora salario", function () {
     it("el sueldo para un empleado fijo con salario 7000 deberia ser 7000", function () {

@@ -1,4 +1,4 @@
-export class CalculadoraTiempoCompleto {
+class CalculadoraTiempoCompleto {
     constructor() {
         this.salarioMensual = 0;
     }
@@ -11,3 +11,5 @@ export class CalculadoraTiempoCompleto {
         return this.salarioMensual;
     }
 }
+
+module.exports = CalculadoraTiempoCompleto;

@@ -1,11 +1,11 @@
 var expect = require("chai").expect;
 
-import { Empleado } from "../src/Empleados/Empleado";
-import { TarjetasDeHorasTrabajadas } from '../src/Tarjetas/TarjetasDeHorasTrabajadas';
-import { TarjetasDeVentas } from "../src/Tarjetas/TarjetasDeVentas";
-import { CalculadoraTiempoCompleto } from "../src/Calculadora salario/CalculadoraTiempoCompleto";
-import { CalculadoraTiempoParcial } from "../src/Calculadora salario/CalculadoraTiempoParcial";
-import { CalculadoraPorComision } from "../src/Calculadora salario/CalculadoraPorComision";
+const Empleado = require("../src/Empleados/Empleado");
+const TarjetasDeHorasTrabajadas = require('../src/Tarjetas/TarjetasDeHorasTrabajadas');
+const TarjetasDeVentas = require("../src/Tarjetas/TarjetasDeVentas");
+const CalculadoraTiempoCompleto = require("../src/Calculadora salario/CalculadoraTiempoCompleto");
+const CalculadoraTiempoParcial = require("../src/Calculadora salario/CalculadoraTiempoParcial");
+const CalculadoraPorComision = require("../src/Calculadora salario/CalculadoraPorComision");
 
 describe("Empleados", function () {
 

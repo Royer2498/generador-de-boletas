@@ -1,9 +1,8 @@
-import { CalculadoraTiempoCompleto } from '../Calculadora salario/CalculadoraTiempoCompleto';
-import { CalculadoraTiempoParcial } from '../Calculadora salario/CalculadoraTiempoParcial';
-import { CalculadoraPorComision } from '../Calculadora salario/CalculadoraPorComision';
+const CalculadoraTiempoCompleto = require('../Calculadora salario/CalculadoraTiempoCompleto');
+const CalculadoraTiempoParcial = require('../Calculadora salario/CalculadoraTiempoParcial');
+const CalculadoraPorComision =require('../Calculadora salario/CalculadoraPorComision');
 
-
-export class Empleado {
+class Empleado {
 
   constructor(nombre, ci, cargo) {
     this.nombre = nombre;
@@ -62,3 +61,5 @@ export class Empleado {
     return this.calculadoraSalario.calcularSalario();
   }
 }
+
+module.exports = Empleado;

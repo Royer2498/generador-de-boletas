@@ -1,17 +1,19 @@
-import { GeneradorBoleta } from "./GeneradorBoleta";
+const GeneradorBoleta = require("./GeneradorBoleta");
 
-export class GeneradorDeBoletas{
+class GeneradorDeBoletas {
 
-    constructor(empleados){
+    constructor(empleados) {
         this.empleados = empleados;
     }
 
-    generarBoletas(){
+    generarBoletas() {
         let boletasDePago = [];
-        for(let empleado of this.empleados){
-            boletasDePago.push(GeneradorBoleta.imprimir(empleado));
+        for (let empleado of this.empleados) {
+            boletasDePago.push(GeneradorBoleta.obtener(empleado));
         }
         return boletasDePago;
     }
 
 }
+
+module.exports = GeneradorDeBoletas;

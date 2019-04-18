@@ -1,4 +1,4 @@
-export class VerificadorFechaDePagaComision {
+class VerificadorFechaDePagaComision {
     constructor(fechaInicioTrabajo, fechaActual) {
         this.fechaActual = fechaActual;
         this.fechaInicioTrabajo = fechaInicioTrabajo;
@@ -87,3 +87,5 @@ export class VerificadorFechaDePagaComision {
         return this.esViernesDePaga(milisegundosViernesInicioTrabajo, milisegundosViernesActual)
     }
 }
+
+module.exports = VerificadorFechaDePagaComision;

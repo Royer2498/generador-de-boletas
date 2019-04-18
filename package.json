@@ -20,7 +20,10 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "mocha": "^5.2.0",
-    "mongodb": "^3.2.3"
+    "mongo-mock": "^3.4.0",
+    "mongodb": "^3.2.3",
+    "nodemailer": "^6.1.0",
+    "request": "^2.88.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

@@ -2,8 +2,8 @@ var expect = require("chai").expect;
 var mongoMock = require('mongo-mock');
 var assert = require("chai").assert;
 
-import { Empleado } from "../src/Empleados/Empleado";
-import { AssertionError } from "assert";
+const Empleado = require("../src/Empleados/Empleado");
+const AssertionError = require("assert");
 
 describe("Base de datos", function () {
 

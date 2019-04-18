@@ -1,4 +1,4 @@
-export class VerificadorFechaDePagaTiempoCompleto {
+class VerificadorFechaDePagaTiempoCompleto {
     constructor(fechaActual) {
         this.diaDelMes = fechaActual.getDate();
         this.diaDeLaSemana = fechaActual.getDay();
@@ -42,3 +42,5 @@ export class VerificadorFechaDePagaTiempoCompleto {
         return false;
     }
 }
+
+module.exports = VerificadorFechaDePagaTiempoCompleto;

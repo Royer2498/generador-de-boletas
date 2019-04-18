@@ -1,6 +1,6 @@
-import { TarjetasDeHorasTrabajadas } from '../Tarjetas/TarjetasDeHorasTrabajadas';
+const TarjetasDeHorasTrabajadas = require('../Tarjetas/TarjetasDeHorasTrabajadas');
 
-export class CalculadoraTiempoParcial {
+class CalculadoraTiempoParcial {
     constructor() {
         this.salarioPorHora = 0;
         this.tarjetaHorasTrabajadas = new TarjetasDeHorasTrabajadas();
@@ -18,3 +18,5 @@ export class CalculadoraTiempoParcial {
         return this.salarioPorHora * this.tarjetaHorasTrabajadas.calcularHoras();
     }
 }
+
+module.exports = CalculadoraTiempoParcial;

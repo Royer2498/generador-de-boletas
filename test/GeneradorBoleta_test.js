@@ -1,18 +1,18 @@
 var expect = require("chai").expect;
 
-import { GeneradorBoleta } from "../src/Boleta de pago/GeneradorBoleta";
-import { Empleado } from "../src/Empleados/Empleado";
-import { TarjetasDeHorasTrabajadas } from '../src/Tarjetas/TarjetasDeHorasTrabajadas';
-import { TarjetasDeVentas } from "../src/Tarjetas/TarjetasDeVentas";
-import { CalculadoraTiempoCompleto } from '../src/Calculadora salario/CalculadoraTiempoCompleto';
-import { CalculadoraTiempoParcial } from '../src/Calculadora salario/CalculadoraTiempoParcial';
-import { CalculadoraPorComision } from '../src/Calculadora salario/CalculadoraPorComision';
+const GeneradorBoleta = require("../src/Boleta de pago/GeneradorBoleta");
+const Empleado = require("../src/Empleados/Empleado");
+const TarjetasDeHorasTrabajadas = require('../src/Tarjetas/TarjetasDeHorasTrabajadas');
+const TarjetasDeVentas = require("../src/Tarjetas/TarjetasDeVentas");
+const CalculadoraTiempoCompleto = require('../src/Calculadora salario/CalculadoraTiempoCompleto');
+const CalculadoraTiempoParcial = require('../src/Calculadora salario/CalculadoraTiempoParcial');
+const CalculadoraPorComision = require('../src/Calculadora salario/CalculadoraPorComision');
 
 
 describe("BoletaDePagoTest", function () {
   it(`si se genera una boleta para Juan Perez que recibe 10000 bolivianos de salario fijo,
  es Gerente y la moneda es Bs, la boleta deberia proveer toda la informacion`, function () {
-      let calculadora = new CalculadoraTiempoCompleto();      
+      let calculadora = new CalculadoraTiempoCompleto();
       let empleado = new Empleado("Juan Perez", 123, "Gerente");
       empleado.establecerCalculadora(calculadora);
       empleado.establecerSalarioMensual(10000);
@@ -22,7 +22,7 @@ describe("BoletaDePagoTest", function () {
     Cargo: Gerente
     Salario: 10000 Bolivianos
     Fecha de emision: ${fechaActualConFormato}`;
-      expect(GeneradorBoleta.imprimir(empleado)).eq(boletaImpresa);
+      expect(GeneradorBoleta.obtener(empleado)).eq(boletaImpresa);
     });
 
   it(`si se genera una boleta para Pedro Paramo que recibe 100 bolivianos por hora y trabajo 10 horas,
@@ -41,14 +41,14 @@ describe("BoletaDePagoTest", function () {
     Cargo: Gerente
     Salario: 1000 Bolivianos
     Fecha de emision: ${fechaActualConFormato}`;
-      expect(GeneradorBoleta.imprimir(empleado)).eq(boletaImpresa);
+      expect(GeneradorBoleta.obtener(empleado)).eq(boletaImpresa);
     });
 
   it(`si se genera una boleta para Fernando Gonzalez que recibe 100 bolivianos de monto base, un 10% de
   comision y 22000 bs en ventas, es comisionado de ventas y la moneda es Bs, la boleta deberia proveer
   toda la informacion`, function () {
       let empleado = new Empleado("Juan Perez", 123, "Gerente");
-      let calculadora = new CalculadoraPorComision(); 
+      let calculadora = new CalculadoraPorComision();
       empleado.establecerCalculadora(calculadora);
       empleado.establecerSueldoBase(100);
       empleado.establecerPorcentajeDeComision(10);
@@ -63,7 +63,7 @@ describe("BoletaDePagoTest", function () {
     Cargo: Gerente
     Salario: 2300 Bolivianos
     Fecha de emision: ${fechaActualConFormato}`;
-      expect(GeneradorBoleta.imprimir(empleado)).eq(boletaImpresa);
+      expect(GeneradorBoleta.obtener(empleado)).eq(boletaImpresa);
     });
 
 

@@ -1,4 +1,4 @@
-export class GeneradorBoleta {
+class GeneradorBoleta {
   constructor() {
   }
 
@@ -8,7 +8,7 @@ export class GeneradorBoleta {
     return fechaConFormato;
   }
 
-  static imprimir(empleado) {
+  static obtener(empleado) {
     let info = `BOLETA DE PAGO
     Empleado: ${empleado.nombre}
     Cargo: ${empleado.cargo}
@@ -17,3 +17,5 @@ export class GeneradorBoleta {
     return info;
   }
 }
+
+module.exports = GeneradorBoleta;
