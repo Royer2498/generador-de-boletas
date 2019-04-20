@@ -22,8 +22,5 @@ server.listen(puerto, function() {
     console.log('app levantada en el puerto ' + puerto);
 });
 
-/* app.listen(puerto, function () {
-}) */
-
 module.exports = conexionABaseDeDatos;
 exports.app = app;

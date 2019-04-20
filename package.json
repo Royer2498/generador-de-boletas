@@ -6,12 +6,18 @@
   "nyc": {
     "all": true,
     "include": [
-      "*.js"
+      "src/*.js",
+      "src/Boleta de pago/*.js",
+      "src/Calculadora salario/*.js",
+      "src/Empleados/*.js",
+      "src/server/Metodos de envio/*.js",
+      "src/Tarjetas/*.js",
+      "src/VerificadorFechaDePaga/*.js"
     ]
   },
   "scripts": {
     "coverage": "nyc mocha --require babel-register",
-    "test": "nyc mocha --require babel-register --timeout 8000",
+    "test": "nyc mocha --require babel-register --timeout 20000",
     "dev": "nodemon src/server/server.js"
   },
   "dependencies": {
