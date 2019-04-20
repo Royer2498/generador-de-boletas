@@ -39,15 +39,20 @@ router.post("/generar/:metodoEnvio", function (consulta, respuesta) {
     })
 })
 
-router.get("/notificar/:metodoEnvio", function (consulta, respuesta) {
+router.post("/notificar/:metodoEnvio", function (consulta, respuesta) {
     let metodoEnvio = consulta.params.metodoEnvio;
-    let notificacion = consulta.body.notificacion;
+    let correoDestinatario = consulta.body.correoDestinatario;
+    let notificacion = {
+        destinatario: correoDestinatario,
+        asunto: "Boleta de pago",
+        contenido: "Su boleta de pago ya esta lista"
+    }
     let medioDeEnvio = obtenerMetodoDeEnvio(metodoEnvio);
     medioDeEnvio.enviar(notificacion, function (error, informacion) {
         if (error)
             manejarError(respuesta, error, 418);
         else
-            respuesta.send("boleta enviada: " + informacion.response);
+            respuesta.send("notificacion enviada: " + informacion.response);
     })
 })
 
