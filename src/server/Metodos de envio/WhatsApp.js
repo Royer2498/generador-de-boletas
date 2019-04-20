@@ -1,8 +1,8 @@
 class WhatsApp {
     constructor() { }
 
-    enviar() {
-        return "Se envio por WhatsApp";
+    enviar(contenido, callback) {
+        callback();
     }
 }
 

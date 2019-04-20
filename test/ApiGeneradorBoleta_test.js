@@ -81,4 +81,41 @@ describe("API generador boleta", function () {
                 }
             );
         });
+
+    it("se deberia enviar la boleta de pago por whatsapp", function (done) {
+        let calculadora = new CalculadoraTiempoCompleto();
+        let empleado = new Empleado("Juan Perez", 123, "Gerente");
+        empleado.establecerCalculadora(calculadora);
+        empleado.establecerSalarioMensual(10000);
+        let infoEnvio = {
+            empleado: empleado,
+            informacionEnvio: {
+                datosWhatsApp: "datos whatsapp"
+            }
+        }
+        request.post(
+            'http://localhost:3000/api/generador-boletas/generar/whatsapp',
+            { json: infoEnvio },
+            function (error, response, body) {
+                expect(response.statusCode).eq(200);
+                done();
+
+            }
+        );
+    });
+
+    it("se deberia enviar una notificacion por whatsapp de que la boleta de pago ya esta lista",
+        function (done) {
+            let notificacion = {
+                datosWhatsApp: "datos whatsapp"
+            };
+            request.post(
+                'http://localhost:3000/api/generador-boletas/notificar/whatsapp',
+                { json: notificacion },
+                function (error, response, body) {
+                    expect(response.statusCode).eq(200);
+                    done();
+                }
+            );
+        });
 });
