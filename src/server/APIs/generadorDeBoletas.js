@@ -29,7 +29,7 @@ router.post("/generar/:metodoEnvio", function (consulta, respuesta) {
     empleado = Utilitarios.parsearEmpleado(empleado);
     let infoEnvio = consulta.body.informacionEnvio;
     let boletaDePago = GeneradorBoleta.obtener(empleado);
-    infoEnvio.boletaDePago = boletaDePago;
+    infoEnvio.contenido = boletaDePago;
     let medioDeEnvio = obtenerMetodoDeEnvio(metodoEnvio);
     medioDeEnvio.enviar(infoEnvio, function(error, informacion) {
         if (error)
@@ -39,15 +39,15 @@ router.post("/generar/:metodoEnvio", function (consulta, respuesta) {
     })
 })
 
-router.get("/notificar/:email", function (consulta, respuesta) {
-    let criterioDeBusqueda = { ci: parseInt(consulta.params.ci) };
-    conexionABaseDeDatos.buscar(criterioDeBusqueda, coleccionEmpleados, function (error, resultados) {
+router.get("/notificar/:metodoEnvio", function (consulta, respuesta) {
+    let metodoEnvio = consulta.params.metodoEnvio;
+    let notificacion = consulta.body.notificacion;
+    let medioDeEnvio = obtenerMetodoDeEnvio(metodoEnvio);
+    medioDeEnvio.enviar(notificacion, function (error, informacion) {
         if (error)
-            manejarError(respuesta, error.stack, 409);
-        else if (!hayResultados(resultados))
-            manejarError(respuesta, "No se encontro al empleado", 404)
+            manejarError(respuesta, error, 418);
         else
-            respuesta.send(resultados);
+            respuesta.send("boleta enviada: " + informacion.response);
     })
 })
 

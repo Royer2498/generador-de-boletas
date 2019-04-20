@@ -17,7 +17,7 @@ class Mail {
             from: this.remitente,
             to: contenido.destinatario,
             subject: contenido.asunto,
-            text: contenido.boletaDePago
+            text: contenido.contenido
         };
         this.transportador.sendMail(opcionesDeCorreo, callback);
     }
