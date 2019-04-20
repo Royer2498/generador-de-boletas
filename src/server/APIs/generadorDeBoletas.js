@@ -4,11 +4,10 @@ const Mail = require('../Metodos de envio/Mail')
 const Facebook = require('../Metodos de envio/Facebook');
 const WhatsApp = require('../Metodos de envio/WhatsApp');
 const GeneradorBoleta = require('../../Boleta de pago/GeneradorBoleta');
-const Empleado = require('../../Empleados/Empleado');
-const CalculadoraTiempoCompleto = require('../../Calculadora salario/CalculadoraTiempoCompleto');
+const Utilitarios = require('../../Utilitarios');
 
 function manejarError(respuesta, mensajeDeError, codigo) {
-    respuesta.send(codigo).send(mensajeDeError);
+    respuesta.status(codigo).send(mensajeDeError);
 }
 
 function obtenerMetodoDeEnvio(metodoEnvio) {
@@ -24,20 +23,12 @@ function obtenerMetodoDeEnvio(metodoEnvio) {
     }
 }
 
-function crearEmpleado(empleado) {
-    let empleadoObj = new Empleado(empleado.nombre, empleado.ci, empleado.cargo);
-    let calculadora = new CalculadoraTiempoCompleto();
-    empleadoObj.establecerCalculadora(calculadora);
-    empleadoObj.establecerSalarioMensual(empleado.calculadoraSalario.salarioMensual);
-    return empleadoObj;
-}
-
 router.post("/generar/:metodoEnvio", function (consulta, respuesta) {
     let metodoEnvio = consulta.params.metodoEnvio;
     let empleado = consulta.body.empleado;
-    let empleadoObj = crearEmpleado(empleado);
+    empleado = Utilitarios.parsearEmpleado(empleado);
     let infoEnvio = consulta.body.informacionEnvio;
-    let boletaDePago = GeneradorBoleta.obtener(empleadoObj);
+    let boletaDePago = GeneradorBoleta.obtener(empleado);
     infoEnvio.boletaDePago = boletaDePago;
     let medioDeEnvio = obtenerMetodoDeEnvio(metodoEnvio);
     medioDeEnvio.enviar(infoEnvio, function(error, informacion) {

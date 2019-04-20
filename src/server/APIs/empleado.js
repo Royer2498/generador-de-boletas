@@ -1,14 +1,16 @@
 const express = require('express');
 const router = express.Router();
+
 var coleccionEmpleados
 var conexionABaseDeDatos
+
 setTimeout(function () {
     conexionABaseDeDatos = require('../server')
     coleccionEmpleados = conexionABaseDeDatos.baseDeDatos.collection('empleados');
 }, 2000);
 
 function manejarError(respuesta, mensajeDeError, codigo) {
-    respuesta.send(codigo).send(mensajeDeError);
+    respuesta.status(codigo).send(mensajeDeError);
 }
 
 function hayResultados(resultados) {
