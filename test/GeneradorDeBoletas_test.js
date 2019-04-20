@@ -8,13 +8,11 @@ const CalculadoraTiempoCompleto = require("../src/Calculadora salario/Calculador
 const TarjetasDeHorasTrabajadas = require('../src/Tarjetas/TarjetasDeHorasTrabajadas');
 const TarjetasDeVentas = require("../src/Tarjetas/TarjetasDeVentas");
 
-
 describe("BoletasDePagoTest", function () {
   var generadorDeBoletas;
   var empleados = [];
 
   before(function () {
-
     var empleado1 = new Empleado("Juan Perez", 123, 'Gerente');
     var empleado2 = new Empleado("Carlos Torres", 111, 'Presidente');
     var empleado3 = new Empleado("Pedro Perez", 222, 'Vice Presidente');
@@ -43,45 +41,47 @@ describe("BoletasDePagoTest", function () {
     empleado3.establecerSueldoBase(100);
     empleado3.establecerTarjetaVentas(tarjetaDeVentas);
 
-    empleados.push(empleado1);
-    empleados.push(empleado2);
-    empleados.push(empleado3);
+    empleados.push({ datos: empleado1, metodoDePago: "Deposito" });
+    empleados.push({ datos: empleado2, metodoDePago: "Deposito" });
+    empleados.push({ datos: empleado3, metodoDePago: "Deposito" });
 
-    generadorDeBoletas = new GeneradorDeBoletas(empleados);
   });
 
   it(`Para un array de tres empleados si genereamos las boletas de pago para todos los empleados, la boleta del primer empleado (Juan Perez)
         deberia ser la correspondiente`, function () {
-      var boletasGeneradas = generadorDeBoletas.generarBoletas();
+      var boletasGeneradas = GeneradorDeBoletas.generarBoletas(empleados);
       let fechaActualConFormato = String(new Date()).slice(0, 15);
       let boletaImpresa = `BOLETA DE PAGO
     Empleado: Juan Perez
     Cargo: Gerente
     Salario: 10000 Bolivianos
+    Metodo de pago: Deposito
     Fecha de emision: ${fechaActualConFormato}`;
       expect(boletasGeneradas[0]).eq(boletaImpresa);
     });
 
   it(`Para un array de tres empleados si genereamos las boletas de pago para todos los empleados, la boleta del primer empleado (Carlos Torres)
       deberia ser la correspondiente`, function () {
-      var boletasGeneradas = generadorDeBoletas.generarBoletas();
+      var boletasGeneradas = GeneradorDeBoletas.generarBoletas(empleados);
       let fechaActualConFormato = String(new Date()).slice(0, 15);
       let boletaImpresa = `BOLETA DE PAGO
     Empleado: Carlos Torres
     Cargo: Presidente
     Salario: 1000 Bolivianos
+    Metodo de pago: Deposito
     Fecha de emision: ${fechaActualConFormato}`;
       expect(boletasGeneradas[1]).eq(boletaImpresa);
     });
 
   it(`Para un array de tres empleados si genereamos las boletas de pago para todos los empleados, la boleta del primer empleado (Pedro Perez)
       deberia ser la correspondiente`, function () {
-      var boletasGeneradas = generadorDeBoletas.generarBoletas();
+      var boletasGeneradas = GeneradorDeBoletas.generarBoletas(empleados);
       let fechaActualConFormato = String(new Date()).slice(0, 15);
       let boletaImpresa = `BOLETA DE PAGO
     Empleado: Pedro Perez
     Cargo: Vice Presidente
     Salario: 2300 Bolivianos
+    Metodo de pago: Deposito
     Fecha de emision: ${fechaActualConFormato}`;
       expect(boletasGeneradas[2]).eq(boletaImpresa);
     });

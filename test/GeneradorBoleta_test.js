@@ -21,8 +21,9 @@ describe("BoletaDePagoTest", function () {
     Empleado: Juan Perez
     Cargo: Gerente
     Salario: 10000 Bolivianos
+    Metodo de pago: Deposito
     Fecha de emision: ${fechaActualConFormato}`;
-      expect(GeneradorBoleta.obtener(empleado)).eq(boletaImpresa);
+      expect(GeneradorBoleta.obtener(empleado, "Deposito")).eq(boletaImpresa);
     });
 
   it(`si se genera una boleta para Pedro Paramo que recibe 100 bolivianos por hora y trabajo 10 horas,
@@ -40,8 +41,9 @@ describe("BoletaDePagoTest", function () {
     Empleado: Juan Perez
     Cargo: Gerente
     Salario: 1000 Bolivianos
+    Metodo de pago: Deposito
     Fecha de emision: ${fechaActualConFormato}`;
-      expect(GeneradorBoleta.obtener(empleado)).eq(boletaImpresa);
+      expect(GeneradorBoleta.obtener(empleado, "Deposito")).eq(boletaImpresa);
     });
 
   it(`si se genera una boleta para Fernando Gonzalez que recibe 100 bolivianos de monto base, un 10% de
@@ -62,8 +64,9 @@ describe("BoletaDePagoTest", function () {
     Empleado: Juan Perez
     Cargo: Gerente
     Salario: 2300 Bolivianos
+    Metodo de pago: Deposito
     Fecha de emision: ${fechaActualConFormato}`;
-      expect(GeneradorBoleta.obtener(empleado)).eq(boletaImpresa);
+      expect(GeneradorBoleta.obtener(empleado, "Deposito")).eq(boletaImpresa);
     });
 
 

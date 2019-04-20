@@ -1,8 +1,8 @@
 class Facebook {
     constructor() {}
 
-    enviar() {
-        return "Se envio por Facebook";
+    enviar(contenido, callback) {
+        callback();
     }
 }
 

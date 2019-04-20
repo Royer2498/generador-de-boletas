@@ -2,18 +2,16 @@ const GeneradorBoleta = require("./GeneradorBoleta");
 
 class GeneradorDeBoletas {
 
-    constructor(empleados) {
-        this.empleados = empleados;
+    constructor() {
     }
 
-    generarBoletas() {
+    static generarBoletas(empleados) {
         let boletasDePago = [];
-        for (let empleado of this.empleados) {
-            boletasDePago.push(GeneradorBoleta.obtener(empleado));
+        for (let empleado of empleados) {
+            boletasDePago.push(GeneradorBoleta.obtener(empleado.datos, empleado.metodoDePago));
         }
         return boletasDePago;
     }
-
 }
 
 module.exports = GeneradorDeBoletas;

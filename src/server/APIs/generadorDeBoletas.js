@@ -11,7 +11,7 @@ function manejarError(respuesta, mensajeDeError, codigo) {
 }
 
 function obtenerMetodoDeEnvio(metodoEnvio) {
-    switch(metodoEnvio) {
+    switch (metodoEnvio) {
         case "email":
             return new Mail();
         case "facebook":
@@ -31,28 +31,23 @@ router.post("/generar/:metodoEnvio", function (consulta, respuesta) {
     let boletaDePago = GeneradorBoleta.obtener(empleado);
     infoEnvio.contenido = boletaDePago;
     let medioDeEnvio = obtenerMetodoDeEnvio(metodoEnvio);
-    medioDeEnvio.enviar(infoEnvio, function(error, informacion) {
+    medioDeEnvio.enviar(infoEnvio, function (error, informacion) {
         if (error)
             manejarError(respuesta, error, 418);
         else
-            respuesta.send("boleta enviada: " + informacion.response);
+            respuesta.send("boleta enviada mediante " + metodoEnvio);
     })
 })
 
 router.post("/notificar/:metodoEnvio", function (consulta, respuesta) {
     let metodoEnvio = consulta.params.metodoEnvio;
-    let correoDestinatario = consulta.body.correoDestinatario;
-    let notificacion = {
-        destinatario: correoDestinatario,
-        asunto: "Boleta de pago",
-        contenido: "Su boleta de pago ya esta lista"
-    }
+    let notificacion = consulta.body;
     let medioDeEnvio = obtenerMetodoDeEnvio(metodoEnvio);
     medioDeEnvio.enviar(notificacion, function (error, informacion) {
         if (error)
             manejarError(respuesta, error, 418);
         else
-            respuesta.send("notificacion enviada: " + informacion.response);
+            respuesta.send("boleta enviada mediante " + metodoEnvio);
     })
 })
 
