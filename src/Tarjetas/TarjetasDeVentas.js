@@ -53,6 +53,10 @@ class TarjetasDeVentas {
         }
         return montoTotal;
     }
+
+    obtenerFechaPrimerRegistro() {
+        return this.tarjetaDeVentas[0].fecha;
+    }
 }
 
 module.exports = TarjetasDeVentas;

@@ -71,6 +71,18 @@ class TarjetasDeHorasTrabajadas {
         return horasExtra;
     }
 
+    obtenerHorasExtraPorIntervalo(fechaInicio, fechaFin) {
+        let horasExtra = 0;
+        for (let tarjeta of this.tarjetasDeHorasTrabajadas) {
+            if (this.laFechaEstaEnIntervalo(tarjeta.fecha, fechaInicio, fechaFin)) {
+                let milisegundos = this.obtenerMilisegundosDeUnaTarjeta(tarjeta);
+                let horasExtraDelDia = this.obtenerHorasExtraDelDia(milisegundos);
+                horasExtra += horasExtraDelDia;
+            }
+        }
+        return horasExtra;
+    }
+
     obtenerHorasExtraDelDia(milisegundos) {
         let horasExtraDelDia = this.convertirMilisegundosAHoras(milisegundos) - 8;
         if (horasExtraDelDia < 0)

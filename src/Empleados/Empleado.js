@@ -1,6 +1,6 @@
 const CalculadoraTiempoCompleto = require('../Calculadora salario/CalculadoraTiempoCompleto');
 const CalculadoraTiempoParcial = require('../Calculadora salario/CalculadoraTiempoParcial');
-const CalculadoraPorComision =require('../Calculadora salario/CalculadoraPorComision');
+const CalculadoraPorComision = require('../Calculadora salario/CalculadoraPorComision');
 
 class Empleado {
 
@@ -57,8 +57,8 @@ class Empleado {
       throw new Error("El empleado no es por comision");
   }
 
-  calcularSalario() {
-    return this.calculadoraSalario.calcularSalario();
+  calcularSalarioTotal() {
+    return this.calculadoraSalario.calcularSalarioTotal();
   }
 }
 

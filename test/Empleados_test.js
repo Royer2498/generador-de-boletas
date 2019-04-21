@@ -14,7 +14,7 @@ describe("Empleados", function () {
         let calculadora = new CalculadoraTiempoCompleto();
         empleado.establecerCalculadora(calculadora);
         empleado.establecerSalarioMensual(7000);
-        expect(empleado.calcularSalario()).equal(7000);
+        expect(empleado.calcularSalarioTotal()).equal(7000);
     });
 
     it(`el sueldo para un empleado tiempo parcial con salario por hora 100 y que trabajó 13 horas
@@ -28,7 +28,7 @@ describe("Empleados", function () {
             tarjeta.registrarSesion("2019-04-01", "10:00:00", "15:00:00");
             empleado.establecerSalarioPorHora(100);
             empleado.establecerTarjetaDeHorasTrabajadas(tarjeta);
-            expect(empleado.calcularSalario()).equal(1300);
+            expect(empleado.calcularSalarioTotal()).equal(1300);
         });
 
     it(`el sueldo para un empleado tiempo parcial con salario por hora 100 y que trabajó 9 horas
@@ -41,9 +41,9 @@ describe("Empleados", function () {
             tarjeta.registrarSesion("2019-03-31", "15:00:00", "18:00:00");
             empleado.establecerSalarioPorHora(100);
             empleado.establecerTarjetaDeHorasTrabajadas(tarjeta);
-            expect(empleado.calcularSalario()).equal(950);
+            expect(empleado.calcularSalarioTotal()).equal(950);
         });
-        
+
 
     it(`el sueldo para un empleado por comision con sueldo base 100bs, 22000bs vendidos
     y 10% de comision deberia ser 2300`, function () {
@@ -57,6 +57,6 @@ describe("Empleados", function () {
             tarjeta.registrarVenta("2019-04-01", "arroz", 1000);
             tarjeta.registrarVenta("2019-04-01", "papa", 20000);
             empleado.establecerTarjetaVentas(tarjeta);
-            expect(empleado.calcularSalario()).equal(2300);
+            expect(empleado.calcularSalarioTotal()).equal(2300);
         });
 });

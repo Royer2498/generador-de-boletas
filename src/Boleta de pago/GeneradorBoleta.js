@@ -12,7 +12,7 @@ class GeneradorBoleta {
     let info = `BOLETA DE PAGO
     Empleado: ${empleado.nombre}
     Cargo: ${empleado.cargo}
-    Salario: ${empleado.calcularSalario()} Bolivianos
+    Salario: ${empleado.calcularSalarioTotal()} Bolivianos
     Metodo de pago: ${metodoDePago}
     Fecha de emision: ${this.fecha}`;
     return info;
