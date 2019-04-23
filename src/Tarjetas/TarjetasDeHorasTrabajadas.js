@@ -1,3 +1,6 @@
+const UtilitariosFecha = require('../UtilitariosFecha');
+const UtilitariosTiempo = require('../UtilitariosTiempo');
+
 class TarjetasDeHorasTrabajadas {
     constructor() {
         this.tarjetasDeHorasTrabajadas = [];
@@ -6,21 +9,17 @@ class TarjetasDeHorasTrabajadas {
     calcularHoras() {
         var milisegundos = 0;
         for (let tarjeta of this.tarjetasDeHorasTrabajadas)
-            milisegundos += this.obtenerMilisegundosDeUnaTarjeta(tarjeta);   
-        return this.convertirMilisegundosAHoras(milisegundos);
+            milisegundos += this.obtenerMilisegundosDeUnaTarjeta(tarjeta);
+        return UtilitariosTiempo.convertirMilisegundosAHoras(milisegundos);
     }
 
     calcularHorasPorIntervalo(fechaInicio, fechaFin) {
         var milisegundos = 0;
         for (let tarjeta of this.tarjetasDeHorasTrabajadas) {
-            if (this.laFechaEstaEnIntervalo(tarjeta.fecha, fechaInicio, fechaFin))
+            if (UtilitariosFecha.laFechaEstaEnIntervalo(tarjeta.fecha, fechaInicio, fechaFin))
                 milisegundos += this.obtenerMilisegundosDeUnaTarjeta(tarjeta);
         }
-        return this.convertirMilisegundosAHoras(milisegundos);
-    }
-
-    laFechaEstaEnIntervalo(fecha, fechaInicio, fechaFin) {
-        return new Date(fecha) >= new Date(fechaInicio) && new Date(fecha) <= new Date(fechaFin);
+        return UtilitariosTiempo.convertirMilisegundosAHoras(milisegundos);
     }
 
     obtenerMilisegundosDeUnaTarjeta(tarjeta) {
@@ -31,10 +30,6 @@ class TarjetasDeHorasTrabajadas {
             milisegundos += horaSalida - horaEntrada;
         }
         return milisegundos;
-    }
-
-    convertirMilisegundosAHoras(milisegundos) {
-        return milisegundos / (1000 * 60 * 60);
     }
 
     registrarSesion(fecha, horaEntrada, horaSalida) {
@@ -74,7 +69,7 @@ class TarjetasDeHorasTrabajadas {
     obtenerHorasExtraPorIntervalo(fechaInicio, fechaFin) {
         let horasExtra = 0;
         for (let tarjeta of this.tarjetasDeHorasTrabajadas) {
-            if (this.laFechaEstaEnIntervalo(tarjeta.fecha, fechaInicio, fechaFin)) {
+            if (UtilitariosFecha.laFechaEstaEnIntervalo(tarjeta.fecha, fechaInicio, fechaFin)) {
                 let milisegundos = this.obtenerMilisegundosDeUnaTarjeta(tarjeta);
                 let horasExtraDelDia = this.obtenerHorasExtraDelDia(milisegundos);
                 horasExtra += horasExtraDelDia;
@@ -84,7 +79,7 @@ class TarjetasDeHorasTrabajadas {
     }
 
     obtenerHorasExtraDelDia(milisegundos) {
-        let horasExtraDelDia = this.convertirMilisegundosAHoras(milisegundos) - 8;
+        let horasExtraDelDia = UtilitariosTiempo.convertirMilisegundosAHoras(milisegundos) - 8;
         if (horasExtraDelDia < 0)
             horasExtraDelDia = 0;
         return horasExtraDelDia;

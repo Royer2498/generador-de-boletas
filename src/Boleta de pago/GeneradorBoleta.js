@@ -1,11 +1,7 @@
+const UtilitariosFecha = require('../UtilitariosFecha');
+
 class GeneradorBoleta {
   constructor() {
-  }
-
-  static get fecha() {
-    var fechaActual = String(new Date());
-    var fechaConFormato = fechaActual.slice(0, 15);
-    return fechaConFormato;
   }
 
   static obtener(empleado, metodoDePago) {
@@ -14,7 +10,7 @@ class GeneradorBoleta {
     Cargo: ${empleado.cargo}
     Salario: ${empleado.calcularSalarioTotal()} Bolivianos
     Metodo de pago: ${metodoDePago}
-    Fecha de emision: ${this.fecha}`;
+    Fecha de emision: ${UtilitariosFecha.obtenerFechaActualConFormato()}`;
     return info;
   }
 }

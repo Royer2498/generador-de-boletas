@@ -1,7 +1,7 @@
 var expect = require("chai").expect;
 
 const Empleado = require("../src/Empleados/Empleado");
-const Utilitarios = require("../src/Utilitarios");
+const UtilitariosEmpleados = require("../src/UtilitariosEmpleados");
 const TarjetasDeHorasTrabajadas = require('../src/Tarjetas/TarjetasDeHorasTrabajadas');
 const TarjetasDeVentas = require("../src/Tarjetas/TarjetasDeVentas");
 const CalculadoraTiempoCompleto = require("../src/Calculadora salario/CalculadoraTiempoCompleto");
@@ -10,7 +10,7 @@ const CalculadoraPorComision = require("../src/Calculadora salario/CalculadoraPo
 
 describe("Empleados", function () {
 
-    it(`despues de parsear un empleado de tiempo completo JSON con la clase utilitarios, se deberia
+    it(`despues de parsear un empleado de tiempo completo JSON con la clase UtilitariosEmpleados, se deberia
     poder calcular su salario`, function () {
             let empleado = new Empleado("Juan Perez", 123, 'Gerente');
             let calculadora = new CalculadoraTiempoCompleto();
@@ -18,11 +18,11 @@ describe("Empleados", function () {
             empleado.establecerSalarioMensual(7000);
             let empleadoString = JSON.stringify(empleado);
             let empleadoObtenido = JSON.parse(empleadoString);
-            let empleadoParseado = Utilitarios.parsearEmpleado(empleadoObtenido);
+            let empleadoParseado = UtilitariosEmpleados.parsearEmpleado(empleadoObtenido);
             expect(empleadoParseado.calcularSalarioTotal()).eq(7000);
         });
 
-    it(`despues de parsear un empleado de tiempo parcial JSON con la clase utilitarios, se deberia
+    it(`despues de parsear un empleado de tiempo parcial JSON con la clase UtilitariosEmpleados, se deberia
     poder calcular su salario`, function () {
             let calculadora = new CalculadoraTiempoParcial();
             let empleado = new Empleado("Juan Perez", 123, 'Gerente');
@@ -35,11 +35,11 @@ describe("Empleados", function () {
             empleado.establecerTarjetaDeHorasTrabajadas(tarjeta);
             let empleadoString = JSON.stringify(empleado);
             let empleadoObtenido = JSON.parse(empleadoString);
-            let empleadoParseado = Utilitarios.parsearEmpleado(empleadoObtenido);
+            let empleadoParseado = UtilitariosEmpleados.parsearEmpleado(empleadoObtenido);
             expect(empleadoParseado.calcularSalarioTotal()).eq(1300);
         });
 
-    it(`despues de parsear un empleado por comision JSON con la clase utilitarios, se deberia
+    it(`despues de parsear un empleado por comision JSON con la clase UtilitariosEmpleados, se deberia
     poder calcular su salario`, function () {
             let empleado = new Empleado("Juan Perez", 123, 'Gerente');
             let calculadora = new CalculadoraPorComision();
@@ -53,7 +53,7 @@ describe("Empleados", function () {
             empleado.establecerTarjetaVentas(tarjeta);
             let empleadoString = JSON.stringify(empleado);
             let empleadoObtenido = JSON.parse(empleadoString);
-            let empleadoParseado = Utilitarios.parsearEmpleado(empleadoObtenido);
+            let empleadoParseado = UtilitariosEmpleados.parsearEmpleado(empleadoObtenido);
             expect(empleadoParseado.calcularSalarioTotal()).eq(2300);
         });
 

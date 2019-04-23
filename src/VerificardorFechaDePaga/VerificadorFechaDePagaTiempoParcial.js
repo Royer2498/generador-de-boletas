@@ -1,19 +1,13 @@
+const UtilitariosFecha = require('../UtilitariosFecha');
+
 class VerificadorFechaDePagaTiempoParcial {
 
     constructor(fechaActual) {
-        this.diaDeLaSemana = fechaActual.getDay();
-    }
-
-    esViernes() {
-        if (this.diaDeLaSemana === 5)
-            return true;
-        return false;
+        this.fechaActual = fechaActual;
     }
 
     esDiaDePaga() {
-        if (this.esViernes())
-            return true;
-        return false;
+        return UtilitariosFecha.esViernes(this.fechaActual);
     }
 }
 

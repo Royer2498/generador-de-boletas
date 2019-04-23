@@ -1,3 +1,5 @@
+const UtilitariosFecha = require('../UtilitariosFecha');
+
 class TarjetasDeVentas {
     constructor() {
         this.tarjetaDeVentas = [];
@@ -34,10 +36,6 @@ class TarjetasDeVentas {
         return montoTotal;
     }
 
-    laFechaEstaEnIntervalo(fecha, fechaInicio, fechaFin) {
-        return new Date(fecha) >= new Date(fechaInicio) && new Date(fecha) <= new Date(fechaFin);
-    }
-
     obtenerMontoTotalDeUnDia(tarjeta) {
         var montoTotal = 0;
         for (let transaccion of tarjeta.transacciones)
@@ -48,7 +46,7 @@ class TarjetasDeVentas {
     calcularMontoTotalPorIntervalo(fechaInicio, fechaFin) {
         var montoTotal = 0;
         for (let tarjeta of this.tarjetaDeVentas) {
-            if (this.laFechaEstaEnIntervalo(tarjeta.fecha, fechaInicio, fechaFin))
+            if (UtilitariosFecha.laFechaEstaEnIntervalo(tarjeta.fecha, fechaInicio, fechaFin))
                 montoTotal += this.obtenerMontoTotalDeUnDia(tarjeta);
         }
         return montoTotal;

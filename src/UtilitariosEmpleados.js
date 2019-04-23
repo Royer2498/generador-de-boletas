@@ -5,7 +5,7 @@ const CalculadoraPorComision = require('./Calculadora salario/CalculadoraPorComi
 const TarjetasDeHorasTrabajadas = require('./Tarjetas/TarjetasDeHorasTrabajadas');
 const TarjetasDeVentas = require('./Tarjetas/TarjetasDeVentas');
 
-class Utilitarios {
+class UtilitariosEmpleados {
     constructor() {
     }
 
@@ -35,4 +35,4 @@ class Utilitarios {
     }
 }
 
-module.exports = Utilitarios;
+module.exports = UtilitariosEmpleados;
