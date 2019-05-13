@@ -9,10 +9,15 @@ class Empleado {
     this.ci = ci;
     this.cargo = cargo;
     this.calculadoraSalario = null;
+    this.verificadorFechaDePaga = null;
   }
 
   establecerCalculadora(calculadora) {
     this.calculadoraSalario = calculadora;
+  }
+
+  establecerVerificadorFechaDePaga(verificador) {
+    this.verificadorFechaDePaga = verificador;    
   }
 
   establecerSalarioMensual(salario) {

@@ -2,14 +2,32 @@ const MongoClient = require('mongodb').MongoClient
 
 class ConexionAMongoDB {
     constructor(url, nombreBaseDeDatos) {
-        this.baseDeDatos = null;
-        MongoClient.connect(url, (error, cliente) => {
-            if (error)
-                console.log(error.stack);
-            else {
-                this.baseDeDatos = cliente.db(nombreBaseDeDatos);
-                console.log("conectado correctamente a MongoDB");
-            }
+        this.baseDeDatos = this.hacerLaConexion(url, nombreBaseDeDatos);
+        // MongoClient.connect(url, (error, cliente) => {
+        //     if (error)
+        //         console.log(error.stack);
+        //     else {
+        //         this.baseDeDatos = cliente.db(this.nombreBaseDeDatos);
+        //         console.log("conectado correctamente a MongoDB");
+        //     }
+        // });
+    }
+    async hacerLaConexion(url, nombreBaseDeDatos) {
+        var c = await this.conectar(url, nombreBaseDeDatos);
+        return c;
+    }
+
+    conectar(url, nombreBaseDeDatos) {
+        return new Promise(function (resolve) {
+            MongoClient.connect(url, (error, cliente) => {
+                if (error) {
+                    throw new error(error.stack);
+                }
+                else {
+                    console.log("conectado correctamente a MongoDB");
+                    resolve(cliente.db(nombreBaseDeDatos));
+                }
+            })
         });
     }
 

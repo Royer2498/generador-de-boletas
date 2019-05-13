@@ -25,9 +25,9 @@ class CalculadoraPorComision {
         return this.sueldoBase + this.porcentaje * this.tarjetaVentas.calcularMontoTotal() / 100;
     }
 
-    calcularSalario(fechaActual) {
-        let anteriorViernes = UtilitariosFecha.retrocederNDias(fechaActual, 14);
-        return this.sueldoBase + this.porcentaje * this.tarjetaVentas.calcularMontoTotalPorIntervalo(anteriorViernes, fechaActual) / 100;
+    calcularSalario(fecha) {
+        let anteriorViernes = UtilitariosFecha.retrocederNDias(fecha, 14);
+        return this.sueldoBase + this.porcentaje * this.tarjetaVentas.calcularMontoTotalPorIntervalo(anteriorViernes, fecha) / 100;
     }
 }
 

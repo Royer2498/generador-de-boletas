@@ -25,7 +25,6 @@ class UtilitariosFecha {
     }
 
     static esDiaHabil(fecha) {
-        console.log(fecha.getDay())
         return fecha.getDay() >= 1 && fecha.getDay() <= 5;
     }
 

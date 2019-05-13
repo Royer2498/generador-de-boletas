@@ -21,10 +21,10 @@ class CalculadoraTiempoParcial {
         return this.salarioPorHora * horasLaborales + this.salarioPorHora * 1.5 * horasExtra;
     }
 
-    calcularSalario(fechaActual) {
-        let anteriorViernes = UtilitariosFecha.retrocederNDias(fechaActual, 7);
-        let horasExtra = this.tarjetaHorasTrabajadas.obtenerHorasExtraPorIntervalo(anteriorViernes, fechaActual);
-        let horasLaborales = this.tarjetaHorasTrabajadas.calcularHorasPorIntervalo(anteriorViernes, fechaActual) - horasExtra;
+    calcularSalario(fecha) {
+        let anteriorViernes = UtilitariosFecha.retrocederNDias(fecha, 7);
+        let horasExtra = this.tarjetaHorasTrabajadas.obtenerHorasExtraPorIntervalo(anteriorViernes, fecha);
+        let horasLaborales = this.tarjetaHorasTrabajadas.calcularHorasPorIntervalo(anteriorViernes, fecha) - horasExtra;
         return this.salarioPorHora * horasLaborales + this.salarioPorHora * 1.5 * horasExtra;
     }
 

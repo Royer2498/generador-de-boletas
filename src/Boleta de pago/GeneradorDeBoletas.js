@@ -7,9 +7,8 @@ class GeneradorDeBoletas {
 
     static generarBoletas(empleados) {
         let boletasDePago = [];
-        for (let empleado of empleados) {
+        for (let empleado of empleados)
             boletasDePago.push(GeneradorBoleta.obtener(empleado.datos, empleado.metodoDePago));
-        }
         return boletasDePago;
     }
 }

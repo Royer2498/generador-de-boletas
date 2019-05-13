@@ -18,8 +18,8 @@ class CalculadoraTiempoCompleto {
         return this.salarioMensual;
     }
 
-    calcularSalario(fechaActual) {
-        if (fechaActual.getMonth() == this.fechaInicioTrabajo.getMonth()) {
+    calcularSalario(fecha) {
+        if (fecha.getMonth() == this.fechaInicioTrabajo.getMonth()) {
             let primerDiaSiguienteMes = new Date(this.fechaInicioTrabajo.getFullYear(), this.fechaInicioTrabajo.getMonth() + 1, 1);
             let primerDiaMesActual = new Date(this.fechaInicioTrabajo.getFullYear(), this.fechaInicioTrabajo.getMonth(), 1)
             let diasHabilesDesdeInicioTrabajo = UtilitariosFecha.calcularDiasHabiles(this.fechaInicioTrabajo, primerDiaSiguienteMes);
