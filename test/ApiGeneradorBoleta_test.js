@@ -3,7 +3,7 @@ const Empleado = require("../src/Empleados/Empleado");
 const request = require('request');
 const CalculadoraTiempoCompleto = require('../src/Calculadora salario/CalculadoraTiempoCompleto')
 
-describe("API generador boleta", function () {
+xdescribe("API generador boleta", function () {
     it("se deberia enviar un email con la boleta de pago", function (done) {
         let calculadora = new CalculadoraTiempoCompleto();
         let empleado = new Empleado("Juan Perez", 123, "Gerente");

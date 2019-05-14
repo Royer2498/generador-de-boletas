@@ -2,8 +2,7 @@ const UtilitariosTiempo = require('../UtilitariosTiempo');
 const UtilitariosFecha = require('../UtilitariosFecha');
 
 class VerificadorFechaDePagaComision {
-    constructor(fechaInicioTrabajo, fechaActual) {
-        this.fechaActual = fechaActual;
+    constructor(fechaInicioTrabajo) {
         this.fechaInicioTrabajo = fechaInicioTrabajo;
     }
 
@@ -17,12 +16,12 @@ class VerificadorFechaDePagaComision {
         return diferenciaDeDias % 14 === 0;
     }
 
-    esDiaDePaga() {
-        if (!UtilitariosFecha.esViernes(this.fechaActual))
+    esDiaDePaga(fecha) {
+        if (!UtilitariosFecha.esViernes(fecha))
             return false;
         let viernesInicioTrabajo = UtilitariosFecha.retrocederHastaUnViernes(this.fechaInicioTrabajo);
         let milisegundosViernesInicioTrabajo = UtilitariosTiempo.obtenerMilisegundos(viernesInicioTrabajo);
-        let milisegundosViernesActual = this.fechaActual.getTime();
+        let milisegundosViernesActual = fecha.getTime();
         return this.esViernesDePaga(milisegundosViernesInicioTrabajo, milisegundosViernesActual)
     }
 }

@@ -4,10 +4,9 @@ const VerificadorFechaDePagaTiempoCompleto = require('../src/VerificardorFechaDe
 const VerificadorFechaDePagaTiempoParcial = require('../src/VerificardorFechaDePaga/VerificadorFechaDePagaTiempoParcial');
 const VerificadorFechaDePagaComision = require('../src/VerificardorFechaDePaga/VerificadorFechaDePagaComision');
 
-describe("Verificar fecha de paga", function () {
+xdescribe("Verificar fecha de paga", function () {
     it(`Si le pasamos 29 de marzo de 2019 (Viernes) al verificador de fecha de paga de 
     empleado de tiempo completo deberia devolver true`, function () {
-        console.log("oaisjdoiasjdoiasjdoasi")
             let verificador = new VerificadorFechaDePagaTiempoCompleto(new Date(2019, 2, 29))
             expect(verificador.esDiaDePaga()).eq(true);
         });

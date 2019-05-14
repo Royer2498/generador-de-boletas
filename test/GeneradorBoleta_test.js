@@ -14,6 +14,7 @@ describe("BoletaDePagoTest", function () {
  es Gerente y la moneda es Bs, la boleta deberia proveer toda la informacion`, function () {
       let calculadora = new CalculadoraTiempoCompleto();
       let empleado = new Empleado("Juan Perez", 123, "Gerente");
+      empleado.establecerMetodoDePago("Deposito");
       empleado.establecerCalculadora(calculadora);
       empleado.establecerSalarioMensual(10000);
       let fechaActualConFormato = String(new Date()).slice(0, 15);
@@ -29,6 +30,7 @@ describe("BoletaDePagoTest", function () {
   it(`si se genera una boleta para Pedro Paramo que recibe 100 bolivianos por hora y trabajo 10 horas,
   es sub gerente y la moneda es Bs, la boleta deberia proveer toda la informacion`, function () {
       let empleado = new Empleado("Juan Perez", 123, "Gerente");
+      empleado.establecerMetodoDePago("Deposito");
       let calculadora = new CalculadoraTiempoParcial();
       empleado.establecerCalculadora(calculadora);
       empleado.establecerSalarioPorHora(100);
@@ -50,6 +52,7 @@ describe("BoletaDePagoTest", function () {
   comision y 22000 bs en ventas, es comisionado de ventas y la moneda es Bs, la boleta deberia proveer
   toda la informacion`, function () {
       let empleado = new Empleado("Juan Perez", 123, "Gerente");
+      empleado.establecerMetodoDePago("Deposito");
       let calculadora = new CalculadoraPorComision();
       empleado.establecerCalculadora(calculadora);
       empleado.establecerSueldoBase(100);

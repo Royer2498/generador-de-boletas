@@ -9,6 +9,20 @@ class Empleado {
     this.ci = ci;
     this.cargo = cargo;
     this.calculadoraSalario = null;
+    this.verificadorFechaDePaga = null;
+    this.metodoDePago = "efectivo";
+  }
+
+  esPayDay(fecha) {
+    return this.verificadorFechaDePaga.esDiaDePaga(fecha);
+  }
+
+  establecerMetodoDePago(metodo) {
+    this.metodoDePago = metodo;
+  }
+
+  establecerVerificadorDiaDePaga(verificador) {
+    this.verificadorFechaDePaga = verificador;
   }
 
   establecerCalculadora(calculadora) {
@@ -59,6 +73,10 @@ class Empleado {
 
   calcularSalarioTotal() {
     return this.calculadoraSalario.calcularSalarioTotal();
+  }
+
+  esDiaDePaga() {
+    return this.verificadorDiaDePaga.esDiaDePaga();
   }
 }
 

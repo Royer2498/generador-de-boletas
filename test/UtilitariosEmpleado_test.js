@@ -7,6 +7,9 @@ const TarjetasDeVentas = require("../src/Tarjetas/TarjetasDeVentas");
 const CalculadoraTiempoCompleto = require("../src/Calculadora salario/CalculadoraTiempoCompleto");
 const CalculadoraTiempoParcial = require("../src/Calculadora salario/CalculadoraTiempoParcial");
 const CalculadoraPorComision = require("../src/Calculadora salario/CalculadoraPorComision");
+const VerificadorFechaDePagaTiempoCompleto = require("../src/VerificardorFechaDePaga/VerificadorFechaDePagaTiempoCompleto");
+const VerificadorFechaDePagaTiempoParcial = require("../src/VerificardorFechaDePaga/VerificadorFechaDePagaTiempoParcial");
+const VerificadorFechaDePagaComision = require("../src/VerificardorFechaDePaga/VerificadorFechaDePagaComision");
 
 describe("Empleados", function () {
 
@@ -14,8 +17,10 @@ describe("Empleados", function () {
     poder calcular su salario`, function () {
             let empleado = new Empleado("Juan Perez", 123, 'Gerente');
             let calculadora = new CalculadoraTiempoCompleto();
+            let verificador = new VerificadorFechaDePagaTiempoCompleto();
             empleado.establecerCalculadora(calculadora);
             empleado.establecerSalarioMensual(7000);
+            empleado.establecerVerificadorDiaDePaga(verificador);
             let empleadoString = JSON.stringify(empleado);
             let empleadoObtenido = JSON.parse(empleadoString);
             let empleadoParseado = UtilitariosEmpleados.parsearEmpleado(empleadoObtenido);
@@ -25,8 +30,10 @@ describe("Empleados", function () {
     it(`despues de parsear un empleado de tiempo parcial JSON con la clase UtilitariosEmpleados, se deberia
     poder calcular su salario`, function () {
             let calculadora = new CalculadoraTiempoParcial();
+            let verificador = new VerificadorFechaDePagaTiempoParcial();
             let empleado = new Empleado("Juan Perez", 123, 'Gerente');
             empleado.establecerCalculadora(calculadora);
+            empleado.establecerVerificadorDiaDePaga(verificador);
             let tarjeta = new TarjetasDeHorasTrabajadas();
             tarjeta.registrarSesion("2019-03-31", "10:00:00", "13:00:00");
             tarjeta.registrarSesion("2019-03-31", "15:00:00", "20:00:00");
@@ -50,6 +57,8 @@ describe("Empleados", function () {
             tarjeta.registrarVenta("2019-03-31", "shampoo", 1000);
             tarjeta.registrarVenta("2019-04-01", "arroz", 1000);
             tarjeta.registrarVenta("2019-04-01", "papa", 20000);
+            let verificador = new VerificadorFechaDePagaComision(tarjeta.obtenerFechaPrimerRegistro());
+            empleado.establecerVerificadorDiaDePaga(verificador);
             empleado.establecerTarjetaVentas(tarjeta);
             let empleadoString = JSON.stringify(empleado);
             let empleadoObtenido = JSON.parse(empleadoString);

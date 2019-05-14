@@ -4,12 +4,12 @@ class GeneradorBoleta {
   constructor() {
   }
 
-  static obtener(empleado, metodoDePago) {
+  static obtener(empleado) {
     let info = `BOLETA DE PAGO
     Empleado: ${empleado.nombre}
     Cargo: ${empleado.cargo}
     Salario: ${empleado.calcularSalarioTotal()} Bolivianos
-    Metodo de pago: ${metodoDePago}
+    Metodo de pago: ${empleado.metodoDePago}
     Fecha de emision: ${UtilitariosFecha.obtenerFechaActualConFormato()}`;
     return info;
   }

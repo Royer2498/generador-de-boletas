@@ -1,13 +1,16 @@
 const express = require('express');
 const router = express.Router();
+const ConexionAMongoDB = require('../ConexionesDB/ConexionAMongoDB');
 
-var coleccionEmpleados
-var conexionABaseDeDatos
+var conexionABaseDeDatos;
+var coleccionEmpleados;
 
-setTimeout(function () {
-    conexionABaseDeDatos = require('../server')
-    coleccionEmpleados = conexionABaseDeDatos.baseDeDatos.collection('empleados');
-}, 2000);
+(async function() {
+    conexionABaseDeDatos = new ConexionAMongoDB();
+    let conexionInicializada = await conexionABaseDeDatos.conectar("mongodb://localhost:27017/", 'generador-de-boletas');
+    coleccionEmpleados = conexionInicializada.collection("empleados");
+})();
+
 
 function manejarError(respuesta, mensajeDeError, codigo) {
     respuesta.status(codigo).send(mensajeDeError);
@@ -55,6 +58,16 @@ router.post("/", function (consulta, respuesta) {
             })
         }
 
+    })
+})
+
+router.post("/insertar-varios", function (consulta, respuesta) {
+    let empleados = consulta.body;
+    conexionABaseDeDatos.insertarVarios(empleados, coleccionEmpleados, function (error, resp) {
+        if (error)
+            manejarError(respuesta, error.stack, 409);
+        else
+            respuesta.send("insertados exitosamente");
     })
 })
 

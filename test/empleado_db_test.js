@@ -5,7 +5,7 @@ var assert = require("chai").assert;
 const Empleado = require("../src/Empleados/Empleado");
 const AssertionError = require("assert");
 
-describe("Base de datos", function () {
+xdescribe("Base de datos", function () {
 
     var baseDeDatosSimulada = mongoMock.MongoClient;
     var urlBaseDeDatos = 'mongodb://localhost:27017/generador-de-boletas';
@@ -25,7 +25,7 @@ describe("Base de datos", function () {
         });
     });
 
-    it("si insertamos un empleado llamado pepito deberiamos poder obtenerlo", function (done) {
+    xit("si insertamos un empleado llamado pepito deberiamos poder obtenerlo", function (done) {
         baseDeDatosSimulada.connect(urlBaseDeDatos, {}, function (error, baseDeDatos) {
             var coleccion = baseDeDatos.collection('empleados');
             var empleado = new Empleado("Pepito", 456, "Gerente");
@@ -44,7 +44,7 @@ describe("Base de datos", function () {
         });
     });
 
-    it(`si insertamos un empleado llamado Juanito y lo ascendemos a cliente deberiamos poder obtenerlo
+    xit(`si insertamos un empleado llamado Juanito y lo ascendemos a cliente deberiamos poder obtenerlo
     con su cargo actualizado`, function (done) {
             baseDeDatosSimulada.connect(urlBaseDeDatos, {}, function (error, baseDeDatos) {
                 var coleccion = baseDeDatos.collection('empleados');
@@ -67,7 +67,7 @@ describe("Base de datos", function () {
             });
         });
 
-    it(`si insertamos un empleado llamado Ismael y lo eliminamos de la base de datos, ya no
+    xit(`si insertamos un empleado llamado Ismael y lo eliminamos de la base de datos, ya no
     deberiamos poder enconotrarlo`, function (done) {
             baseDeDatosSimulada.connect(urlBaseDeDatos, {}, function (error, baseDeDatos) {
                 var coleccion = baseDeDatos.collection('empleados');

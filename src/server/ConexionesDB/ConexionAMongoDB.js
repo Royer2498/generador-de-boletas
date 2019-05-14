@@ -1,16 +1,20 @@
 const MongoClient = require('mongodb').MongoClient
 
 class ConexionAMongoDB {
-    constructor(url, nombreBaseDeDatos) {
-        this.baseDeDatos = null;
-        MongoClient.connect(url, (error, cliente) => {
-            if (error)
-                console.log(error.stack);
-            else {
-                this.baseDeDatos = cliente.db(nombreBaseDeDatos);
-                console.log("conectado correctamente a MongoDB");
-            }
-        });
+    constructor() {
+    }
+
+    conectar(url, nombreBaseDeDatos) {
+        return new Promise(function(resolve, reject) {
+            MongoClient.connect(url, (error, cliente) => {
+                if (error)
+                    reject(error);
+                else {
+                    resolve(cliente.db(nombreBaseDeDatos));
+                    console.log("conectado correctamente a MongoDB");
+                }
+            });
+        })
     }
 
     buscar(criterioDeBusqueda, coleccion, callback) {
@@ -23,6 +27,10 @@ class ConexionAMongoDB {
 
     insertar(objetoAInsertar, coleccion, callback) {
         coleccion.insertOne(objetoAInsertar, callback)
+    }
+
+    insertarVarios(objetosAInsertar, coleccion, callback) {
+        coleccion.insertMany(objetosAInsertar, coleccion, callback);
     }
 
     actualizar(criterioDeBusqueda, objetoActualizado, coleccion, callback) {

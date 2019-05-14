@@ -1,12 +1,15 @@
 const UtilitariosFecha = require('../UtilitariosFecha');
 
 class VerificadorFechaDePagaTiempoCompleto {
-    constructor(fechaActual) {
-        this.fechaActual = fechaActual;
+    constructor() {
     }
 
-    esDiaDePaga() {
-        return UtilitariosFecha.obtenerUltimoDiaHabilDelMes(this.fechaActual) == this.fechaActual.getDate();
+    esDiaDePaga(fecha) {
+        return UtilitariosFecha.obtenerUltimoDiaHabilDelMes(fecha) == fecha.getDate();
+    }
+
+    pruebits() {
+        console.log("gggggggggggggggggggggggggggggggggggggg")
     }
 }
 
