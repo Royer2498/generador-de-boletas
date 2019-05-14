@@ -8,7 +8,7 @@ class ConexionAMongoDB {
 
     conectar(url) {
         return new Promise(function(resolve, reject) {
-            MongoClient.connect(url, (error, cliente) => {
+            MongoClient.connect(url, { useNewUrlParser: true }, (error, cliente) => {
                 if (error)
                     reject(error);
                 else {

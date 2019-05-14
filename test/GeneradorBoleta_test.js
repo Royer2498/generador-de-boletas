@@ -8,6 +8,7 @@ const CalculadoraTiempoCompleto = require('../src/Calculadora salario/Calculador
 const CalculadoraTiempoParcial = require('../src/Calculadora salario/CalculadoraTiempoParcial');
 const CalculadoraPorComision = require('../src/Calculadora salario/CalculadoraPorComision');
 const UtilitariosFecha = require('../src/UtilitariosFecha');
+const Efectivo = require('../src/Metodos de pago/Efectivo');
 
 describe("BoletaDePagoTest", function () {
 
@@ -21,13 +22,15 @@ describe("BoletaDePagoTest", function () {
  es Gerente y la moneda es Bs, la boleta deberia proveer toda la informacion`, function () {
       let calculadora = new CalculadoraTiempoCompleto();
       let empleado = new Empleado("Juan Perez", 123, "Gerente");
+      let metodoDePago = new Efectivo();
+      empleado.establecerMetodoDePago(metodoDePago);
       empleado.establecerCalculadora(calculadora);
       empleado.establecerSalarioMensual(10000);
       let boletaImpresa = `BOLETA DE PAGO
     Empleado: Juan Perez
     Cargo: Gerente
     Salario: 10000 Bolivianos
-    Metodo de pago: efectivo
+    Metodo de pago: Efectivo
     Fecha de emision: ${ UtilitariosFecha.formatearFecha(fecha)}`;
       expect(GeneradorBoleta.obtener(empleado, fecha)).eq(boletaImpresa);
     });
@@ -36,6 +39,8 @@ describe("BoletaDePagoTest", function () {
   es sub gerente y la moneda es Bs, la boleta deberia proveer toda la informacion`, function () {
       let empleado = new Empleado("Juan Perez", 123, "Gerente");
       let calculadora = new CalculadoraTiempoParcial();
+      let metodoDePago = new Efectivo();
+      empleado.establecerMetodoDePago(metodoDePago);
       empleado.establecerCalculadora(calculadora);
       empleado.establecerSalarioPorHora(100);
       let tarjeta = new TarjetasDeHorasTrabajadas();
@@ -46,7 +51,7 @@ describe("BoletaDePagoTest", function () {
     Empleado: Juan Perez
     Cargo: Gerente
     Salario: 1000 Bolivianos
-    Metodo de pago: efectivo
+    Metodo de pago: Efectivo
     Fecha de emision: ${ UtilitariosFecha.formatearFecha(fecha)}`;
       expect(GeneradorBoleta.obtener(empleado, fecha)).eq(boletaImpresa);
     });
@@ -56,6 +61,8 @@ describe("BoletaDePagoTest", function () {
   toda la informacion`, function () {
       let empleado = new Empleado("Juan Perez", 123, "Gerente");
       let calculadora = new CalculadoraPorComision();
+      let metodoDePago = new Efectivo();
+      empleado.establecerMetodoDePago(metodoDePago);
       empleado.establecerCalculadora(calculadora);
       empleado.establecerSueldoBase(100);
       empleado.establecerPorcentajeDeComision(10);
@@ -68,7 +75,7 @@ describe("BoletaDePagoTest", function () {
     Empleado: Juan Perez
     Cargo: Gerente
     Salario: 2300 Bolivianos
-    Metodo de pago: efectivo
+    Metodo de pago: Efectivo
     Fecha de emision: ${ UtilitariosFecha.formatearFecha(fecha)}`;
       expect(GeneradorBoleta.obtener(empleado, fecha)).eq(boletaImpresa);
     });

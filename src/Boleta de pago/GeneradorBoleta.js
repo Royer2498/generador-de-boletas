@@ -9,7 +9,7 @@ class GeneradorBoleta {
     Empleado: ${empleado.nombre}
     Cargo: ${empleado.cargo}
     Salario: ${empleado.calcularSalarioTotal()} Bolivianos
-    Metodo de pago: ${empleado.metodoDePago}
+    Metodo de pago: ${empleado.obtenerMetodoDePago()}
     Fecha de emision: ${UtilitariosFecha.formatearFecha(fecha)}`;
     return info;
   }

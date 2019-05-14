@@ -10,7 +10,8 @@ class Empleado {
     this.cargo = cargo;
     this.calculadoraSalario = null;
     this.verificadorFechaDePaga = null;
-    this.metodoDePago = "efectivo";
+    this.metodoDePago = null;
+    this.metodoDePagoCadena;
   }
 
   esMiDiaDePaga(fecha) {
@@ -19,6 +20,11 @@ class Empleado {
 
   establecerMetodoDePago(metodo) {
     this.metodoDePago = metodo;
+    this.metodoDePagoCadena = this.metodoDePago.constructor.name;
+  }
+
+  obtenerMetodoDePago() {
+    return this.metodoDePagoCadena
   }
 
   establecerVerificadorDiaDePaga(verificador) {
@@ -75,9 +81,6 @@ class Empleado {
     return this.calculadoraSalario.calcularSalarioTotal();
   }
 
-  esDiaDePaga() {
-    return this.verificadorDiaDePaga.esDiaDePaga();
-  }
 }
 
 module.exports = Empleado;

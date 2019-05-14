@@ -68,6 +68,8 @@ class UtilitariosFecha {
 
     static retrocederHastaUnViernes(fecha) {
         let fechaViernes = new Date(fecha);
+        console.log("=================================")
+        console.log(fechaViernes)
         while (!this.esViernes(fechaViernes))
             fechaViernes = this.retrocederUnDia(fechaViernes);
         return fechaViernes;

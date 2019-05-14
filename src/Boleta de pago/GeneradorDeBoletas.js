@@ -16,7 +16,7 @@ class GeneradorDeBoletas {
     }
 
     obtenerBoletas(conexionABaseDeDatos, coleccionEmpleados, fecha) {
-        return new Promise(function (resolve,reject) {
+        return new Promise(function (resolve, reject) {
             var boletasDePago = [];
             conexionABaseDeDatos.obtenerTodos(coleccionEmpleados, function (error, empleados) {
                 if (error)
