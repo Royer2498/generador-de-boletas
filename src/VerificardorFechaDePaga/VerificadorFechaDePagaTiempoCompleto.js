@@ -8,9 +8,6 @@ class VerificadorFechaDePagaTiempoCompleto {
         return UtilitariosFecha.obtenerUltimoDiaHabilDelMes(fecha) == fecha.getDate();
     }
 
-    pruebits() {
-        console.log("gggggggggggggggggggggggggggggggggggggg")
-    }
 }
 
 module.exports = VerificadorFechaDePagaTiempoCompleto;

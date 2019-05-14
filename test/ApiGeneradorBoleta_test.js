@@ -2,11 +2,14 @@ var expect = require("chai").expect;
 const Empleado = require("../src/Empleados/Empleado");
 const request = require('request');
 const CalculadoraTiempoCompleto = require('../src/Calculadora salario/CalculadoraTiempoCompleto')
+const VerificadorFechaDePagaTiempoCompleto = require('../src/VerificardorFechaDePaga/VerificadorFechaDePagaTiempoCompleto');
 
-xdescribe("API generador boleta", function () {
+describe("API generador boleta", function () {
     it("se deberia enviar un email con la boleta de pago", function (done) {
         let calculadora = new CalculadoraTiempoCompleto();
+        let verificador = new VerificadorFechaDePagaTiempoCompleto();
         let empleado = new Empleado("Juan Perez", 123, "Gerente");
+        empleado.establecerVerificadorDiaDePaga(verificador);
         empleado.establecerCalculadora(calculadora);
         empleado.establecerSalarioMensual(10000);
         let infoEnvio = {
@@ -47,7 +50,9 @@ xdescribe("API generador boleta", function () {
 
     it("se deberia enviar la boleta de pago por facebook", function (done) {
         let calculadora = new CalculadoraTiempoCompleto();
+        let verificador = new VerificadorFechaDePagaTiempoCompleto();
         let empleado = new Empleado("Juan Perez", 123, "Gerente");
+        empleado.establecerVerificadorDiaDePaga(verificador);
         empleado.establecerCalculadora(calculadora);
         empleado.establecerSalarioMensual(10000);
         let infoEnvio = {
@@ -84,7 +89,9 @@ xdescribe("API generador boleta", function () {
 
     it("se deberia enviar la boleta de pago por whatsapp", function (done) {
         let calculadora = new CalculadoraTiempoCompleto();
+        let verificador = new VerificadorFechaDePagaTiempoCompleto();
         let empleado = new Empleado("Juan Perez", 123, "Gerente");
+        empleado.establecerVerificadorDiaDePaga(verificador);
         empleado.establecerCalculadora(calculadora);
         empleado.establecerSalarioMensual(10000);
         let infoEnvio = {

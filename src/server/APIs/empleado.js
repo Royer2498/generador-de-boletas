@@ -1,14 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const ConexionAMongoDB = require('../ConexionesDB/ConexionAMongoDB');
+const ConexionADBFactory = require('../../Factories/ConexionADBFactory');
 
 var conexionABaseDeDatos;
-var coleccionEmpleados;
+var entidadEmpleados;
 
 (async function() {
-    conexionABaseDeDatos = new ConexionAMongoDB();
-    let conexionInicializada = await conexionABaseDeDatos.conectar("mongodb://localhost:27017/", 'generador-de-boletas');
-    coleccionEmpleados = conexionInicializada.collection("empleados");
+    conexion = await ConexionADBFactory.crearConexionADB("mongo", "mongodb://localhost:27017/", 'generador-de-boletas')
+    entidadEmpleados = conexion.baseDeDatos.collection("empleados");
 })();
 
 
@@ -21,7 +20,7 @@ function hayResultados(resultados) {
 }
 
 router.get("/obtener-todos", function (consulta, respuesta) {
-    conexionABaseDeDatos.obtenerTodos(coleccionEmpleados, function (error, resultados) {
+    conexionABaseDeDatos.obtenerTodos(entidadEmpleados, function (error, resultados) {
         if (error)
             manejarError(respuesta, error.stack, 418);
         else
@@ -31,7 +30,7 @@ router.get("/obtener-todos", function (consulta, respuesta) {
 
 router.get("/:ci", function (consulta, respuesta) {
     let criterioDeBusqueda = { ci: parseInt(consulta.params.ci) };
-    conexionABaseDeDatos.buscar(criterioDeBusqueda, coleccionEmpleados, function (error, resultados) {
+    conexionABaseDeDatos.buscar(criterioDeBusqueda, entidadEmpleados, function (error, resultados) {
         if (error)
             manejarError(respuesta, error.stack, 409);
         else if (!hayResultados(resultados))
@@ -44,13 +43,13 @@ router.get("/:ci", function (consulta, respuesta) {
 router.post("/", function (consulta, respuesta) {
     let empleado = consulta.body;
     let criterioDeBusqueda = { ci: parseInt(empleado.ci) }
-    conexionABaseDeDatos.buscar(criterioDeBusqueda, coleccionEmpleados, function (error, resultados) {
+    conexionABaseDeDatos.buscar(criterioDeBusqueda, entidadEmpleados, function (error, resultados) {
         if (error)
             manejarError(respuesta, error.stack, 409)
         else if (hayResultados(resultados))
             manejarError(respuesta, "Ya existe un empleado con ese CI", 409)
         else {
-            conexionABaseDeDatos.insertar(empleado, coleccionEmpleados, function (error, resp) {
+            conexionABaseDeDatos.insertar(empleado, entidadEmpleados, function (error, resp) {
                 if (error)
                     manejarError(respuesta, error.stack, 409);
                 else
@@ -63,7 +62,7 @@ router.post("/", function (consulta, respuesta) {
 
 router.post("/insertar-varios", function (consulta, respuesta) {
     let empleados = consulta.body;
-    conexionABaseDeDatos.insertarVarios(empleados, coleccionEmpleados, function (error, resp) {
+    conexionABaseDeDatos.insertarVarios(empleados, entidadEmpleados, function (error, resp) {
         if (error)
             manejarError(respuesta, error.stack, 409);
         else
@@ -74,14 +73,14 @@ router.post("/insertar-varios", function (consulta, respuesta) {
 router.put("/", function (consulta, respuesta) {
     let empleado = consulta.body;
     let criterioDeBusqueda = { ci: parseInt(empleado.ci) }
-    conexionABaseDeDatos.buscar(criterioDeBusqueda, coleccionEmpleados, function (error, resultados) {
+    conexionABaseDeDatos.buscar(criterioDeBusqueda, entidadEmpleados, function (error, resultados) {
         if (error)
             manejarError(respuesta, error.stack, 409)
         else if (!hayResultados(resultados))
             manejarError(respuesta, "No se encontro al empleado", 404)
         else {
             let empleadoActualizado = { $set: empleado }
-            conexionABaseDeDatos.actualizar(criterioDeBusqueda, empleadoActualizado, coleccionEmpleados,
+            conexionABaseDeDatos.actualizar(criterioDeBusqueda, empleadoActualizado, entidadEmpleados,
                 function (error, resp) {
                     if (error)
                         manejarError(respuesta, error.stack, 409);
@@ -94,13 +93,13 @@ router.put("/", function (consulta, respuesta) {
 
 router.delete("/:ci", function (consulta, respuesta) {
     let criterioDeBusqueda = { ci: parseInt(consulta.params.ci) };
-    conexionABaseDeDatos.buscar(criterioDeBusqueda, coleccionEmpleados, function (error, resultados) {
+    conexionABaseDeDatos.buscar(criterioDeBusqueda, entidadEmpleados, function (error, resultados) {
         if (error)
             manejarError(respuesta, error.stack, 409)
         else if (!hayResultados(resultados))
             manejarError(respuesta, "No se encontro al empleado", 404)
         else {
-            conexionABaseDeDatos.eliminar(criterioDeBusqueda, coleccionEmpleados, function (error, resp) {
+            conexionABaseDeDatos.eliminar(criterioDeBusqueda, entidadEmpleados, function (error, resp) {
                 if (error)
                     manejarError(respuesta, error.stack, 409)
                 else

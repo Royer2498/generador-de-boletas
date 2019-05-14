@@ -50,6 +50,11 @@ class UtilitariosFecha {
         return fechaConFormato;
     }
 
+    static formatearFecha(fecha) {
+        var fechaConFormato = String(fecha).slice(0, 15);
+        return fechaConFormato;
+    }
+
     static laFechaEstaEnIntervalo(fecha, fechaInicio, fechaFin) {
         return new Date(fecha) >= new Date(fechaInicio) && new Date(fecha) <= new Date(fechaFin);
     }

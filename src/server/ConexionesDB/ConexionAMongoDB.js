@@ -2,19 +2,25 @@ const MongoClient = require('mongodb').MongoClient
 
 class ConexionAMongoDB {
     constructor() {
+        this.cliente = null;
+        this.baseDeDatos = null;
     }
 
-    conectar(url, nombreBaseDeDatos) {
+    conectar(url) {
         return new Promise(function(resolve, reject) {
             MongoClient.connect(url, (error, cliente) => {
                 if (error)
                     reject(error);
                 else {
-                    resolve(cliente.db(nombreBaseDeDatos));
+                    resolve(cliente);
                     console.log("conectado correctamente a MongoDB");
                 }
             });
         })
+    }
+
+    cerrarConexion() {
+        this.cliente.close();
     }
 
     buscar(criterioDeBusqueda, coleccion, callback) {

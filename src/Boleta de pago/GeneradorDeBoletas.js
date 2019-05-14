@@ -1,40 +1,33 @@
 const GeneradorBoleta = require("./GeneradorBoleta");
 const UtilitariosEmpleado = require("../UtilitariosEmpleados");
 const ConexionAMongoDB = require('../server/ConexionesDB/ConexionAMongoDB');
+const ConexionADBFactory = require('../Factories/ConexionADBFactory');
 
 class GeneradorDeBoletas {
 
-    constructor() {
-        this.conexionABaseDeDatos = new ConexionAMongoDB();
-        this.inicializarConexion();
+    constructor(conexion, entidad) {
+        this.conexionABaseDeDatos = conexion;
+        this.coleccionEmpleados = entidad;
     }
 
-    async inicializarConexion() {
-        let conexionInicializada = await this.conexionABaseDeDatos.conectar("mongodb://localhost:27017/", 'generador-de-boletas');
-        this.coleccionEmpleados = conexionInicializada.collection("empleados");
-    }
-
-    async generarBoletas() {
-        var boletasDePago = await this.conectar(this.conexionABaseDeDatos, this.coleccionEmpleados);
+    async generarBoletas(fecha) {
+        var boletasDePago = await this.obtenerBoletas(this.conexionABaseDeDatos, this.coleccionEmpleados, fecha);
         return boletasDePago;
     }
 
-    conectar(conexionABaseDeDatos, coleccionEmpleados) {
+    obtenerBoletas(conexionABaseDeDatos, coleccionEmpleados, fecha) {
         return new Promise(function (resolve,reject) {
             var boletasDePago = [];
             conexionABaseDeDatos.obtenerTodos(coleccionEmpleados, function (error, empleados) {
                 if (error)
                     reject(error);
                 else {
-                    let fechaActual = new Date();
                     for (let empleado of empleados) {
                         empleado = UtilitariosEmpleado.parsearEmpleado(empleado);
-                        if (empleado.esPayDay(fechaActual))
-                            boletasDePago.push(GeneradorBoleta.obtener(empleado));
+                        if (empleado.esMiDiaDePaga(fecha))
+                            boletasDePago.push(GeneradorBoleta.obtener(empleado, fecha));
                     }
-                    console.log("=========================================")
-                    console.log(boletasDePago);
-                    resolve(boletasDePago)
+                    resolve(boletasDePago);
                 }
             })
         })

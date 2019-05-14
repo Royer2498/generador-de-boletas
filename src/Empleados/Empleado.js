@@ -13,7 +13,7 @@ class Empleado {
     this.metodoDePago = "efectivo";
   }
 
-  esPayDay(fecha) {
+  esMiDiaDePaga(fecha) {
     return this.verificadorFechaDePaga.esDiaDePaga(fecha);
   }
 
