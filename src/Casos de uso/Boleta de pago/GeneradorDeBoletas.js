@@ -1,7 +1,5 @@
-const GeneradorBoleta = require("./GeneradorBoleta");
-const UtilitariosEmpleado = require("../UtilitariosEmpleados");
-const ConexionAMongoDB = require('../server/ConexionesDB/ConexionAMongoDB');
-const ConexionADBFactory = require('../Factories/ConexionADBFactory');
+const GeneradorBoleta = require('./GeneradorBoleta');
+const UtilitariosEmpleado = require('../../Entidades/Utilitarios/UtilitariosEmpleados');
 
 class GeneradorDeBoletas {
 

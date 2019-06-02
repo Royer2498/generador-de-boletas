@@ -1,8 +1,8 @@
 var expect = require("chai").expect;
 
-const VerificadorFechaDePagaTiempoCompleto = require('../src/VerificardorFechaDePaga/VerificadorFechaDePagaTiempoCompleto');
-const VerificadorFechaDePagaTiempoParcial = require('../src/VerificardorFechaDePaga/VerificadorFechaDePagaTiempoParcial');
-const VerificadorFechaDePagaComision = require('../src/VerificardorFechaDePaga/VerificadorFechaDePagaComision');
+const VerificadorFechaDePagaTiempoCompleto = require('../src/Entidades/VerificardorFechaDePaga/VerificadorFechaDePagaTiempoCompleto');
+const VerificadorFechaDePagaTiempoParcial = require('../src/Entidades/VerificardorFechaDePaga/VerificadorFechaDePagaTiempoParcial');
+const VerificadorFechaDePagaComision = require('../src/Entidades/VerificardorFechaDePaga/VerificadorFechaDePagaComision');
 
 describe("Verificar fecha de paga", function () {
     it(`Si le pasamos 29 de marzo de 2019 (Viernes) al verificador de fecha de paga de 

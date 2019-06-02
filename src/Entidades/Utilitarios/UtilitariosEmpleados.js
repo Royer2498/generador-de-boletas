@@ -1,15 +1,15 @@
-const Empleado = require('./Empleados/Empleado');
-const CalculadoraTiempoCompleto = require('./Calculadora salario/CalculadoraTiempoCompleto');
-const CalculadoraTiempoParcial = require('./Calculadora salario/CalculadoraTiempoParcial');
-const CalculadoraPorComision = require('./Calculadora salario/CalculadoraPorComision');
-const TarjetasDeHorasTrabajadas = require('./Tarjetas/TarjetasDeHorasTrabajadas');
-const TarjetasDeVentas = require('./Tarjetas/TarjetasDeVentas');
-const VerificadorFechaDePagaComision = require('./VerificardorFechaDePaga/VerificadorFechaDePagaComision')
-const VerificadorFechaDePagaTiempoCompleto = require('./VerificardorFechaDePaga/VerificadorFechaDePagaTiempoCompleto')
-const VerificadorFechaDePagaTiempoParcial = require('./VerificardorFechaDePaga/VerificadorFechaDePagaTiempoParcial')
-const Efectivo = require('./Metodos de pago/Efectivo');
-const Deposito = require('./Metodos de pago/Deposito');
-const Cheque = require('./Metodos de pago/Cheque');
+const Empleado = require('../Empleados/Empleado');
+const CalculadoraTiempoCompleto = require('../Calculadora salario/CalculadoraTiempoCompleto');
+const CalculadoraTiempoParcial = require('../Calculadora salario/CalculadoraTiempoParcial');
+const CalculadoraPorComision = require('../Calculadora salario/CalculadoraPorComision');
+const TarjetasDeHorasTrabajadas = require('../Tarjetas/TarjetasDeHorasTrabajadas');
+const TarjetasDeVentas = require('../Tarjetas/TarjetasDeVentas');
+const VerificadorFechaDePagaComision = require('../VerificardorFechaDePaga/VerificadorFechaDePagaComision')
+const VerificadorFechaDePagaTiempoCompleto = require('../VerificardorFechaDePaga/VerificadorFechaDePagaTiempoCompleto')
+const VerificadorFechaDePagaTiempoParcial = require('../VerificardorFechaDePaga/VerificadorFechaDePagaTiempoParcial')
+const Efectivo = require('../Metodos de pago/Efectivo');
+const Deposito = require('../Metodos de pago/Deposito');
+const Cheque = require('../Metodos de pago/Cheque');
 
 class UtilitariosEmpleados {
     constructor() {

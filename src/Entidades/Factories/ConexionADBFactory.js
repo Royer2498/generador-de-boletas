@@ -1,4 +1,4 @@
-const ConexionAMongoDB = require('../server/ConexionesDB/ConexionAMongoDB');
+const ConexionAMongoDB = require('../../Adaptadores/ConexionesDB/ConexionAMongoDB');
 
 class ConexionADBFactory {
     constructor() {}

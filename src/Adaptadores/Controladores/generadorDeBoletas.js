@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const Mail = require('../Metodos de envio/Mail')
-const Facebook = require('../Metodos de envio/Facebook');
-const WhatsApp = require('../Metodos de envio/WhatsApp');
-const GeneradorBoleta = require('../../Boleta de pago/GeneradorBoleta');
-const UtilitariosEmpleados = require('../../UtilitariosEmpleados');
+const Mail = require('../../Entidades/Metodos de envio/Mail')
+const Facebook = require('../../Entidades/Metodos de envio/Facebook');
+const WhatsApp = require('../../Entidades/Metodos de envio/WhatsApp');
+const GeneradorBoleta = require('../../Casos de uso/Boleta de pago/GeneradorBoleta');
+const UtilitariosEmpleados = require('../../Entidades/Utilitarios/UtilitariosEmpleados');
 
 function manejarError(respuesta, mensajeDeError, codigo) {
     respuesta.status(codigo).send(mensajeDeError);

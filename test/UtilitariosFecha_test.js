@@ -1,6 +1,6 @@
 var expect = require("chai").expect;
 
-const UtilitariosFecha = require("../src/UtilitariosFecha");
+const UtilitariosFecha = require("../src/Entidades/Utilitarios/UtilitariosFecha");
 
 describe("Utilitarios fecha", function () {
 

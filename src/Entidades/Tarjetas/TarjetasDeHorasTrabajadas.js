@@ -1,5 +1,5 @@
-const UtilitariosFecha = require('../UtilitariosFecha');
-const UtilitariosTiempo = require('../UtilitariosTiempo');
+const UtilitariosFecha = require('../Utilitarios/UtilitariosFecha');
+const UtilitariosTiempo = require('../Utilitarios/UtilitariosTiempo');
 
 class TarjetasDeHorasTrabajadas {
     constructor() {

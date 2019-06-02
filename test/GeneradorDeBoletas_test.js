@@ -1,9 +1,9 @@
 var expect = require("chai").expect;
 const request = require('request');
 
-const GeneradorDeBoletas = require("../src/Boleta de pago/GeneradorDeBoletas");
-const ConexionADBFactory = require('../src/Factories/ConexionADBFactory');
-const UtilitariosFecha = require('../src/UtilitariosFecha');
+const GeneradorDeBoletas = require("../src/Casos de uso/Boleta de pago/GeneradorDeBoletas");
+const ConexionADBFactory = require('../src/Entidades/Factories/ConexionADBFactory');
+const UtilitariosFecha = require('../src/Entidades/Utilitarios/UtilitariosFecha');
 
 describe("BoletasDePagoTest", function () {
 

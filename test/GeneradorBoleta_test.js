@@ -1,14 +1,14 @@
 var expect = require("chai").expect;
 
-const GeneradorBoleta = require("../src/Boleta de pago/GeneradorBoleta");
-const Empleado = require("../src/Empleados/Empleado");
-const TarjetasDeHorasTrabajadas = require('../src/Tarjetas/TarjetasDeHorasTrabajadas');
-const TarjetasDeVentas = require("../src/Tarjetas/TarjetasDeVentas");
-const CalculadoraTiempoCompleto = require('../src/Calculadora salario/CalculadoraTiempoCompleto');
-const CalculadoraTiempoParcial = require('../src/Calculadora salario/CalculadoraTiempoParcial');
-const CalculadoraPorComision = require('../src/Calculadora salario/CalculadoraPorComision');
-const UtilitariosFecha = require('../src/UtilitariosFecha');
-const Efectivo = require('../src/Metodos de pago/Efectivo');
+const GeneradorBoleta = require("../src/Casos de uso/Boleta de pago/GeneradorBoleta");
+const Empleado = require("../src/Entidades/Empleados/Empleado");
+const TarjetasDeHorasTrabajadas = require('../src/Entidades/Tarjetas/TarjetasDeHorasTrabajadas');
+const TarjetasDeVentas = require("../src/Entidades/Tarjetas/TarjetasDeVentas");
+const CalculadoraTiempoCompleto = require('../src/Entidades/Calculadora salario/CalculadoraTiempoCompleto');
+const CalculadoraTiempoParcial = require('../src/Entidades/Calculadora salario/CalculadoraTiempoParcial');
+const CalculadoraPorComision = require('../src/Entidades/Calculadora salario/CalculadoraPorComision');
+const UtilitariosFecha = require('../src/Entidades/Utilitarios/UtilitariosFecha');
+const Efectivo = require('../src/Entidades/Metodos de pago/Efectivo');
 
 describe("BoletaDePagoTest", function () {
 

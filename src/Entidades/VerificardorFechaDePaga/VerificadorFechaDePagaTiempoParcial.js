@@ -1,4 +1,4 @@
-const UtilitariosFecha = require('../UtilitariosFecha');
+const UtilitariosFecha = require('../Utilitarios/UtilitariosFecha');
 
 class VerificadorFechaDePagaTiempoParcial {
 

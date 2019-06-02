@@ -1,15 +1,15 @@
 var expect = require("chai").expect;
 
-const Empleado = require("../src/Empleados/Empleado");
-const UtilitariosEmpleados = require("../src/UtilitariosEmpleados");
-const TarjetasDeHorasTrabajadas = require('../src/Tarjetas/TarjetasDeHorasTrabajadas');
-const TarjetasDeVentas = require("../src/Tarjetas/TarjetasDeVentas");
-const CalculadoraTiempoCompleto = require("../src/Calculadora salario/CalculadoraTiempoCompleto");
-const CalculadoraTiempoParcial = require("../src/Calculadora salario/CalculadoraTiempoParcial");
-const CalculadoraPorComision = require("../src/Calculadora salario/CalculadoraPorComision");
-const VerificadorFechaDePagaTiempoCompleto = require("../src/VerificardorFechaDePaga/VerificadorFechaDePagaTiempoCompleto");
-const VerificadorFechaDePagaTiempoParcial = require("../src/VerificardorFechaDePaga/VerificadorFechaDePagaTiempoParcial");
-const VerificadorFechaDePagaComision = require("../src/VerificardorFechaDePaga/VerificadorFechaDePagaComision");
+const Empleado = require("../src/Entidades/Empleados/Empleado");
+const UtilitariosEmpleados = require("../src/Entidades/Utilitarios/UtilitariosEmpleados");
+const TarjetasDeHorasTrabajadas = require('../src/Entidades/Tarjetas/TarjetasDeHorasTrabajadas');
+const TarjetasDeVentas = require("../src/Entidades/Tarjetas/TarjetasDeVentas");
+const CalculadoraTiempoCompleto = require("../src/Entidades/Calculadora salario/CalculadoraTiempoCompleto");
+const CalculadoraTiempoParcial = require("../src/Entidades/Calculadora salario/CalculadoraTiempoParcial");
+const CalculadoraPorComision = require("../src/Entidades/Calculadora salario/CalculadoraPorComision");
+const VerificadorFechaDePagaTiempoCompleto = require("../src/Entidades/VerificardorFechaDePaga/VerificadorFechaDePagaTiempoCompleto");
+const VerificadorFechaDePagaTiempoParcial = require("../src/Entidades/VerificardorFechaDePaga/VerificadorFechaDePagaTiempoParcial");
+const VerificadorFechaDePagaComision = require("../src/Entidades/VerificardorFechaDePaga/VerificadorFechaDePagaComision");
 
 describe("Empleados", function () {
 

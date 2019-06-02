@@ -1,9 +1,9 @@
 var expect = require("chai").expect;
-const CalculadoraTiempoCompleto = require('../src/Calculadora salario/CalculadoraTiempoCompleto');
-const CalculadoraTiempoParcial = require('../src/Calculadora salario/CalculadoraTiempoParcial');
-const CalculadoraPorComision = require('../src/Calculadora salario/CalculadoraPorComision');
-const TarjetasDeHorasTrabajadas = require('../src/Tarjetas/TarjetasDeHorasTrabajadas');
-const TarjetasDeVentas = require("../src/Tarjetas/TarjetasDeVentas");
+const CalculadoraTiempoCompleto = require('../src/Entidades/Calculadora salario/CalculadoraTiempoCompleto');
+const CalculadoraTiempoParcial = require('../src/Entidades/Calculadora salario/CalculadoraTiempoParcial');
+const CalculadoraPorComision = require('../src/Entidades/Calculadora salario/CalculadoraPorComision');
+const TarjetasDeHorasTrabajadas = require('../src/Entidades/Tarjetas/TarjetasDeHorasTrabajadas');
+const TarjetasDeVentas = require("../src/Entidades/Tarjetas/TarjetasDeVentas");
 
 describe("Calculadora salario", function () {
     it("el sueldo para un empleado fijo con salario 7000 deberia ser 7000", function () {

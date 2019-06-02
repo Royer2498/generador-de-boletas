@@ -1,5 +1,5 @@
 const TarjetasDeHorasTrabajadas = require('../Tarjetas/TarjetasDeHorasTrabajadas');
-const UtilitariosFecha = require('../UtilitariosFecha');
+const UtilitariosFecha = require('../Utilitarios/UtilitariosFecha');
 
 class CalculadoraTiempoParcial {
     constructor() {

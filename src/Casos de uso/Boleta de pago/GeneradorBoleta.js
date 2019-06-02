@@ -1,4 +1,4 @@
-const UtilitariosFecha = require('../UtilitariosFecha');
+const UtilitariosFecha = require('../../Entidades/Utilitarios/UtilitariosFecha');
 
 class GeneradorBoleta {
   constructor() {

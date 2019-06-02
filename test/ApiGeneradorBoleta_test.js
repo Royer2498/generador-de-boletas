@@ -1,10 +1,10 @@
 var expect = require("chai").expect;
-const Empleado = require("../src/Empleados/Empleado");
+const Empleado = require("../src/Entidades/Empleados/Empleado");
 const request = require('request');
-const CalculadoraTiempoCompleto = require('../src/Calculadora salario/CalculadoraTiempoCompleto')
-const VerificadorFechaDePagaTiempoCompleto = require('../src/VerificardorFechaDePaga/VerificadorFechaDePagaTiempoCompleto');
+const CalculadoraTiempoCompleto = require('../src/Entidades/Calculadora salario/CalculadoraTiempoCompleto')
+const VerificadorFechaDePagaTiempoCompleto = require('../src/Entidades/VerificardorFechaDePaga/VerificadorFechaDePagaTiempoCompleto');
 
-describe("API generador boleta", function () {
+xdescribe("API generador boleta", function () {
     it("se deberia enviar un email con la boleta de pago", function (done) {
         let calculadora = new CalculadoraTiempoCompleto();
         let verificador = new VerificadorFechaDePagaTiempoCompleto();

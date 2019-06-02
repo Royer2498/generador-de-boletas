@@ -1,5 +1,5 @@
-const UtilitariosTiempo = require('../UtilitariosTiempo');
-const UtilitariosFecha = require('../UtilitariosFecha');
+const UtilitariosTiempo = require('../Utilitarios/UtilitariosTiempo');
+const UtilitariosFecha = require('../Utilitarios/UtilitariosFecha');
 
 class VerificadorFechaDePagaComision {
     constructor(fechaInicioTrabajo) {

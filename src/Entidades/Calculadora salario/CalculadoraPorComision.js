@@ -1,6 +1,5 @@
-const TarjetasDeVentas =require("../Tarjetas/TarjetasDeVentas");
-const UtilitariosFecha = require('../UtilitariosFecha');
-const UtilitariosTiempo = require('../UtilitariosTiempo');
+const TarjetasDeVentas =require('../Tarjetas/TarjetasDeVentas');
+const UtilitariosFecha = require('../Utilitarios/UtilitariosFecha');
 
 class CalculadoraPorComision {
     constructor() {

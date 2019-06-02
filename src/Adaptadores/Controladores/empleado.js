@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const ConexionADBFactory = require('../../Factories/ConexionADBFactory');
+const ConexionADBFactory = require('../../Entidades/Factories/ConexionADBFactory');
 
 var conexionABaseDeDatos;
 var entidadEmpleados;
