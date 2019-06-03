@@ -14,7 +14,6 @@ describe("BoletasDePagoTest", function () {
     fecha = new Date(2019, 4, 31);
     generador = new GeneradorDeBoletas(empleadoRepositorio);
     respuestas = await generador.generarBoletas(fecha);
-    console.log(respuestas);
   })
 
   after(async function () {

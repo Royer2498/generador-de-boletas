@@ -1,5 +1,4 @@
 const MetodoDePagoFactory = require('./MetodoDePagoFactory');
-const MetodoDeEnvioFactory = require('./MetodoDeEnvioFactory');
 const Empleado = require('../Empleados/Empleado');
 const CalculadoraTiempoCompleto = require('../Calculadora salario/CalculadoraTiempoCompleto');
 const CalculadoraTiempoParcial = require('../Calculadora salario/CalculadoraTiempoParcial');
@@ -9,13 +8,14 @@ const VerificadorFechaDePagaTiempoParcial = require('../VerificardorFechaDePaga/
 const VerificadorFechaDePagaComision = require('../VerificardorFechaDePaga/VerificadorFechaDePagaComision');
 const TarjetasDeHorasTrabajadas = require('../Tarjetas/TarjetasDeHorasTrabajadas');
 const TarjetasDeVentas = require('../Tarjetas/TarjetasDeVentas');
+const SindicatoFactory = require('./SindicatoFactory');
 
 class EmpleadoFactory {
     constructor() { }
 
     static crearEmpleado(empleado) {
-        let empleadoRespuesta = new Empleado(empleado.nombre, empleado.ci, empleado.cargo, empleado.email);        
-        var calculadora, verificador, tarjeta, metodoDePago;
+        let empleadoRespuesta = new Empleado(empleado.nombre, empleado.ci, empleado.cargo, empleado.email);
+        var calculadora, verificador, tarjeta, metodoDePago, sindicato;
         switch (empleado.tipo) {
             case "tiempo completo":
                 calculadora = new CalculadoraTiempoCompleto();
@@ -48,9 +48,11 @@ class EmpleadoFactory {
                 break;
 
         }
+        sindicato = SindicatoFactory.crearSindicato(empleado.sindicato);
         metodoDePago = MetodoDePagoFactory.obtenerMetodoDePago(empleado.metodoDePago);
         empleadoRespuesta.establecerMetodoDePago(metodoDePago);
         empleadoRespuesta.metodoDeEnvioCadena = empleado.metodoDeEnvio;
+        empleadoRespuesta.establecerSindicato(sindicato);
         return empleadoRespuesta;
     }
 }

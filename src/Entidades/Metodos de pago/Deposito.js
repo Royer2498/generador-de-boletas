@@ -2,7 +2,7 @@ class Deposito {
     constructor() {
     }
 
-    pagar() {
+    pagar(fecha) {
         return "Se realizo el deposito exitosamente";
     }
 }
