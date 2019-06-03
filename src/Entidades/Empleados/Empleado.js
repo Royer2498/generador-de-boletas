@@ -24,7 +24,7 @@ class Empleado {
   }
 
   obtenerMetodoDePago() {
-    return this.metodoDePagoCadena
+    return this.metodoDePagoCadena;
   }
 
   establecerVerificadorDiaDePaga(verificador) {
