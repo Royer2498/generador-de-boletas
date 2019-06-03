@@ -3,8 +3,8 @@ const ConexionAMongoDB = require('../../Adaptadores/ConexionesDB/ConexionAMongoD
 class ConexionADBFactory {
     constructor() {}
 
-    static async crearConexionADB(db, url, nombreBaseDeDatos) {
-        switch(db) {
+    static async crearConexionADB(tecnologia, url, nombreBaseDeDatos) {
+        switch(tecnologia) {
             case "mongo":
                 const mongo = new ConexionAMongoDB();
                 mongo.cliente = await mongo.conectar(url);

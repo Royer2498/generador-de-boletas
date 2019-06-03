@@ -20,8 +20,8 @@ class EmpleadoRepositorio {
         return await this.conexionADB.insertarVarios(objetosAInsertar, this.coleccion);
     }
 
-    async actualizar(criterioDeBusqueda, objetoActualizado) {
-        return await this.conexionADB.actualizar(criterioDeBusqueda, objetoActualizado, this.coleccion);
+    async actualizar(criterioDeBusqueda, objetoAActualizar) {
+        return await this.conexionADB.actualizar(criterioDeBusqueda, objetoAActualizar, this.coleccion);
     }
 
     async eliminar(criterioDeBusqueda) {
