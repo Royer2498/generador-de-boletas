@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const GeneradorBoleta = require('../../Casos de uso/Boleta de pago/GeneradorBoleta');
-const UtilitariosEmpleados = require('../../Entidades/Utilitarios/UtilitariosEmpleados');
-const MetodoDeEnvioFactory = require('../../Entidades/Factories/MetodoDeEnvioFactory');
+const GeneradorMetodoEnvioRequestModel = require('../DTOs/GeneradorMetodoEnvioRequestModel');
+const NotificarBoletaDePagoInteractor = require('../../Casos de uso/Boleta de pago/NotificarBoletaDePagoInteractor');
 const GeneradorBoletaRequestModel = require('../DTOs/GeneradorBoletaRequestModel');
 const GeneradorBoletasRequestModel = require('../DTOs/GeneradorBoletasRequestModel');
 const GenerarBoletaInteractor = require('../../Casos de uso/Boleta de pago/GenerarBoletaInteractor');
 const PresentadorBoleta = require('../Presentadores/PresentadorBoleta');
 const PresentadorBoletas = require('../Presentadores/PresentadorBoletas');
+const PresentadorNotificacion = require('../Presentadores/PresentadorNotificacion');
 
 var empleadoRepositorio;
 (async function () {
@@ -35,13 +35,15 @@ router.get("/", async function(consulta, respuesta) {
     respuesta.send(respuestaMetodo);
 })
 
-/*
-router.post("/notificar/:metodoEnvio", function (consulta, respuesta) {
-    let metodoEnvio = consulta.params.metodoEnvio;
-    let notificacion = consulta.body;
-    let medioDeEnvio = MetodoDeEnvioFactory.obtenerMetodoDeEnvio(metodoEnvio);
-    let resp = await medioDeEnvio.enviar(notificacion);
-    respuesta.send(resp);
-}) */
+
+router.post("/notificar/:metodoEnvio", async function (consulta, respuesta) {
+    let generadorRequestModel = new GeneradorMetodoEnvioRequestModel(consulta);
+    let requestModel = generadorRequestModel.obtenerRequestModel();
+    let notificarBoletaDePagoInteractor = new NotificarBoletaDePagoInteractor();
+    let respuestaInteractor = await notificarBoletaDePagoInteractor.enviar(requestModel)
+    let presentador = new PresentadorNotificacion(respuestaInteractor);
+    let respuestaNotificacion = presentador.obtenerObjetoRespuesta();
+    respuesta.send(respuestaNotificacion);
+})
 
 module.exports = router;
