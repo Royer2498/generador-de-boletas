@@ -8,11 +8,11 @@ class ValidadorRespuestasNotificacionFactory{
 
     static obtenerValidador(metodoEnvio){
         switch(metodoEnvio){
-            case "email":
+            case "Email":
                 return new ValidadorRespuestaDeNotificacionEmail();
-            case "facebook":
+            case "Facebook":
                 return new ValidadorRespuestaDeNotificacionFacebook();
-            case "whatsapp":
+            case "WhatsApp":
                 return new ValidadorRespuestaDeNotificacionWhatsapp();
             default:
                 return null;

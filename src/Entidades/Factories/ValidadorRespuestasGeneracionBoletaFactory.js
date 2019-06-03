@@ -8,11 +8,11 @@ class ValidadorRespuestasGeneracionBoletaFactory {
 
     static obtenerValidador(metodoEnvio){
         switch(metodoEnvio){
-            case "email":
+            case "Email":
                 return new ValidadorRespuestaEmail();
-            case "facebook":
+            case "Facebook":
                 return new ValidadorRespuestaFacebook();
-            case "whatsapp":
+            case "WhatsApp":
                 return new ValidadorRespuestaWhatsapp();
             default:
                 return null;

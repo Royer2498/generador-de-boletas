@@ -8,7 +8,9 @@ class GenerarBoletaInteractor {
     }
 
     async generarBoleta(datos) {
+        console.log(datos.metodoEnvio);
         let metodoEnvio = MetodoDeEnvioFactory.obtenerMetodoDeEnvio(datos.metodoEnvio);
+        console.log(metodoEnvio);
         let boleta = GeneradorBoleta.obtener(datos.empleado, new Date());
         datos.infoEnvio.contenido = boleta;
         let respuestaDeEnvio = await metodoEnvio.enviar(datos.infoEnvio);
