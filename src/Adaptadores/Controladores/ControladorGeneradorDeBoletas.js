@@ -28,4 +28,6 @@ router.post("/notificar/:metodoEnvio", async function (consulta, respuesta) {
     respuesta.send(respuestaNotificacion);
 })
 
+
+
 module.exports = router;

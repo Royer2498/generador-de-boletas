@@ -5,7 +5,7 @@ const GeneradorDeBoletas = require("../src/Casos de uso/Boleta de pago/Generador
 const ConexionADBFactory = require('../src/Entidades/Factories/ConexionADBFactory');
 const UtilitariosFecha = require('../src/Entidades/Utilitarios/UtilitariosFecha');
 
-describe("BoletasDePagoTest", function () {
+xdescribe("BoletasDePagoTest", function () {
 
   var conexion, entidadEmpleados, boletasGeneradas, generador, fecha;
   before(async function () {

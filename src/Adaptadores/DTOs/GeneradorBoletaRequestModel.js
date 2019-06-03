@@ -10,7 +10,8 @@ class GeneradorBoletaRequestModel {
 
     obtenerRequestModel() {
         let requestModel = {
-            metodoEnvio: MetodoDeEnvioFactory.obtenerMetodoDeEnvio(this.consulta.params.metodoEnvio),
+            // metodoEnvio: MetodoDeEnvioFactory.obtenerMetodoDeEnvio(this.consulta.params.metodoEnvio),
+            metodoEnvio: this.consulta.params.metodoEnvio,
             empleado: UtilitariosEmpleados.parsearEmpleado(this.consulta.body.empleado),
             infoEnvio: this.consulta.body.informacionEnvio
         }

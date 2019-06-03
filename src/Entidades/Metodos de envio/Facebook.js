@@ -4,6 +4,7 @@ class Facebook {
     enviar(contenido) {
         return "Facebook";
     }
+    
 }
 
 module.exports = Facebook;

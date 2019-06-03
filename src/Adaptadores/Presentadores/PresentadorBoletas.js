@@ -1,13 +1,15 @@
+const ValidadorRespuestaFacebook = require('../../Entidades/Validadores/ValidadorRespuestaGeneracionBoletaFacebook');
+const ValidadorRespuestaEmail = require('../../Entidades/Validadores/ValidadorRespuestaGeneracionBoletaEmail');
+const ValidadorRespuestaWhatsapp = require('../../Entidades/Validadores/ValidadorRespuestaGeneracionBoletaWhatsapp');
+
+
 class PresentadorBoletas {
     constructor(respuesta) {
         this.respuesta = respuesta;
     }
 
     obtenerObjetoRespuesta() {
-        if (this.respuesta)
-            return { success: true, message: "boleta(s) generada(s) exitosamente" };
-        else
-            return { success: false, message: "operacion fallida" };
+        return this.respuesta.validador.validar(this.respuesta.respuestaEnvio);
     }
 }
 

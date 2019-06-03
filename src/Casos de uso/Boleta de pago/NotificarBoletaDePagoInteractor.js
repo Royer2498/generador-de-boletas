@@ -1,5 +1,5 @@
 const MetodoDeEnvioFactory = require('../../Entidades/Factories/MetodoDeEnvioFactory')
-
+const ValidadorRespuestasNotificacionFactory = require('../../Entidades/Factories/ValidadorRespuestasNotificacionFactory');
 
 class NotificarBoletaDePagoInteractor{
 
@@ -7,9 +7,9 @@ class NotificarBoletaDePagoInteractor{
     }
 
     async enviar(requestModel){
-        let metodoDeEnvio = MetodoDeEnvioFactory.obtenerMetodoDeEnvio(requestModel.metodoDeEnvio);
-        let respuesta = await metodoDeEnvio.enviar(requestModel.notificacion);
-        return respuesta;
+        let metodoEnvio = MetodoDeEnvioFactory.obtenerMetodoDeEnvio(requestModel.metodoEnvio);
+        let respuestaDeEnvio = await metodoEnvio.enviar(requestModel.notificacion);
+        return {respuestaEnvio: respuestaDeEnvio, validador: ValidadorRespuestasNotificacionFactory.obtenerValidador(requestModel.metodoEnvio)};
     }
 
 }

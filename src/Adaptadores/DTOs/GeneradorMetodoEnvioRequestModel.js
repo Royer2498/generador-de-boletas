@@ -1,3 +1,5 @@
+const MetodoDeEnvioFactory = require('../../Entidades/Factories/MetodoDeEnvioFactory');
+
 class GeneradorMetodoEnvioRequestModel {
 
     constructor(consulta) {
@@ -5,7 +7,11 @@ class GeneradorMetodoEnvioRequestModel {
     }
 
     obtenerRequestModel() {
-        return { metodoDeEnvio: this.consulta.params.metodoEnvio, notificacion: this.consulta.body };
+        let requestModel = {
+            metodoEnvio: this.consulta.params.metodoEnvio,
+            notificacion: this.consulta.body
+        }
+        return requestModel;
     }
 }
 
