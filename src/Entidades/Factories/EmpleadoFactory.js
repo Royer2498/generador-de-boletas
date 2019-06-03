@@ -1,4 +1,5 @@
 const MetodoDePagoFactory = require('./MetodoDePagoFactory');
+const MetodoDeEnvioFactory = require('./MetodoDeEnvioFactory');
 const Empleado = require('../Empleados/Empleado');
 const CalculadoraTiempoCompleto = require('../Calculadora salario/CalculadoraTiempoCompleto');
 const CalculadoraTiempoParcial = require('../Calculadora salario/CalculadoraTiempoParcial');
@@ -13,8 +14,8 @@ class EmpleadoFactory {
     constructor() { }
 
     static crearEmpleado(empleado) {
-        let empleadoRespuesta = new Empleado(empleado.nombre, empleado.ci, empleado.cargo);        
-        var calculadora, verificador, tarjeta, metodoDePago;
+        let empleadoRespuesta = new Empleado(empleado.nombre, empleado.ci, empleado.cargo, empleado.email);        
+        var calculadora, verificador, tarjeta, metodoDePago, metodoDeEnvio;
         switch (empleado.tipo) {
             case "tiempo completo":
                 calculadora = new CalculadoraTiempoCompleto();
@@ -23,9 +24,7 @@ class EmpleadoFactory {
                 empleadoRespuesta.establecerFechaInicioTrabajo(empleado.fechaInicioTrabajo);
                 verificador = new VerificadorFechaDePagaTiempoCompleto();
                 empleadoRespuesta.establecerVerificadorDiaDePaga(verificador);
-                metodoDePago = MetodoDePagoFactory.obtenerMetodoDePago(empleado.metodoDePago);
-                empleadoRespuesta.establecerMetodoDePago(metodoDePago);
-                return empleadoRespuesta;
+                break;
             case "tiempo parcial":
                 calculadora = new CalculadoraTiempoParcial();
                 empleadoRespuesta.establecerCalculadora(calculadora);
@@ -34,9 +33,7 @@ class EmpleadoFactory {
                 empleadoRespuesta.establecerTarjetaDeHorasTrabajadas(tarjeta);
                 verificador = new VerificadorFechaDePagaTiempoParcial();
                 empleadoRespuesta.establecerVerificadorDiaDePaga(verificador);
-                metodoDePago = MetodoDePagoFactory.obtenerMetodoDePago(empleado.metodoDePago);
-                empleadoRespuesta.establecerMetodoDePago(metodoDePago);
-                return empleadoRespuesta;
+                break;
             case "por comision":
                 calculadora = new CalculadoraPorComision();
                 empleadoRespuesta.establecerCalculadora(calculadora);
@@ -46,12 +43,16 @@ class EmpleadoFactory {
                 empleadoRespuesta.establecerTarjetaDeHorasTrabajadas(tarjeta);
                 verificador = new VerificadorFechaDePagaComision();
                 empleadoRespuesta.establecerVerificadorDiaDePaga(verificador);
-                metodoDePago = MetodoDePagoFactory.obtenerMetodoDePago(empleado.metodoDePago);
-                empleadoRespuesta.establecerMetodoDePago(metodoDePago);
-                return empleadoRespuesta;
+                break;
             default:
-                return null;
+                break;
+
         }
+        metodoDePago = MetodoDePagoFactory.obtenerMetodoDePago(empleado.metodoDePago);
+        empleadoRespuesta.establecerMetodoDePago(metodoDePago);
+        metodoDeEnvio = MetodoDeEnvioFactory.obtenerMetodoDeEnvio(empleado.metodoDeEnvio);
+        empleadoRespuesta.establecerMetodoDeEnvio(metodoDeEnvio);
+        return empleadoRespuesta;
     }
 }
 

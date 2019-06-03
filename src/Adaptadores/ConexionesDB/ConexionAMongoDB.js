@@ -32,8 +32,6 @@ class ConexionAMongoDB {
             coleccion.find(criterioDeBusqueda).toArray(function (error, resultados) {
                 if (error)
                     reject(error)
-                else if (resultados.length == 0)
-                    reject([]);
                 else
                     resolve(resultados);
             })
@@ -54,10 +52,12 @@ class ConexionAMongoDB {
     insertar(objetoAInsertar, coleccion) {
         return new Promise(function(resolve, reject) {
             coleccion.insertOne(objetoAInsertar, function (error, resp) {
-                if (error)
+                if (error) {
                     reject(error);
-                else
+                }
+                else {
                     resolve(resp);
+                }
             })
         })
     }

@@ -4,14 +4,17 @@ const CalculadoraPorComision = require('../Calculadora salario/CalculadoraPorCom
 
 class Empleado {
 
-  constructor(nombre, ci, cargo) {
+  constructor(nombre, ci, cargo, email) {
     this.nombre = nombre;
     this.ci = ci;
     this.cargo = cargo;
+    this.email = email;
     this.calculadoraSalario = null;
     this.verificadorFechaDePaga = null;
     this.metodoDePago = null;
-    this.metodoDePagoCadena;
+    this.metodoDePagoCadena = "";
+    this.metodoDeEnvio = null;
+    this.metodoDeEnvioCadena = "";
   }
 
   esMiDiaDePaga(fecha) {
@@ -21,6 +24,11 @@ class Empleado {
   establecerMetodoDePago(metodo) {
     this.metodoDePago = metodo;
     this.metodoDePagoCadena = this.metodoDePago.constructor.name;
+  }
+
+  establecerMetodoDeEnvio(metodo) {
+    this.metodoDeEnvio = metodo;
+    this.metodoDeEnvioCadena = this.metodoDeEnvio.constructor.name;
   }
 
   obtenerMetodoDePago() {

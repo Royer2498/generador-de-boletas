@@ -11,12 +11,13 @@ class GuardarEmpleadoInteractor {
         } catch(error) {
             console.log(error);
         }
-        if (emp == null) {
+        if (emp == null || emp.length == 0) {
             await this.repositorio.insertar(empleado);
             return true;
         }
-        else
+        else {
             return false;
+        }
     }
 }
 

@@ -1,13 +1,15 @@
 class PresentadorBoletas {
-    constructor(respuesta) {
-        this.respuesta = respuesta;
+    constructor(respuestas) {
+        this.respuestasInteractor = respuestas;
     }
 
     obtenerObjetoRespuesta() {
-        if (this.respuesta)
-            return { success: true, message: "boleta(s) generada(s) exitosamente" };
-        else
-            return { success: false, message: "operacion fallida" };
+        let respuestas = [];
+        for (let respuesta of this.respuestasInteractor) {
+            let resp = { content: respuesta };
+            respuestas.push(resp);
+        }
+        return respuestas;
     }
 }
 

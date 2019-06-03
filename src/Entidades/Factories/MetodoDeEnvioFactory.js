@@ -8,11 +8,11 @@ class MetodoDeEnvioFactory {
 
     static obtenerMetodoDeEnvio(metodoEnvio) {
         switch (metodoEnvio) {
-            case "email":
+            case "Email":
                 return new Mail();
-            case "facebook":
+            case "Facebook":
                 return new Facebook();
-            case "whatsapp":
+            case "WhatsApp":
                 return new WhatsApp();
             default:
                 return null;
