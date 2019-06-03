@@ -15,7 +15,7 @@ class EmpleadoFactory {
 
     static crearEmpleado(empleado) {
         let empleadoRespuesta = new Empleado(empleado.nombre, empleado.ci, empleado.cargo, empleado.email);        
-        var calculadora, verificador, tarjeta, metodoDePago, metodoDeEnvio;
+        var calculadora, verificador, tarjeta, metodoDePago;
         switch (empleado.tipo) {
             case "tiempo completo":
                 calculadora = new CalculadoraTiempoCompleto();
@@ -50,7 +50,6 @@ class EmpleadoFactory {
         }
         metodoDePago = MetodoDePagoFactory.obtenerMetodoDePago(empleado.metodoDePago);
         empleadoRespuesta.establecerMetodoDePago(metodoDePago);
-        // metodoDeEnvio = MetodoDeEnvioFactory.obtenerMetodoDeEnvio(empleado.metodoDeEnvio);
         empleadoRespuesta.metodoDeEnvioCadena = empleado.metodoDeEnvio;
         return empleadoRespuesta;
     }

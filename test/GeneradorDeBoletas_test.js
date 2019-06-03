@@ -3,10 +3,9 @@ const request = require('request');
 
 const GeneradorDeBoletas = require("../src/Casos de uso/Boleta de pago/GeneradorDeBoletas");
 const ConexionADBFactory = require('../src/Entidades/Factories/ConexionADBFactory');
-const UtilitariosFecha = require('../src/Entidades/Utilitarios/UtilitariosFecha');
 const EmpleadoRepositorio = require('../src/Entidades/Empleados/EmpleadoRepositorio');
 
-xdescribe("BoletasDePagoTest", function () {
+describe("BoletasDePagoTest", function () {
 
   var conexionABaseDeDatos, empleadoRepositorio, respuestas, generador, fecha;
   before(async function () {

@@ -7,9 +7,9 @@ class GeneradorEmpleadosRequestModel {
     }
 
     obtenerRequestModel() {
-        let empleadoConsulta = this.consulta.body;
+        let empleadosConsulta = this.consulta.body;
         let empleados = [];
-        for (let empleado of empleadoConsulta) {
+        for (let empleado of empleadosConsulta) {
             let empleadoParseado = EmpleadoFactory.crearEmpleado(empleado);
             empleados.push(empleadoParseado);
         }

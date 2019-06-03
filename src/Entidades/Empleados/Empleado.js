@@ -44,52 +44,31 @@ class Empleado {
   }
 
   establecerSalarioMensual(salario) {
-    if (this.calculadoraSalario instanceof CalculadoraTiempoCompleto)
-      this.calculadoraSalario.establecerSalarioMensual(salario);
-    else
-      throw new Error("El empleado no es de tiempo completo");
+    this.calculadoraSalario.establecerSalarioMensual(salario);
   }
 
   establecerFechaInicioTrabajo(fecha) {
-    if (this.calculadoraSalario instanceof CalculadoraTiempoCompleto)
-      this.calculadoraSalario.establecerFechaInicioTrabajo(fecha);
-    else
-      throw new Error("El empleado no es de tiempo completo");
+    this.calculadoraSalario.establecerFechaInicioTrabajo(fecha);
   }
 
   establecerSalarioPorHora(salario) {
-    if (this.calculadoraSalario instanceof CalculadoraTiempoParcial)
-      this.calculadoraSalario.establecerSalarioPorHora(salario);
-    else
-      throw new Error("El empleado no es de tiempo parcial");
+    this.calculadoraSalario.establecerSalarioPorHora(salario);
   }
 
   establecerTarjetaDeHorasTrabajadas(tarjeta) {
-    if (this.calculadoraSalario instanceof CalculadoraTiempoParcial)
-      this.calculadoraSalario.establecerTarjetaHorasTrabajadas(tarjeta);
-    else
-      throw new Error("El empleado no es de tiempo parcial");
+    this.calculadoraSalario.establecerTarjetaHorasTrabajadas(tarjeta);
   }
 
   establecerSueldoBase(sueldoBase) {
-    if (this.calculadoraSalario instanceof CalculadoraPorComision)
-      this.calculadoraSalario.establecerSueldoBase(sueldoBase);
-    else
-      throw new Error("El empleado no es por comision");
+    this.calculadoraSalario.establecerSueldoBase(sueldoBase);
   }
 
   establecerTarjetaVentas(tarjeta) {
-    if (this.calculadoraSalario instanceof CalculadoraPorComision)
-      this.calculadoraSalario.establecerTarjetaVentas(tarjeta);
-    else
-      throw new Error("El empleado no es por comision");
+    this.calculadoraSalario.establecerTarjetaVentas(tarjeta);
   }
 
   establecerPorcentajeDeComision(porcentaje) {
-    if (this.calculadoraSalario instanceof CalculadoraPorComision)
-      this.calculadoraSalario.establecerPorcentaje(porcentaje);
-    else
-      throw new Error("El empleado no es por comision");
+    this.calculadoraSalario.establecerPorcentaje(porcentaje);
   }
 
   calcularSalarioTotal() {
