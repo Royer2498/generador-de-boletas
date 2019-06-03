@@ -14,20 +14,15 @@ class GeneradorDeBoletas {
     }
 
     obtenerBoletas(conexionABaseDeDatos, coleccionEmpleados, fecha) {
-        return new Promise(function (resolve, reject) {
+        return new Promise(async function (resolve, reject) {
             var boletasDePago = [];
-            conexionABaseDeDatos.obtenerTodos(coleccionEmpleados, function (error, empleados) {
-                if (error)
-                    reject(error);
-                else {
-                    for (let empleado of empleados) {
-                        empleado = UtilitariosEmpleado.parsearEmpleado(empleado);
-                        if (empleado.esMiDiaDePaga(fecha))
-                            boletasDePago.push(GeneradorBoleta.obtener(empleado, fecha));
-                    }
-                    resolve(boletasDePago);
-                }
-            })
+            let empleados = await conexionABaseDeDatos.obtenerTodos(coleccionEmpleados);
+            for (let empleado of empleados) {
+                empleado = UtilitariosEmpleado.parsearEmpleado(empleado);
+                if (empleado.esMiDiaDePaga(fecha))
+                    boletasDePago.push(GeneradorBoleta.obtener(empleado, fecha));
+            }
+            resolve(boletasDePago);
         })
     }
 }

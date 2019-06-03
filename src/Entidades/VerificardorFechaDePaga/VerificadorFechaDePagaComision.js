@@ -9,8 +9,6 @@ class VerificadorFechaDePagaComision {
     esViernesDePaga(milisegundosViernesInicioTrabajo, milisegundosViernesActual) {
         let diferenciaDeMilisegundos = milisegundosViernesActual - milisegundosViernesInicioTrabajo;
         let diferenciaDeDias = UtilitariosTiempo.convertirMilisegundosADias(diferenciaDeMilisegundos);
-        console.log("Diferencia de diaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaas")
-        console.log(diferenciaDeDias);
         return this.esUnViernesIntercalado(diferenciaDeDias);
     }
 

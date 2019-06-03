@@ -12,39 +12,87 @@ class ConexionAMongoDB {
                 if (error)
                     reject(error);
                 else {
-                    resolve(cliente);
                     console.log("conectado correctamente a MongoDB");
+                    resolve(cliente);
                 }
             });
         })
+    }
+
+    obtenerColeccion(nombre) {
+        return this.baseDeDatos.collection(nombre);
     }
 
     cerrarConexion() {
         this.cliente.close();
     }
 
-    buscar(criterioDeBusqueda, coleccion, callback) {
-        coleccion.find(criterioDeBusqueda).toArray(callback)
+    buscar(criterioDeBusqueda, coleccion) {
+        return new Promise(function (resolve, reject) {
+            coleccion.find(criterioDeBusqueda).toArray(function (error, resultados) {
+                if (error)
+                    reject(error)
+                else if (resultados.length == 0)
+                    reject([]);
+                else
+                    resolve(resultados);
+            })
+        })
     }
 
-    obtenerTodos(coleccion, callback) {
-        coleccion.find({}).toArray(callback)
+    obtenerTodos(coleccion) {
+        return new Promise(function(resolve, reject) {
+            coleccion.find({}).toArray(function (error, resultados) {
+                if (error)
+                    reject(error);
+                else
+                    resolve(resultados);  
+            })
+        })
     }
 
-    insertar(objetoAInsertar, coleccion, callback) {
-        coleccion.insertOne(objetoAInsertar, callback)
+    insertar(objetoAInsertar, coleccion) {
+        return new Promise(function(resolve, reject) {
+            coleccion.insertOne(objetoAInsertar, function (error, resp) {
+                if (error)
+                    reject(error);
+                else
+                    resolve(resp);
+            })
+        })
     }
 
-    insertarVarios(objetosAInsertar, coleccion, callback) {
-        coleccion.insertMany(objetosAInsertar, coleccion, callback);
+    insertarVarios(objetosAInsertar, coleccion) {
+        return new Promise(function(resolve, reject) {
+            coleccion.insertMany(objetosAInsertar, coleccion, function (error, resp) {
+                if (error)
+                    reject(error);
+                else
+                    resolve(resp);
+            });  
+        })
     }
 
-    actualizar(criterioDeBusqueda, objetoActualizado, coleccion, callback) {
-        coleccion.updateOne(criterioDeBusqueda, objetoActualizado, callback)
+    actualizar(criterioDeBusqueda, objetoActualizado, coleccion) {
+        return new Promise(function(resolve, reject) {
+            coleccion.updateOne(criterioDeBusqueda, objetoActualizado, function (error, resp) {
+                if (error)
+                    reject(error);
+                else
+                    resolve(resp);
+            })
+        })
     }
 
-    eliminar(criterioDeBusqueda, coleccion, callback) {
-        coleccion.removeOne(criterioDeBusqueda, callback)
+    eliminar(criterioDeBusqueda, coleccion) {
+        return new Promise(function(resolve, reject) {
+            coleccion.removeOne(criterioDeBusqueda, function (error, resp) {
+                if (error)
+                    reject(error);
+                else
+                    resolve(resp);
+            })
+        })
     }
 }
 

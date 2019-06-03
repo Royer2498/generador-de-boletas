@@ -18,7 +18,7 @@
   "scripts": {
     "coverage": "nyc mocha --require babel-register",
     "test": "nyc mocha --require babel-register --timeout 40000",
-    "dev": "nodemon src/server/server.js"
+    "dev": "nodemon src/Adaptadores/Controladores/server.js"
   },
   "dependencies": {
     "body-parser": "^1.18.3",

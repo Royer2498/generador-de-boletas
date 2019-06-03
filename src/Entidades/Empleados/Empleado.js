@@ -42,6 +42,13 @@ class Empleado {
       throw new Error("El empleado no es de tiempo completo");
   }
 
+  establecerFechaInicioTrabajo(fecha) {
+    if (this.calculadoraSalario instanceof CalculadoraTiempoCompleto)
+      this.calculadoraSalario.establecerFechaInicioTrabajo(fecha);
+    else
+      throw new Error("El empleado no es de tiempo completo");
+  }
+
   establecerSalarioPorHora(salario) {
     if (this.calculadoraSalario instanceof CalculadoraTiempoParcial)
       this.calculadoraSalario.establecerSalarioPorHora(salario);

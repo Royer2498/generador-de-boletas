@@ -1,11 +1,8 @@
 class WhatsApp {
     constructor() { }
 
-    enviar(contenido, callback) {
-        if (callback !== undefined)
-            callback();
-        else
-            return "WhatsApp";
+    enviar(contenido) {
+        return "WhatsApp";
     }
 }
 

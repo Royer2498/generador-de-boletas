@@ -12,14 +12,22 @@ class Mail {
         });
     }
 
-    enviar(contenido, callback) {
+    enviar(contenido) {
         var opcionesDeCorreo = {
             from: this.remitente,
             to: contenido.destinatario,
             subject: contenido.asunto,
             text: contenido.contenido
         };
-        this.transportador.sendMail(opcionesDeCorreo, callback);
+        return new Promise(function(resolve, reject) {
+            this.transportador.sendMail(opcionesDeCorreo, function (error, informacion) {
+                if (error)
+                    reject(error);
+                else
+                    resolve(informacion);
+            });
+        })
+        
     }
 }
 

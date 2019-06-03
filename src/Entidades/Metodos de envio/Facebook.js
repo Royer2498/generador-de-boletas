@@ -1,11 +1,8 @@
 class Facebook {
     constructor() {}
 
-    enviar(contenido, callback) {
-        if (callback !== undefined)
-            callback();
-        else
-            return "Facebook";
+    enviar(contenido) {
+        return "Facebook";
     }
 }
 

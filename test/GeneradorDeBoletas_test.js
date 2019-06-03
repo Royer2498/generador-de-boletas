@@ -10,7 +10,7 @@ describe("BoletasDePagoTest", function () {
   var conexion, entidadEmpleados, boletasGeneradas, generador, fecha;
   before(async function () {
     conexion = await ConexionADBFactory.crearConexionADB("mongo", "mongodb://localhost:27017/", 'generador-de-boletas-test')
-    entidadEmpleados = conexion.baseDeDatos.collection("empleados");
+    entidadEmpleados = conexion.obtenerColeccion("empleados");
     fecha = new Date(2019, 4, 31);
     generador = new GeneradorDeBoletas(conexion, entidadEmpleados);
     boletasGeneradas = await generador.generarBoletas(fecha);

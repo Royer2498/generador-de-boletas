@@ -12,8 +12,6 @@ xdescribe("Metodos de envio", function () {
             contenido: "prueba prueba prueba prueba prueba prueba",
         }
         medioEnvio.enviar(contenido, function (error, informacion) {
-            console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-            console.log(informacion);
             expect(informacion.response).to.have.string("250 2.0.0 OK");
             done();
         });
