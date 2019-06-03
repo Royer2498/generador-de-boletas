@@ -20,7 +20,7 @@ class Mail {
             text: contenido.contenido
         };
         var transportador = this.transportador;
-        return new Promise(function(resolve, reject) {
+        return new Promise(function (resolve, reject) {
             transportador.sendMail(opcionesDeCorreo, function (error, informacion) {
                 if (error)
                     reject(error);
@@ -28,7 +28,7 @@ class Mail {
                     resolve(informacion);
             });
         })
-        
+
     }
 }
 
