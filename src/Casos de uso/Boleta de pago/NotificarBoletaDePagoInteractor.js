@@ -3,13 +3,12 @@ const MetodoDeEnvioFactory = require('../../Entidades/Factories/MetodoDeEnvioFac
 
 class NotificarBoletaDePagoInteractor{
 
-    constructor(requestModel){
-        this.requestModel = requestModel;
+    constructor(){
     }
 
-    async enviar(){
-        let metodoDeEnvio = MetodoDeEnvioFactory.obtenerMetodoDeEnvio(this.requestModel.metodoDeEnvio);
-        let respuesta = await metodoDeEnvio.enviar(this.requestModel.notificacion);
+    async enviar(requestModel){
+        let metodoDeEnvio = MetodoDeEnvioFactory.obtenerMetodoDeEnvio(requestModel.metodoDeEnvio);
+        let respuesta = await metodoDeEnvio.enviar(requestModel.notificacion);
         return respuesta;
     }
 
