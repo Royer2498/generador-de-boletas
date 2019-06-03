@@ -19,8 +19,9 @@ class Mail {
             subject: contenido.asunto,
             text: contenido.contenido
         };
+        var transportador = this.transportador;
         return new Promise(function(resolve, reject) {
-            this.transportador.sendMail(opcionesDeCorreo, function (error, informacion) {
+            transportador.sendMail(opcionesDeCorreo, function (error, informacion) {
                 if (error)
                     reject(error);
                 else
