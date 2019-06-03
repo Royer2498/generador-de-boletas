@@ -6,7 +6,7 @@ const ConexionADBFactory = require('../src/Entidades/Factories/ConexionADBFactor
 const UtilitariosFecha = require('../src/Entidades/Utilitarios/UtilitariosFecha');
 const EmpleadoRepositorio = require('../src/Entidades/Empleados/EmpleadoRepositorio');
 
-xdescribe("BoletasDePagoTest", function () {
+describe("BoletasDePagoTest", function () {
 
   var conexionABaseDeDatos, empleadoRepositorio, respuestas, generador, fecha;
   before(async function () {
