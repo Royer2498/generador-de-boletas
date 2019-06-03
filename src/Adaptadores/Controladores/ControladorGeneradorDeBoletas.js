@@ -1,14 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const GeneradorMetodoEnvioRequestModel = require('../DTOs/GeneradorMetodoEnvioRequestModel');
-const NotificarBoletaDePagoInteractor = require('../../Casos de uso/Boleta de pago/NotificarBoletaDePagoInteractor');
 const GeneradorBoletaRequestModel = require('../DTOs/GeneradorBoletaRequestModel');
 const GeneradorBoletasRequestModel = require('../DTOs/GeneradorBoletasRequestModel');
+
+const NotificarBoletaDePagoInteractor = require('../../Casos de uso/Boleta de pago/NotificarBoletaDePagoInteractor');
 const GenerarBoletaInteractor = require('../../Casos de uso/Boleta de pago/GenerarBoletaInteractor');
+const EnviarBoletasInteractor = require('../../Casos de uso/Boleta de pago/EnviarBoletasInteractor');
+
 const PresentadorBoleta = require('../Presentadores/PresentadorBoleta');
 const PresentadorBoletas = require('../Presentadores/PresentadorBoletas');
 const PresentadorNotificacion = require('../Presentadores/PresentadorNotificacion');
-const GeneradorDeBoletas = require('../../Casos de uso/Boleta de pago/GeneradorDeBoletas');
 
 var empleadoRepositorio;
 (async function () {
@@ -26,16 +28,15 @@ router.post("/generar/:metodoEnvio", async function (consulta, respuesta) {
     respuesta.send(respuestaMetodo);
 })
 
-router.get("/", async function(consulta, respuesta) {
+router.get("/enviar-boletas", async function (consulta, respuesta) {
     let generadorRequestModel = new GeneradorBoletasRequestModel();
     let requestModel = generadorRequestModel.obtenerRequestModel();
-    let generadorBoletasInteractor = new GeneradorDeBoletas(empleadoRepositorio);
-    let respuestaInteractor = await generadorBoletasInteractor.generarBoletas(requestModel);
+    let enviarBoletasInteractor = new EnviarBoletasInteractor(empleadoRepositorio);
+    let respuestaInteractor = await enviarBoletasInteractor.enviar(requestModel);
     let presentador = new PresentadorBoletas(respuestaInteractor);
     let respuestaMetodo = presentador.obtenerObjetoRespuesta();
     respuesta.send(respuestaMetodo);
 })
-
 
 router.post("/notificar/:metodoEnvio", async function (consulta, respuesta) {
     let generadorRequestModel = new GeneradorMetodoEnvioRequestModel(consulta);
@@ -46,7 +47,5 @@ router.post("/notificar/:metodoEnvio", async function (consulta, respuesta) {
     let respuestaNotificacion = presentador.obtenerObjetoRespuesta();
     respuesta.send(respuestaNotificacion);
 })
-
-
 
 module.exports = router;
