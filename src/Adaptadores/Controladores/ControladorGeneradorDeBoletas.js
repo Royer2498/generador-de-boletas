@@ -8,6 +8,7 @@ const GenerarBoletaInteractor = require('../../Casos de uso/Boleta de pago/Gener
 const PresentadorBoleta = require('../Presentadores/PresentadorBoleta');
 const PresentadorBoletas = require('../Presentadores/PresentadorBoletas');
 const PresentadorNotificacion = require('../Presentadores/PresentadorNotificacion');
+const GeneradorDeBoletas = require('../../Casos de uso/Boleta de pago/GeneradorDeBoletas');
 
 var empleadoRepositorio;
 (async function () {

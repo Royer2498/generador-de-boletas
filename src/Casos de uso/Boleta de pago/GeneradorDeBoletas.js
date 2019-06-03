@@ -11,6 +11,7 @@ class GeneradorDeBoletas {
     async generarBoletas(fecha) {
         var respuestas = [];
         let boleta = {};
+
         let empleados = await this.repositorio.obtenerTodos();
         for (let empleado of empleados) {
             let respuesta = {};

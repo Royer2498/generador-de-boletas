@@ -50,8 +50,8 @@ class EmpleadoFactory {
         }
         metodoDePago = MetodoDePagoFactory.obtenerMetodoDePago(empleado.metodoDePago);
         empleadoRespuesta.establecerMetodoDePago(metodoDePago);
-        metodoDeEnvio = MetodoDeEnvioFactory.obtenerMetodoDeEnvio(empleado.metodoDeEnvio);
-        empleadoRespuesta.establecerMetodoDeEnvio(metodoDeEnvio);
+        // metodoDeEnvio = MetodoDeEnvioFactory.obtenerMetodoDeEnvio(empleado.metodoDeEnvio);
+        empleadoRespuesta.metodoDeEnvioCadena = empleado.metodoDeEnvio;
         return empleadoRespuesta;
     }
 }

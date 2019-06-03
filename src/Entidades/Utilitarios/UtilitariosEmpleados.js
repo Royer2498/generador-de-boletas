@@ -82,14 +82,14 @@ class UtilitariosEmpleados {
 
     static parsearMetodoDeEnvio(empleado) {
         switch (empleado.metodoDeEnvioCadena) {
-            case 'Mail':
-                empleado.metodoDeEnvio.__proto__ = Mail.prototype;
+            case 'Email':
+                empleado.metodoDeEnvio = new Mail();
                 break;
             case 'Facebook':
-                empleado.metodoDeEnvio.__proto__ = Facebook.prototype;
+                empleado.metodoDeEnvio = new Facebook();
                 break;
             case 'WhatsApp':
-                empleado.metodoDeEnvio.__proto__ = WhatsApp.prototype;
+                empleado.metodoDeEnvio = new WhatsApp();
                 break;
             default:
                 break;

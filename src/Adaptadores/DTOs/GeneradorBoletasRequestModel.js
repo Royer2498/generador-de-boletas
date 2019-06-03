@@ -4,7 +4,7 @@ class GeneradorBoletasRequestModel {
     }
 
     obtenerRequestModel() {
-        return new Date();
+        return new Date(2019, 3, 30);
     }
 }
 

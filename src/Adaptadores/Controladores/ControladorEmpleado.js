@@ -59,7 +59,7 @@ router.post("/", async function (consulta, respuesta) {
     try {
         respuestaDeInsercion = await insertarEmpleadoInteractor.guardarEmpleado(requestModel);
     } catch (error) {
-        console.log("error al insertar un empleado");
+        console.log("error al insertar un empleado ", error);
     }
     let presentador = new PresentadorRespuestaEmpleado(respuestaDeInsercion);
     let respuestaMetodo = presentador.obtenerObjetoRespuesta();

@@ -13,7 +13,7 @@ class Empleado {
     this.verificadorFechaDePaga = null;
     this.metodoDePago = null;
     this.metodoDePagoCadena = "";
-    this.metodoDeEnvio = null;
+    this.metodoDeEnvio = {};
     this.metodoDeEnvioCadena = "";
   }
 
