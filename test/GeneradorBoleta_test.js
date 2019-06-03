@@ -26,6 +26,7 @@ describe("BoletaDePagoTest", function () {
       empleado.establecerMetodoDePago(metodoDePago);
       empleado.establecerCalculadora(calculadora);
       empleado.establecerSalarioMensual(10000);
+      empleado.establecerFechaInicioTrabajo(new Date(2019, 2, 1));
       let boletaImpresa = `BOLETA DE PAGO
     Empleado: Juan Perez
     Cargo: Gerente
@@ -44,8 +45,8 @@ describe("BoletaDePagoTest", function () {
       empleado.establecerCalculadora(calculadora);
       empleado.establecerSalarioPorHora(100);
       let tarjeta = new TarjetasDeHorasTrabajadas();
-      tarjeta.registrarSesion("2019-03-31", "15:00:00", "20:00:00");
-      tarjeta.registrarSesion("2019-04-01", "10:00:00", "15:00:00");
+      tarjeta.registrarSesion("2019-05-29", "15:00:00", "20:00:00");
+      tarjeta.registrarSesion("2019-05-30", "10:00:00", "15:00:00");
       empleado.establecerTarjetaDeHorasTrabajadas(tarjeta);
       let boletaImpresa = `BOLETA DE PAGO
     Empleado: Juan Perez
@@ -67,9 +68,9 @@ describe("BoletaDePagoTest", function () {
       empleado.establecerSueldoBase(100);
       empleado.establecerPorcentajeDeComision(10);
       let tarjeta = new TarjetasDeVentas();
-      tarjeta.registrarVenta("2019-03-31", "shampoo", 1000);
-      tarjeta.registrarVenta("2019-04-01", "arroz", 1000);
-      tarjeta.registrarVenta("2019-04-01", "papa", 20000);
+      tarjeta.registrarVenta("2019-05-30", "shampoo", 1000);
+      tarjeta.registrarVenta("2019-05-29", "arroz", 1000);
+      tarjeta.registrarVenta("2019-05-28", "papa", 20000);
       empleado.establecerTarjetaVentas(tarjeta);
       let boletaImpresa = `BOLETA DE PAGO
     Empleado: Juan Perez

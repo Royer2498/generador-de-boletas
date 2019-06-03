@@ -5,7 +5,7 @@ const GeneradorBoletaRequestModel = require('../DTOs/GeneradorBoletaRequestModel
 const GeneradorBoletasRequestModel = require('../DTOs/GeneradorBoletasRequestModel');
 
 const NotificarBoletaDePagoInteractor = require('../../Casos de uso/Boleta de pago/NotificarBoletaDePagoInteractor');
-const GenerarBoletaInteractor = require('../../Casos de uso/Boleta de pago/GenerarBoletaInteractor');
+const EnviarBoletaInteractor = require('../../Casos de uso/Boleta de pago/EnviarBoletaInteractor');
 const EnviarBoletasInteractor = require('../../Casos de uso/Boleta de pago/EnviarBoletasInteractor');
 
 const PresentadorBoleta = require('../Presentadores/PresentadorBoleta');
@@ -21,8 +21,8 @@ var empleadoRepositorio;
 router.post("/generar/:metodoEnvio", async function (consulta, respuesta) {
     let generadorRequestModel = new GeneradorBoletaRequestModel(consulta);
     let requestModel = generadorRequestModel.obtenerRequestModel();
-    let generarBoletaInteractor = new GenerarBoletaInteractor();
-    let respuestaInteractor = await generarBoletaInteractor.generarBoleta(requestModel);
+    let enviarBoletaInteractor = new EnviarBoletaInteractor();
+    let respuestaInteractor = await enviarBoletaInteractor.generarBoleta(requestModel);
     let presentador = new PresentadorBoleta(respuestaInteractor);
     let respuestaMetodo = presentador.obtenerObjetoRespuesta();
     respuesta.send(respuestaMetodo);

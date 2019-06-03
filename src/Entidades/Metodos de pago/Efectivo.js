@@ -2,7 +2,7 @@ class Efectivo {
     constructor() {
     }
 
-    pagar() {
+    pagar(fecha) {
         return "El pago se realizará en efectivo";
     }
 }

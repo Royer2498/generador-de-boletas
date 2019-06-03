@@ -3,11 +3,11 @@ class Cheque {
         this.empleado = empleado;
     }
 
-    pagar() {
+    pagar(fecha) {
         let cheque = `CHEQUE
     Fecha de emision: ${UtilitariosFecha.formatearFecha(fecha)};
     Paguese a la orden de: ${empleado.nombre}
-    La suma de: ${empleado.calcularSalarioTotal()} Bolivianos`
+    La suma de: ${empleado.calcularSalario(fecha)} Bolivianos`
         return cheque;
     }
 }

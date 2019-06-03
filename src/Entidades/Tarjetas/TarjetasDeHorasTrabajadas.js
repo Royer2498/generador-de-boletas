@@ -16,8 +16,9 @@ class TarjetasDeHorasTrabajadas {
     calcularHorasPorIntervalo(fechaInicio, fechaFin) {
         var milisegundos = 0;
         for (let tarjeta of this.tarjetasDeHorasTrabajadas) {
-            if (UtilitariosFecha.laFechaEstaEnIntervalo(tarjeta.fecha, fechaInicio, fechaFin))
+            if (UtilitariosFecha.laFechaEstaEnIntervalo(tarjeta.fecha, fechaInicio, fechaFin)) {
                 milisegundos += this.obtenerMilisegundosDeUnaTarjeta(tarjeta);
+            }
         }
         return UtilitariosTiempo.convertirMilisegundosAHoras(milisegundos);
     }

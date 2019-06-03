@@ -15,6 +15,8 @@ class Empleado {
     this.metodoDePagoCadena = "";
     this.metodoDeEnvio = {};
     this.metodoDeEnvioCadena = "";
+    this.sindicato = {};
+    this.nombreSindicato = "";
   }
 
   esMiDiaDePaga(fecha) {
@@ -29,6 +31,11 @@ class Empleado {
   establecerMetodoDeEnvio(metodo) {
     this.metodoDeEnvio = metodo;
     this.metodoDeEnvioCadena = this.metodoDeEnvio.constructor.name;
+  }
+
+  establecerSindicato(sindicato) {
+    this.sindicato = sindicato;
+    this.nombreSindicato = this.sindicato.constructor.name;
   }
 
   obtenerMetodoDePago() {
@@ -69,6 +76,20 @@ class Empleado {
 
   establecerPorcentajeDeComision(porcentaje) {
     this.calculadoraSalario.establecerPorcentaje(porcentaje);
+  }
+
+  calcularSalario(fecha) {
+    return this.calculadoraSalario.calcularSalario(fecha) * this.obtenerDescuentoSindicato();
+  }
+
+
+  obtenerDescuentoSindicato() {
+    if (this.nombreSindicato != "") {
+      return ((100 - this.sindicato.obtenerPorcentajeDescuento()) / 100);
+    }
+    else {
+      return 1;
+    }
   }
 
   calcularSalarioTotal() {

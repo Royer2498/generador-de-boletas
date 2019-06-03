@@ -13,7 +13,7 @@ const Cheque = require('../Metodos de pago/Cheque');
 const Mail = require('../Metodos de envio/Mail');
 const Facebook = require('../Metodos de envio/Facebook');
 const WhatsApp = require('../Metodos de envio/WhatsApp');
-
+const SindicatoRRHH = require('../Sindicatos/SindicatoRRHH');
 
 class UtilitariosEmpleados {
     constructor() {
@@ -25,6 +25,7 @@ class UtilitariosEmpleados {
         this.parsearVerificador(empleado);
         this.parsearMetodoDePago(empleado);
         this.parsearMetodoDeEnvio(empleado);
+        this.parsearSindicato(empleado);
         return empleado;
     }
 
@@ -32,6 +33,7 @@ class UtilitariosEmpleados {
         for (let atributo in empleado.calculadoraSalario) {
             if (atributo == "salarioMensual") {
                 empleado.calculadoraSalario.__proto__ = CalculadoraTiempoCompleto.prototype;
+                empleado.calculadoraSalario.fechaInicioTrabajo = new Date(empleado.calculadoraSalario.fechaInicioTrabajo);
                 return;
             }
             if (atributo == "salarioPorHora") {
@@ -90,6 +92,16 @@ class UtilitariosEmpleados {
                 break;
             case 'WhatsApp':
                 empleado.metodoDeEnvio = new WhatsApp();
+                break;
+            default:
+                break;
+        }
+    }
+
+    static parsearSindicato(empleado) {
+        switch (empleado.nombreSindicato) {
+            case 'SindicatoRRHH':
+                empleado.sindicato.__proto__ = SindicatoRRHH.prototype;
                 break;
             default:
                 break;

@@ -14,7 +14,6 @@ describe("BoletasDePagoTest", function () {
     fecha = new Date(2019, 4, 31);
     enviarBoletasInteractor = new EnviarBoletasInteractor(empleadoRepositorio);
     respuestas = await enviarBoletasInteractor.enviar(fecha);
-    console.log(respuestas);
   })
 
   after(async function () {
