@@ -10,6 +10,10 @@ const VerificadorFechaDePagaTiempoParcial = require('../VerificardorFechaDePaga/
 const Efectivo = require('../Metodos de pago/Efectivo');
 const Deposito = require('../Metodos de pago/Deposito');
 const Cheque = require('../Metodos de pago/Cheque');
+const Mail = require('../Metodos de envio/Mail');
+const Facebook = require('../Metodos de envio/Facebook');
+const WhatsApp = require('../Metodos de envio/WhatsApp');
+
 
 class UtilitariosEmpleados {
     constructor() {
@@ -20,6 +24,7 @@ class UtilitariosEmpleados {
         this.parsearCalculadora(empleado);
         this.parsearVerificador(empleado);
         this.parsearMetodoDePago(empleado);
+        this.parsearMetodoDeEnvio(empleado);
         return empleado;
     }
 
@@ -69,6 +74,22 @@ class UtilitariosEmpleados {
                 break;
             case 'Cheque':
                 empleado.metodoDePago.__proto__ = Cheque.prototype;
+                break;
+            default:
+                break;
+        }
+    }
+
+    static parsearMetodoDeEnvio(empleado) {
+        switch (empleado.metodoDeEnvioCadena) {
+            case 'Email':
+                empleado.metodoDeEnvio = new Mail();
+                break;
+            case 'Facebook':
+                empleado.metodoDeEnvio = new Facebook();
+                break;
+            case 'WhatsApp':
+                empleado.metodoDeEnvio = new WhatsApp();
                 break;
             default:
                 break;

@@ -1,29 +1,29 @@
 const GeneradorBoleta = require('./GeneradorBoleta');
 const UtilitariosEmpleado = require('../../Entidades/Utilitarios/UtilitariosEmpleados');
+const InfoEnvioFactory = require('../../Entidades/Factories/InfoEnvioFactory');
 
 class GeneradorDeBoletas {
 
-    constructor(conexion, entidad) {
-        this.conexionABaseDeDatos = conexion;
-        this.coleccionEmpleados = entidad;
+    constructor(repositorio) {
+        this.repositorio = repositorio;
     }
 
     async generarBoletas(fecha) {
-        var boletasDePago = await this.obtenerBoletas(this.conexionABaseDeDatos, this.coleccionEmpleados, fecha);
-        return boletasDePago;
-    }
+        var respuestas = [];
+        let boleta = {};
 
-    obtenerBoletas(conexionABaseDeDatos, coleccionEmpleados, fecha) {
-        return new Promise(async function (resolve, reject) {
-            var boletasDePago = [];
-            let empleados = await conexionABaseDeDatos.obtenerTodos(coleccionEmpleados);
-            for (let empleado of empleados) {
-                empleado = UtilitariosEmpleado.parsearEmpleado(empleado);
-                if (empleado.esMiDiaDePaga(fecha))
-                    boletasDePago.push(GeneradorBoleta.obtener(empleado, fecha));
+        let empleados = await this.repositorio.obtenerTodos();
+        for (let empleado of empleados) {
+            let respuesta = {};
+            empleado = UtilitariosEmpleado.parsearEmpleado(empleado);
+            if (empleado.esMiDiaDePaga(fecha)) {
+                boleta = GeneradorBoleta.obtener(empleado, fecha);
+                let infoEnvio = InfoEnvioFactory.obtenerInfoDeEnvio(empleado, "generar boleta", boleta);
+                respuesta = await empleado.metodoDeEnvio.enviar(infoEnvio);
+                respuestas.push(respuesta);
             }
-            resolve(boletasDePago);
-        })
+        }
+        return respuestas;
     }
 }
 

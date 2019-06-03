@@ -9,11 +9,11 @@ class MetodoDePagoFactory {
 
     static obtenerMetodoDePago(metodoPago) {
         switch (metodoPago) {
-            case "cheque":
+            case "Cheque":
                 return new Cheque();
-            case "deposito":
+            case "Deposito":
                 return new Deposito();
-            case "efectivo":
+            case "Efectivo":
                 return new Efectivo();
             default:
                 return null;

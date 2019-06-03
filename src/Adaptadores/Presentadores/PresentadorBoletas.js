@@ -4,12 +4,17 @@ const ValidadorRespuestaWhatsapp = require('../../Entidades/Validadores/Validado
 
 
 class PresentadorBoletas {
-    constructor(respuesta) {
-        this.respuesta = respuesta;
+    constructor(respuestas) {
+        this.respuestasInteractor = respuestas;
     }
 
     obtenerObjetoRespuesta() {
-        return this.respuesta.validador.validar(this.respuesta.respuestaEnvio);
+        let respuestas = [];
+        for (let respuesta of this.respuestasInteractor) {
+            let resp = { content: respuesta };
+            respuestas.push(resp);
+        }
+        return respuestas;
     }
 }
 

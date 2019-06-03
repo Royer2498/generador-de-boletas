@@ -4,13 +4,23 @@ const router = express.Router();
 const ObtenerEmpleadosInteractor = require('../../Casos de uso/Empleados/ObtenerEmpleadosInteractor');
 const ObtenerEmpleadoInteractor = require('../../Casos de uso/Empleados/ObtenerEmpleadoInteractor');
 const GuardarEmpleadoInteractor = require('../../Casos de uso/Empleados/GuardarEmpleadoInteractor');
+const GuardarEmpleadosInteractor = require('../../Casos de uso/Empleados/GuardarEmpleadosInteractor');
+const ActualizarEmpleadoInteractor = require('../../Casos de uso/Empleados/ActualizarEmpleadoInteractor');
+const EliminarEmpleadoInteractor = require('../../Casos de uso/Empleados/EliminarEmpleadoInteractor');
+
+const UtilitariosEmpleados = require('../../Entidades/Utilitarios/UtilitariosEmpleados');
+
 const PresentadorEmpleados = require('../Presentadores/PresentadorEmpleados');
 const PresentadorRespuestaEmpleado = require('../Presentadores/PresentadorRespuestaEmpleado');
+
 const GeneradorCIRequestModel = require('../DTOs/GeneradorCIRequestModel');
 const GeneradorEmpleadoRequestModel = require('../DTOs/GeneradorEmpleadoRequestModel');
+const GeneradorEmpleadosRequestModel = require('../DTOs/GeneradorEmpleadosRequestModel');
+const GeneradorEmpleadoActualizarRequestModel = require('../DTOs/GeneradorEmpleadoActualizarRequestModel');
 
 var empleadoRepositorio;
-(async function() {
+
+(async function () {
     empleadoRepositorio = await require('./server');
 })()
 
@@ -29,10 +39,9 @@ router.get("/obtener-todos", async function (consulta, respuesta) {
     let presentador = new PresentadorEmpleados(empleados);
     let empleadosRespuesta = presentador.obtenerObjetoRespuesta();
     respuesta.send(empleadosRespuesta);
-    
 })
 
- router.get("/:ci", async function (consulta, respuesta) {
+router.get("/:ci", async function (consulta, respuesta) {
     let generadorRequestModel = new GeneradorCIRequestModel(consulta);
     let requestModel = generadorRequestModel.obtenerRequestModel();
     let obtenerEmpleadoInteractor = new ObtenerEmpleadoInteractor(empleadoRepositorio);
@@ -49,42 +58,56 @@ router.post("/", async function (consulta, respuesta) {
     let respuestaDeInsercion = {};
     try {
         respuestaDeInsercion = await insertarEmpleadoInteractor.guardarEmpleado(requestModel);
-    } catch(error) {
-        console.log(error);
+    } catch (error) {
+        console.log("error al insertar un empleado ", error);
     }
     let presentador = new PresentadorRespuestaEmpleado(respuestaDeInsercion);
     let respuestaMetodo = presentador.obtenerObjetoRespuesta();
     respuesta.send(respuestaMetodo);
 })
 
-/*
+
 router.post("/insertar-varios", async function (consulta, respuesta) {
-    let empleados = consulta.body;
-    let resp = conexionABaseDeDatos.insertarVarios(empleados, entidadEmpleados);
-    respuesta.send(resp);
+    let generadorRequestModel = new GeneradorEmpleadosRequestModel(consulta);
+    let requestModel = generadorRequestModel.obtenerRequestModel();
+    let insertarEmpleadosInteractor = new GuardarEmpleadosInteractor(empleadoRepositorio);
+    let respuestaDeInsercion = {};
+    try {
+        respuestaDeInsercion = await insertarEmpleadosInteractor.guardarEmpleados(requestModel);
+    } catch (error) {
+        console.log("error al insertar varios empleado");
+    }
+    let presentador = new PresentadorRespuestaEmpleado(respuestaDeInsercion);
+    let respuestaMetodo = presentador.obtenerObjetoRespuesta();
+    respuesta.send(respuestaMetodo);
 })
 
 router.put("/", async function (consulta, respuesta) {
-    let empleado = consulta.body;
-    let criterioDeBusqueda = { ci: parseInt(empleado.ci) }
-    let empleado = await conexionABaseDeDatos.buscar(criterioDeBusqueda, entidadEmpleados);
-    let resp = {};
-    if (empleado != null) {
-        let empleadoActualizado = { $set: empleado }
-        resp = conexionABaseDeDatos.actualizar(criterioDeBusqueda, empleadoActualizado, entidadEmpleados)
+    // let generadorRequestModel = new GeneradorEmpleadoRequestModel(consulta);
+    let generadorEmpleadoActualizarRequestModel = new GeneradorEmpleadoActualizarRequestModel(consulta);
+    let requestModel = generadorEmpleadoActualizarRequestModel.obtenerRequestModel();
+    let actualizarEmpleadoInteractor = new ActualizarEmpleadoInteractor(empleadoRepositorio);
+    let respuestaDeInsercion = {};
+    try {
+        respuestaDeInsercion = await actualizarEmpleadoInteractor.actualizarEmpleado(requestModel);
+    } catch (error) {
     }
-    respuesta.send(resp);
+    let presentador = new PresentadorRespuestaEmpleado(respuestaDeInsercion);
+    let respuestaMetodo = presentador.obtenerObjetoRespuesta();
+    respuesta.send(respuestaMetodo);
 })
 
 router.delete("/:ci", async function (consulta, respuesta) {
-    let criterioDeBusqueda = { ci: parseInt(consulta.params.ci) };
-    let empleado = await conexionABaseDeDatos.buscar(criterioDeBusqueda, entidadEmpleados);
-    let resp = {};
-    if (empleado != null) {
-        resp = conexionABaseDeDatos.eliminar(criterioDeBusqueda, entidadEmpleados);
+    let eliminarEmpleadoInteractor = new EliminarEmpleadoInteractor(empleadoRepositorio);
+    let respuestaDeInsercion = {};
+    try {
+        respuestaDeInsercion = await eliminarEmpleadoInteractor.eliminarEmpleado(consulta);
+    } catch (error) {
+        console.log("error al eliminar un empleado");
     }
-    respuesta.send(resp);
-
-}) */
+    let presentador = new PresentadorRespuestaEmpleado(respuestaDeInsercion);
+    let respuestaMetodo = presentador.obtenerObjetoRespuesta();
+    respuesta.send(respuestaMetodo);
+})
 
 module.exports = router;
