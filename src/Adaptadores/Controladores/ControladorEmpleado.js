@@ -24,15 +24,6 @@ var empleadoRepositorio;
     empleadoRepositorio = await require('./server');
 })()
 
-
-function manejarError(respuesta, mensajeDeError, codigo) {
-    respuesta.status(codigo).send(mensajeDeError);
-}
-
-function hayResultados(resultados) {
-    return resultados.length > 0
-}
-
 router.get("/obtener-todos", async function (consulta, respuesta) {
     let obtenerEmpleadosInteractor = new ObtenerEmpleadosInteractor(empleadoRepositorio);
     let empleados = await obtenerEmpleadosInteractor.obtenerEmpleados();
@@ -83,7 +74,6 @@ router.post("/insertar-varios", async function (consulta, respuesta) {
 })
 
 router.put("/", async function (consulta, respuesta) {
-    // let generadorRequestModel = new GeneradorEmpleadoRequestModel(consulta);
     let generadorEmpleadoActualizarRequestModel = new GeneradorEmpleadoActualizarRequestModel(consulta);
     let requestModel = generadorEmpleadoActualizarRequestModel.obtenerRequestModel();
     let actualizarEmpleadoInteractor = new ActualizarEmpleadoInteractor(empleadoRepositorio);
