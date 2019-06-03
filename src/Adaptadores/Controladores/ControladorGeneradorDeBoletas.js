@@ -8,6 +8,7 @@ const NotificarBoletaDePagoInteractor = require('../../Casos de uso/Boleta de pa
 const GeneradorBoletaRequestModel = require('../DTOs/GeneradorBoletaRequestModel');
 const GenerarBoletaInteractor = require('../../Casos de uso/Boleta de pago/GenerarBoletaInteractor');
 const PresentadorBoletas = require('../Presentadores/PresentadorBoletas');
+const PresentadorNotificacion = require('../Presentadores/PresentadorNotificacion');
 
 function manejarError(respuesta, mensajeDeError, codigo) {
     respuesta.status(codigo).send(mensajeDeError);
@@ -28,10 +29,10 @@ router.post("/notificar/:metodoEnvio", async function (consulta, respuesta) {
     let generadorRequestModel = new GeneradorMetodoEnvioRequestModel(consulta);
     let requestModel = generadorRequestModel.obtenerRequestModel();
     let notificarBoletaDePagoInteractor = new NotificarBoletaDePagoInteractor(requestModel);
-    let respuestaDeNotificacion = await notificarBoletaDePagoInteractor.enviar()
-    console.log(respuestaDeNotificacion);
-    // let resp = await medioDeEnvio.enviar(notificacion);
-    respuesta.send(respuestaDeNotificacion);
+    let respuestaInteractor = await notificarBoletaDePagoInteractor.enviar()
+    let presentador = new PresentadorNotificacion(respuestaInteractor);
+    let respuestaNotificacion = presentador.obtenerObjetoRespuesta();
+    respuesta.send(respuestaNotificacion);
 })
 
 module.exports = router;
