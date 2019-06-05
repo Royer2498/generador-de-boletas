@@ -29,8 +29,7 @@ class Empleado {
   }
 
   establecerMetodoDeEnvio(metodo) {
-    this.metodoDeEnvio = metodo;
-    this.metodoDeEnvioCadena = this.metodoDeEnvio.constructor.name;
+    this.metodoDeEnvioCadena = metodo;
   }
 
   establecerSindicato(sindicato) {
